@@ -1,0 +1,6 @@
+# Pinned from `pip freeze` of the built image (2026-11-10).
+fastapi==0.162.3
+uvicorn==0.54.0
+psycopg[binary]==3.3.8
+psycopg-pool==3.3.3
+httpx==0.28.1
