@@ -1,0 +1,38 @@
+{
+  "run_id": "20261110-192241-dev-baseline-small",
+  "label": "dev-baseline-small",
+  "scenario": "baseline",
+  "seed": 1,
+  "flags": [],
+  "isolation": "read_committed",
+  "lease_ttl_s": 5.0,
+  "workers": 8,
+  "params": {
+    "jobs": 300,
+    "rate": 40,
+    "sources": [],
+    "profile": "normal",
+    "ignore_lease_loss": false,
+    "release_on_start": false,
+    "kill_every": [
+      1.5,
+      2.5
+    ]
+  },
+  "expected": {
+    "verdict": "PASS"
+  },
+  "required_coverage": [
+    "posts",
+    "repeat_posts",
+    "concurrent_bursts",
+    "diff_body_409",
+    "cancelled_from_running",
+    "long_jobs_succeeded_first_attempt"
+  ],
+  "git_commit": "f3c41a3871a8db3da3de20b638afe47757c67827",
+  "source_sha256": "1fc6a9829abf061a",
+  "started_at": "2026-11-10T19:22:41+0000",
+  "database": "chaos_20261110_192241_dev_baseline_small",
+  "note": "harness debugging"
+}

@@ -60,5 +60,20 @@ services:
       migrate:
         condition: service_completed_successfully
 
+  # Chaos harness: starts its own API and 8 workers against a fresh database per run.
+  #   docker compose --profile chaos run --rm chaos canonical --seed 1 --label C1
+  chaos:
+    <<: *app
+    profiles: ["chaos"]
+    entrypoint: ["python", "-m", "chaos.harness"]
+    environment:
+      ADMIN_DATABASE_URL: postgresql://soup:soup@postgres:5432/jobs
+    volumes:
+      - ./results:/app/results
+      - ./.git:/app/.git:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   pgdata:

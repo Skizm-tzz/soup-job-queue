@@ -1,0 +1,19 @@
+[    0.02s] run 20261110-192326-dev-canonical-small: canonical seed=1 jobs=2000 rate=40/s sources=['killer'] flags=[] isolation=read_committed release_on_start=False ignore_lease_loss=False; expect {'verdict': 'PASS'}
+[    1.81s] plan: 2000 keys over ~50s; bursts=190 delayed-repeats=276 diff-body=10 cancels=137 long(>TTL)=10
+[   11.84s] progress: keys sent 374/2000, states {'succeeded': 344, 'failed': 2, 'cancelled': 18, 'queued': 1, 'running': 9}, faults {'kill': 5}
+[   21.84s] progress: keys sent 743/2000, states {'succeeded': 696, 'failed': 5, 'cancelled': 32, 'queued': 2, 'running': 8}, faults {'kill': 10}
+[   31.85s] progress: keys sent 1155/2000, states {'succeeded': 1087, 'failed': 9, 'cancelled': 48, 'queued': 4, 'running': 7}, faults {'kill': 15}
+[   41.85s] progress: keys sent 1570/2000, states {'succeeded': 1469, 'failed': 17, 'cancelled': 68, 'queued': 9, 'running': 7}, faults {'kill': 20}
+[   51.86s] progress: keys sent 1981/2000, states {'succeeded': 1870, 'failed': 21, 'cancelled': 80, 'queued': 3, 'running': 7}, faults {'kill': 24}
+[   61.88s] progress: keys sent 2000/2000, states {'succeeded': 1895, 'failed': 23, 'cancelled': 81, 'running': 1}, faults {'kill': 30}
+[   70.93s] load done in 69.1s; stopping fault sources
+[   70.94s] drain complete after 0.0s: {'succeeded': 1896, 'failed': 23, 'cancelled': 81}
+[   72.31s] processes stopped; worker processes spawned in total: 42
+[   72.40s] invariants: I1=ok  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[   72.40s] coverage: kills=34 (orphaning 16) takeovers=16 by cause {'kill': 16} unexplained=0; recovery after kill {'n': 16, 'p50': 4.901, 'p95': 5.012, 'max': 5.012}
+[   72.40s] coverage: stale completes rejected=33 {'cancelled': 33} lease_lost=10 exhausted=0 max_attempt=3 executions/job={'0': 36, '1': 1951, '2': 11, '3': 2}
+[   72.41s] coverage: cancelled from queued=36 from running=45 responses={'200': 108, '409': 73} sent-while-running=51 lost-race=18
+[   72.41s] coverage: posts=2844 repeats=844 bursts=190 201-not-to-first=6 no-201-seen=0 diff-body-409=10; long jobs 10 ok-first-try 2
+[   72.41s] final states: {'succeeded': 1896, 'cancelled': 81, 'failed': 23}; client errors: {}; fault actions: {'kill': 34}
+[   72.41s] VERDICT: PASS (expected PASS) -> as expected
+[   73.09s] results in results/20261110-192326-dev-canonical-small/

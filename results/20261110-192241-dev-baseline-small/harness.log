@@ -1,0 +1,17 @@
+[    0.06s] run 20261110-192241-dev-baseline-small: baseline seed=1 jobs=300 rate=40/s sources=[] flags=[] isolation=read_committed release_on_start=False ignore_lease_loss=False; expect {'verdict': 'PASS'}
+[    2.24s] plan: 300 keys over ~8s; bursts=31 delayed-repeats=51 diff-body=5 cancels=30 long(>TTL)=0
+[   12.26s] progress: keys sent 300/300, states {'cancelled': 14, 'failed': 2, 'succeeded': 284}, faults {}
+[   22.26s] progress: keys sent 300/300, states {'cancelled': 14, 'failed': 2, 'succeeded': 284}, faults {}
+[   27.40s] load done in 25.2s; stopping fault sources
+[   27.40s] drain complete after 0.0s: {'cancelled': 14, 'failed': 2, 'succeeded': 284}
+[   28.33s] processes stopped; worker processes spawned in total: 8
+[   28.35s] invariants: I1=ok  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[   28.35s] coverage: kills=0 (orphaning 0) takeovers=0 by cause {} unexplained=0; recovery after kill {'n': 0, 'p50': None, 'p95': None, 'max': None}
+[   28.35s] coverage: stale completes rejected=7 {'cancelled': 7} lease_lost=1 exhausted=0 max_attempt=1 executions/job={'0': 6, '1': 294}
+[   28.35s] coverage: cancelled from queued=6 from running=8 responses={'200': 18, '409': 21} sent-while-running=10 lost-race=5
+[   28.35s] coverage: posts=449 repeats=149 bursts=31 201-not-to-first=2 no-201-seen=0 diff-body-409=5; long jobs 0 ok-first-try 0
+[   28.35s] final states: {'succeeded': 284, 'cancelled': 14, 'failed': 2}; client errors: {}; fault actions: {}
+[   28.35s] NOT COVERED: ['long_jobs_succeeded_first_attempt']
+[   28.35s] VERDICT: NOT COVERED (expected PASS) -> UNEXPECTED
+[   28.44s] database chaos_20261110_192241_dev_baseline_small kept for inspection
+[   28.46s] results in results/20261110-192241-dev-baseline-small/
