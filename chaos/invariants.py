@@ -39,9 +39,9 @@ LEGAL = {
 SLACK = timedelta(seconds=0.5)
 
 
-async def _rows(conn, sql: str) -> list[dict]:
+async def _rows(conn, sql: str, params=None) -> list[dict]:
     async with conn.cursor(row_factory=dict_row) as cur:
-        await cur.execute(sql)
+        await cur.execute(sql, params)
         return await cur.fetchall()
 
 
@@ -70,16 +70,22 @@ class Checker:
     def v(self, inv: str, msg: str, job: int | None = None, key: str | None = None) -> None:
         self.violations[inv].append({"job": job, "key": key, "msg": msg})
 
-    async def load(self, conn) -> None:
-        self.jobs = await _rows(conn, "SELECT * FROM jobs ORDER BY id")
+    async def load(self, conn, key_prefix: str | None = None) -> None:
+        """key_prefix: check only the jobs of one run in a shared database (the load test)."""
+        if key_prefix is None:
+            self.jobs = await _rows(conn, "SELECT * FROM jobs ORDER BY id")
+            where, p = "", None
+        else:
+            self.jobs = await _rows(conn, "SELECT * FROM jobs WHERE idempotency_key LIKE %s ORDER BY id", (key_prefix + "%",))
+            where, p = " WHERE job_id = ANY(%s)", ([j["id"] for j in self.jobs],)
         self.events = defaultdict(list)
-        for e in await _rows(conn, "SELECT * FROM job_events ORDER BY job_id, seq"):
+        for e in await _rows(conn, f"SELECT * FROM job_events{where} ORDER BY job_id, seq", p):
             self.events[e["job_id"]].append(e)
         self.effects = defaultdict(list)
-        for e in await _rows(conn, "SELECT * FROM effects"):
+        for e in await _rows(conn, f"SELECT * FROM effects{where}", p):
             self.effects[e["job_id"]].append(e)
         self.execs = defaultdict(list)
-        for e in await _rows(conn, "SELECT * FROM executions"):
+        for e in await _rows(conn, f"SELECT * FROM executions{where}", p):
             self.execs[e["job_id"]].append(e)
         self.diags = await _rows(conn, "SELECT * FROM diag_events ORDER BY seq")
 
@@ -286,6 +292,8 @@ class Checker:
                 self.v("I6", f"create response showed terminal {e['state']}, job ended {final}", j["id"])
 
     def _check_walk(self) -> None:
+        if self.walk_all is None:  # not checked in this run (shared database)
+            return
         db_ids = [j["id"] for j in self.jobs]
         w = self.walk_all
         if w != sorted(w) or len(w) != len(set(w)):

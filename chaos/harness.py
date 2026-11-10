@@ -379,8 +379,12 @@ async def run(args) -> int:
     log = Log(out / "harness.log")
     db_name = "chaos_" + re.sub(r"\W", "_", run_id).lower()
 
-    expected = {"verdict": "FAIL", "invariants": sorted({i for f in flags for i in EXPECTED_BY_FAULT[f]})} if flags \
-        else {"verdict": "PASS"}
+    if args.expect:
+        expected = {"verdict": "FAIL", "invariants": sorted(args.expect)}
+    elif flags:
+        expected = {"verdict": "FAIL", "invariants": sorted({i for f in flags for i in EXPECTED_BY_FAULT[f]})}
+    else:
+        expected = {"verdict": "PASS"}
     config = {
         "run_id": run_id, "label": label, "scenario": args.scenario, "seed": args.seed, "flags": flags,
         "isolation": args.isolation, "lease_ttl_s": args.lease_ttl, "workers": N_WORKERS, "params": asdict(sc),
@@ -535,6 +539,8 @@ def main() -> None:
     ap.add_argument("--label")
     ap.add_argument("--note", default="")
     ap.add_argument("--fault", action="append", default=[], help="seeded bug from app/faults.py (repeatable)")
+    ap.add_argument("--expect", action="append", choices=INVARIANTS,
+                    help="expect FAIL on this invariant (overrides the per-fault default; repeatable)")
     ap.add_argument("--isolation", default="read_committed", choices=["read_committed", "repeatable_read", "serializable"])
     ap.add_argument("--lease-ttl", type=float, default=5.0)
     ap.add_argument("--release-on-start", action="store_true")
