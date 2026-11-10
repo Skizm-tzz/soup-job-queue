@@ -7,5 +7,12 @@ A run without `summary.json` was aborted and is listed as such.
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | [20261110-192241-dev-baseline-small](20261110-192241-dev-baseline-small/) | dev-baseline-small | baseline | 1 | 300 | - | read_committed | PASS | NOT COVERED not covered: long_jobs_succeeded_first_attempt | **NO** | kills 0, takeovers 0, stale rejected 7, cancel running 8, exhausted 0 | f3c41a3 |
 | [20261110-192326-dev-canonical-small](20261110-192326-dev-canonical-small/) | dev-canonical-small | canonical | 1 | 2000 | - | read_committed | PASS | PASS | yes | kills 34, takeovers 16, stale rejected 33, cancel running 45, exhausted 0 | f3c41a3 |
+| [20261110-192510-B0](20261110-192510-B0/) | B0 | baseline | 1 | 2000 | - | read_committed | PASS | PASS | yes | kills 0, takeovers 0, stale rejected 31, cancel running 43, exhausted 0 | f9ae73c |
+| [20261110-192627-C1](20261110-192627-C1/) | C1 | canonical | 1 | 10000 | - | read_committed | PASS | PASS | yes | kills 135, takeovers 76, stale rejected 172, cancel running 282, exhausted 0 | f9ae73c |
+| [20261110-193108-C2](20261110-193108-C2/) | C2 | canonical | 2 | 10000 | - | read_committed | PASS | PASS | yes | kills 130, takeovers 70, stale rejected 176, cancel running 288, exhausted 0 | f9ae73c |
+| [20261110-193541-C3](20261110-193541-C3/) | C3 | canonical | 3 | 10000 | - | read_committed | PASS | PASS | yes | kills 130, takeovers 76, stale rejected 133, cancel running 240, exhausted 1 | f9ae73c |
+| [20261110-194016-C4](20261110-194016-C4/) | C4 | canonical | 4 | 10000 | - | read_committed | PASS | PASS | yes | kills 129, takeovers 87, stale rejected 154, cancel running 280, exhausted 0 | f9ae73c |
+| [20261110-194452-C5](20261110-194452-C5/) | C5 | canonical | 5 | 10000 | - | read_committed | PASS | PASS | yes | kills 135, takeovers 75, stale rejected 163, cancel running 274, exhausted 0 | f9ae73c |
+| [20261110-194929-C6](20261110-194929-C6/) | C6 | canonical | 6 | 10000 | - | read_committed | PASS | PASS | yes | kills 131, takeovers 71, stale rejected 152, cancel running 247, exhausted 0 | f9ae73c |
 
-2 runs.
+9 runs.

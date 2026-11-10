@@ -1,0 +1,41 @@
+{
+  "run_id": "20261110-193108-C2",
+  "label": "C2",
+  "scenario": "canonical",
+  "seed": 2,
+  "flags": [],
+  "isolation": "read_committed",
+  "lease_ttl_s": 5.0,
+  "workers": 8,
+  "params": {
+    "jobs": 10000,
+    "rate": 40,
+    "sources": [
+      "killer"
+    ],
+    "profile": "normal",
+    "ignore_lease_loss": false,
+    "release_on_start": false,
+    "kill_every": [
+      1.5,
+      2.5
+    ]
+  },
+  "expected": {
+    "verdict": "PASS"
+  },
+  "required_coverage": [
+    "kills",
+    "kills_orphaning_a_job",
+    "takeovers",
+    "repeat_posts",
+    "concurrent_bursts",
+    "cancelled_from_running",
+    "cancelled_from_queued"
+  ],
+  "git_commit": "f9ae73cfeb9a4fe5ee12edd862fb9268c19ea08c",
+  "source_sha256": "1fc6a9829abf061a",
+  "started_at": "2026-11-10T19:31:08+0000",
+  "database": "chaos_20261110_193108_c2",
+  "note": ""
+}

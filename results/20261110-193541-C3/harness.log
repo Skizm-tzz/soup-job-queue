@@ -1,0 +1,39 @@
+[    0.02s] run 20261110-193541-C3: canonical seed=3 jobs=10000 rate=40/s sources=['killer'] flags=[] isolation=read_committed release_on_start=False ignore_lease_loss=False; expect {'verdict': 'PASS'}
+[    1.69s] plan: 10000 keys over ~247s; bursts=1000 delayed-repeats=1488 diff-body=50 cancels=803 long(>TTL)=50
+[   11.83s] progress: keys sent 389/10000, states {'cancelled': 23, 'running': 4, 'queued': 2, 'failed': 3, 'succeeded': 357}, faults {'kill': 4}
+[   21.83s] progress: keys sent 787/10000, states {'cancelled': 39, 'running': 2, 'failed': 4, 'succeeded': 742}, faults {'kill': 9}
+[   31.84s] progress: keys sent 1199/10000, states {'cancelled': 64, 'running': 5, 'queued': 2, 'failed': 8, 'succeeded': 1120}, faults {'kill': 13}
+[   41.84s] progress: keys sent 1610/10000, states {'cancelled': 84, 'running': 9, 'queued': 23, 'failed': 17, 'succeeded': 1477}, faults {'kill': 18}
+[   51.85s] progress: keys sent 2046/10000, states {'cancelled': 104, 'running': 4, 'failed': 19, 'succeeded': 1919}, faults {'kill': 23}
+[   61.86s] progress: keys sent 2388/10000, states {'succeeded': 2239, 'failed': 26, 'cancelled': 121, 'running': 2}, faults {'kill': 28}
+[   71.87s] progress: keys sent 2795/10000, states {'succeeded': 2613, 'failed': 34, 'cancelled': 140, 'queued': 2, 'running': 6}, faults {'kill': 34}
+[   81.87s] progress: keys sent 3175/10000, states {'succeeded': 2970, 'failed': 40, 'cancelled': 156, 'queued': 2, 'running': 7}, faults {'kill': 39}
+[   91.88s] progress: keys sent 3604/10000, states {'succeeded': 3370, 'failed': 46, 'cancelled': 181, 'queued': 1, 'running': 6}, faults {'kill': 44}
+[  101.88s] progress: keys sent 4012/10000, states {'succeeded': 3747, 'failed': 50, 'cancelled': 206, 'queued': 1, 'running': 8}, faults {'kill': 49}
+[  111.89s] progress: keys sent 4448/10000, states {'succeeded': 4160, 'failed': 56, 'cancelled': 223, 'running': 9}, faults {'kill': 54}
+[  121.89s] progress: keys sent 4828/10000, states {'succeeded': 4525, 'failed': 60, 'cancelled': 239, 'queued': 1, 'running': 3}, faults {'kill': 60}
+[  131.90s] progress: keys sent 5252/10000, states {'succeeded': 4900, 'failed': 72, 'cancelled': 261, 'queued': 10, 'running': 9}, faults {'kill': 64}
+[  141.90s] progress: keys sent 5630/10000, states {'succeeded': 5271, 'failed': 76, 'cancelled': 278, 'running': 5}, faults {'kill': 69}
+[  151.91s] progress: keys sent 6039/10000, states {'succeeded': 5654, 'failed': 79, 'cancelled': 300, 'running': 5}, faults {'kill': 74}
+[  161.92s] progress: keys sent 6451/10000, states {'succeeded': 6037, 'failed': 82, 'cancelled': 324, 'running': 8}, faults {'kill': 78}
+[  171.92s] progress: keys sent 6831/10000, states {'succeeded': 6387, 'failed': 87, 'cancelled': 343, 'queued': 5, 'running': 9}, faults {'kill': 83}
+[  181.94s] progress: keys sent 7275/10000, states {'succeeded': 6811, 'failed': 92, 'cancelled': 365, 'running': 7}, faults {'kill': 89}
+[  191.95s] progress: keys sent 7665/10000, states {'succeeded': 7162, 'failed': 94, 'cancelled': 383, 'queued': 17, 'running': 9}, faults {'kill': 94}
+[  201.96s] progress: keys sent 8064/10000, states {'succeeded': 7553, 'failed': 100, 'cancelled': 403, 'running': 8}, faults {'kill': 99}
+[  211.97s] progress: keys sent 8472/10000, states {'succeeded': 7945, 'failed': 103, 'cancelled': 420, 'queued': 1, 'running': 3}, faults {'kill': 104}
+[  221.97s] progress: keys sent 8890/10000, states {'succeeded': 8336, 'failed': 105, 'cancelled': 439, 'queued': 3, 'running': 7}, faults {'kill': 109}
+[  231.98s] progress: keys sent 9325/10000, states {'succeeded': 8740, 'failed': 107, 'cancelled': 465, 'queued': 7, 'running': 6}, faults {'kill': 113}
+[  242.00s] progress: keys sent 9747/10000, states {'succeeded': 9143, 'failed': 112, 'cancelled': 480, 'queued': 3, 'running': 8}, faults {'kill': 118}
+[  252.01s] progress: keys sent 10000/10000, states {'succeeded': 9390, 'failed': 117, 'cancelled': 492, 'running': 1}, faults {'kill': 123}
+[  262.02s] progress: keys sent 10000/10000, states {'succeeded': 9390, 'failed': 117, 'cancelled': 492, 'running': 1}, faults {'kill': 128}
+[  267.83s] load done in 266.1s; stopping fault sources
+[  267.84s] drain complete after 0.0s: {'succeeded': 9391, 'failed': 117, 'cancelled': 492}
+[  270.59s] processes stopped; worker processes spawned in total: 138
+[  271.07s] invariants: I1=ok  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[  271.07s] coverage: kills=130 (orphaning 76) takeovers=76 by cause {'kill': 76} unexplained=0; recovery after kill {'n': 76, 'p50': 4.941, 'p95': 5.009, 'max': 5.028}
+[  271.07s] coverage: stale completes rejected=133 {'cancelled': 133} lease_lost=96 exhausted=1 max_attempt=6 executions/job={'0': 252, '1': 9681, '2': 62, '3': 3, '4': 1, '5': 1}
+[  271.07s] coverage: cancelled from queued=252 from running=240 responses={'200': 633, '409': 401} sent-while-running=294 lost-race=89
+[  271.07s] coverage: posts=14553 repeats=4553 bursts=1000 201-not-to-first=25 no-201-seen=0 diff-body-409=50; long jobs 50 ok-first-try 20
+[  271.07s] final states: {'succeeded': 9391, 'cancelled': 492, 'failed': 117}; client errors: {}; fault actions: {'kill': 130}
+[  271.07s] VERDICT: PASS (expected PASS) -> as expected
+[  271.66s] results in results/20261110-193541-C3/

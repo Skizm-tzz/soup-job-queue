@@ -1,0 +1,90 @@
+{
+  "run_id": "20261110-194929-C6",
+  "completed": true,
+  "verdict": "PASS",
+  "expected": {
+    "verdict": "PASS"
+  },
+  "as_expected": true,
+  "violations": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "I10": 0,
+    "B1": 0
+  },
+  "failed_invariants": [],
+  "not_covered": [],
+  "coverage": {
+    "kills": 131,
+    "stalls": 0,
+    "revokes": 0,
+    "conn_kills": 0,
+    "api_kills": 0,
+    "takeovers": 71,
+    "takeovers_by_cause": {
+      "kill": 71
+    },
+    "takeovers_unexplained": 0,
+    "takeovers_unexplained_sample": [],
+    "kills_orphaning_a_job": 71,
+    "recovery_after_kill_s": {
+      "n": 71,
+      "p50": 0.79,
+      "p95": 0.854,
+      "max": 0.928
+    },
+    "stale_completes_rejected": 152,
+    "stale_completes_by_reason": {
+      "cancelled": 152
+    },
+    "lease_lost_detected": 86,
+    "attempts_exhausted": 0,
+    "cancelled_from_queued": 243,
+    "cancelled_from_running": 247,
+    "cancel_responses": {
+      "200": 641,
+      "409": 373
+    },
+    "cancel_sent_while_seen_running": 273,
+    "cancel_lost_race_to_finish": 84,
+    "posts": 14585,
+    "repeat_posts": 4585,
+    "concurrent_bursts": 1007,
+    "burst_201_not_to_first_sent": 28,
+    "keys_without_any_201": 0,
+    "diff_body_409": 50,
+    "executions_per_job": {
+      "0": 243,
+      "1": 9695,
+      "2": 57,
+      "3": 4,
+      "4": 1
+    },
+    "max_attempt": 4,
+    "final_states": {
+      "succeeded": 9431,
+      "cancelled": 490,
+      "failed": 79
+    },
+    "long_jobs": 44,
+    "long_jobs_succeeded_first_attempt": 15
+  },
+  "client_errors": {},
+  "gets_nonterminal": 1266,
+  "drained": true,
+  "durations_s": {
+    "load": 265.9,
+    "total": 270.7
+  },
+  "worker_processes_spawned": 139,
+  "fault_actions": {
+    "kill": 131
+  }
+}
