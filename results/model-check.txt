@@ -1,4 +1,4 @@
-﻿Model check of the queue protocol (exhaustive BFS over all interleavings)
+Model check of the queue protocol (exhaustive BFS over all interleavings)
 
 Model action -> statement in app/queue.py:
   claim      queue.claim()      -- UPDATE ... FOR UPDATE SKIP LOCKED, attempt+1
