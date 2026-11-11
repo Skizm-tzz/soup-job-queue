@@ -1,0 +1,12 @@
+[    0.03s] load test 20261111-043027-dev-L1-probe: 100 rps for 30.0s against http://api:8000, mix {'create': 0.6, 'get': 0.3, 'list': 0.05, 'cancel': 0.05}
+[    0.29s] t=0.1s requests done 0/2911 queued=0 running=0 dead_tuples=180 hot=29/3628
+[  270.65s] t=270.5s requests done 2652/2911 queued=70 running=4 dead_tuples=209 hot=29/6257
+[  278.08s] load sent in 271.9s; queue drained 6.0s after the last request
+[  278.52s] create  {'n': 1773, 'p50_ms': 193126.4, 'p95_ms': 259967.5, 'p99_ms': 264060.1, 'max_ms': 266496.2}
+[  278.52s] list    {'n': 148, 'p50_ms': 198607.5, 'p95_ms': 259038.3, 'p99_ms': 262358.6, 'max_ms': 262944.5}
+[  278.52s] get     {'n': 848, 'p50_ms': 193914.8, 'p95_ms': 259697.2, 'p99_ms': 264492.0, 'max_ms': 267107.8}
+[  278.53s] cancel  {'n': 139, 'p50_ms': 174555.5, 'p95_ms': 259124.2, 'p99_ms': 266006.7, 'max_ms': 266078.7}
+[  278.53s] achieved 10.7 rps of 100; late sends 0; statuses {'create:201': 935, 'list:200': 80, 'get:200': 465, 'cancel:200': 14, 'cancel:409': 56, 'create:gave_up': 838, 'get:gave_up': 383, 'list:gave_up': 68, 'cancel:gave_up': 69}; client errors {'create:timeout': 838, 'get:timeout': 383, 'list:timeout': 68, 'cancel:timeout': 69}
+[  278.53s] queue wait p50/p95/p99 [0.848, 5.633, 5.694] s; create->finish [0.935, 5.672, 5.731] s; max queued 139
+[  278.53s] invariants (this run's jobs; I10 not checked): I1=FAIL(1676)  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  B1=ok
+[  278.54s] results in results/load/20261111-043027-dev-L1-probe/

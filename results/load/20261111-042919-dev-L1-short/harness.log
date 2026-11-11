@@ -1,0 +1,12 @@
+[    0.03s] load test 20261111-042919-dev-L1-short: 100 rps for 30.0s against http://api:8000, mix {'create': 0.6, 'get': 0.3, 'list': 0.05, 'cancel': 0.05}
+[    0.27s] t=0.2s requests done 7/2911 queued=0 running=0 dead_tuples=0 hot=29/155
+[   31.20s] t=31.1s requests done 2393/2911 queued=8 running=0 dead_tuples=2814 hot=29/2969
+[   39.82s] load sent in 36.7s; queue drained 3.0s after the last request
+[   39.95s] create  {'n': 1773, 'p50_ms': 124.1, 'p95_ms': 10923.8, 'p99_ms': 15081.2, 'max_ms': 17807.3}
+[   39.95s] list    {'n': 148, 'p50_ms': 26.7, 'p95_ms': 11013.9, 'p99_ms': 12684.0, 'max_ms': 13768.8}
+[   39.95s] get     {'n': 848, 'p50_ms': 20.6, 'p95_ms': 9786.2, 'p99_ms': 14118.0, 'max_ms': 16685.2}
+[   39.95s] cancel  {'n': 139, 'p50_ms': 221.2, 'p95_ms': 12169.7, 'p99_ms': 16100.1, 'max_ms': 16171.2}
+[   39.95s] achieved 79.2 rps of 100; late sends 0; statuses {'create:201': 1773, 'list:200': 148, 'get:200': 848, 'cancel:200': 82, 'cancel:409': 57}; client errors {}
+[   39.95s] queue wait p50/p95/p99 [3.384, 5.32, 5.429] s; create->finish [3.443, 5.366, 5.467] s; max queued 300
+[   39.96s] invariants (this run's jobs; I10 not checked): I1=ok  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  B1=ok
+[   39.96s] results in results/load/20261111-042919-dev-L1-short/

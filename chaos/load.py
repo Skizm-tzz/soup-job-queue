@@ -76,12 +76,23 @@ class GaveUp(Exception):
 class Client:
     """Every timeout, transport error or 5xx is an unknown outcome: retry the same request."""
 
-    def __init__(self, base_url: str, t0: float, retry_deadline_s: float = 180.0):
-        self.http = httpx.AsyncClient(
-            base_url=base_url,
-            timeout=httpx.Timeout(10.0),
-            limits=httpx.Limits(max_connections=200, max_keepalive_connections=100),
-        )
+    def __init__(self, base_url: str, t0: float, retry_deadline_s: float = 180.0, shards: int = 16,
+                 conns_per_shard: int = 8):
+        # httpcore matches every queued request against every pooled connection on
+        # each state change, O(queued x connections) per event. With one pool of 200
+        # connections a short server slowdown made the *client* burn 100% CPU and
+        # time out everything (found while debugging the load test; see REPORT.md).
+        # Many small pools, used round-robin, keep each scan tiny.
+        self.shards = [
+            httpx.AsyncClient(
+                base_url=base_url,
+                timeout=httpx.Timeout(10.0),
+                limits=httpx.Limits(max_connections=conns_per_shard, max_keepalive_connections=conns_per_shard),
+            )
+            for _ in range(shards)
+        ]
+        self.http = self.shards[0]
+        self._next = 0
         self.t0 = t0
         self.retry_deadline_s = retry_deadline_s
         self.journal: list[dict] = []
@@ -100,13 +111,15 @@ class Client:
         tries = 0
         while True:
             tries += 1
+            http = self.shards[self._next]
+            self._next = (self._next + 1) % len(self.shards)
             try:
-                r = await self.http.request(method, url, json=json, headers=headers, params=params)
+                r = await http.request(method, url, json=json, headers=headers, params=params)
                 if r.status_code < 500:
                     return r
                 err = f"http_{r.status_code}"
-            except httpx.TimeoutException:
-                err = "timeout"
+            except httpx.TimeoutException as e:
+                err = f"timeout:{type(e).__name__}"  # PoolTimeout = client-side queueing, not the server
             except httpx.TransportError as e:
                 err = type(e).__name__
             self.errors[f"{op}:{err}"] += 1
@@ -202,4 +215,5 @@ class Client:
                 return ids
 
     async def close(self) -> None:
-        await self.http.aclose()
+        for h in self.shards:
+            await h.aclose()

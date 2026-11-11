@@ -1,0 +1,140 @@
+{
+  "run_id": "20261111-043131-dev-L1-profile",
+  "target_rps": 100,
+  "scheduled_requests": 1462,
+  "achieved_rps": 11.0,
+  "wall_s": 128.4,
+  "generator_late_sends": 37,
+  "latency_from_schedule": {
+    "list": {
+      "n": 74,
+      "p50_ms": 105186.6,
+      "p95_ms": 119407.1,
+      "p99_ms": 126098.6,
+      "max_ms": 126098.6
+    },
+    "create": {
+      "n": 872,
+      "p50_ms": 106571.9,
+      "p95_ms": 117593.0,
+      "p99_ms": 121605.7,
+      "max_ms": 126688.4
+    },
+    "cancel": {
+      "n": 60,
+      "p50_ms": 108404.9,
+      "p95_ms": 117542.3,
+      "p99_ms": 118655.3,
+      "max_ms": 118655.3
+    },
+    "get": {
+      "n": 404,
+      "p50_ms": 107933.7,
+      "p95_ms": 117954.2,
+      "p99_ms": 123182.1,
+      "max_ms": 126260.8
+    }
+  },
+  "statuses": {
+    "list:200": 46,
+    "create:201": 620,
+    "cancel:409": 41,
+    "get:200": 282,
+    "get:gave_up": 122,
+    "create:gave_up": 252,
+    "list:gave_up": 28,
+    "cancel:gave_up": 19
+  },
+  "client_errors": {
+    "list:timeout": 54,
+    "create:timeout": 484,
+    "get:timeout": 248,
+    "cancel:timeout": 30
+  },
+  "drain_s": 1.0,
+  "queue_wait_s_p50_p95_p99": [
+    0.162,
+    0.706,
+    0.77
+  ],
+  "create_to_finish_s_p50_p95_p99": [
+    0.212,
+    0.739,
+    0.811
+  ],
+  "max_queued": 3,
+  "final_table": {
+    "queued": 3,
+    "running": 3,
+    "live": 2983,
+    "dead": 1191,
+    "upd": 5919,
+    "hot_upd": 29,
+    "jobs_bytes": 1196032,
+    "jobs_active_bytes": 16384,
+    "jobs_state_id_bytes": 262144,
+    "t": 127.3
+  },
+  "invariants": {
+    "I1": 504,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "I10": 0,
+    "B1": 0
+  },
+  "failed_invariants": [
+    "I1"
+  ],
+  "coverage": {
+    "kills": 0,
+    "stalls": 0,
+    "revokes": 0,
+    "conn_kills": 0,
+    "api_kills": 0,
+    "takeovers": 0,
+    "takeovers_by_cause": {},
+    "takeovers_unexplained": 0,
+    "takeovers_unexplained_sample": [],
+    "kills_orphaning_a_job": 0,
+    "recovery_after_kill_s": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "stale_completes_rejected": 1,
+    "stale_completes_by_reason": {
+      "unknown": 1
+    },
+    "lease_lost_detected": 2,
+    "attempts_exhausted": 0,
+    "cancelled_from_queued": 0,
+    "cancelled_from_running": 0,
+    "cancel_responses": {
+      "409": 41
+    },
+    "cancel_sent_while_seen_running": 0,
+    "cancel_lost_race_to_finish": 0,
+    "posts": 620,
+    "repeat_posts": 0,
+    "concurrent_bursts": 0,
+    "burst_201_not_to_first_sent": 0,
+    "keys_without_any_201": 252,
+    "diff_body_409": 0,
+    "executions_per_job": {
+      "1": 620
+    },
+    "max_attempt": 1,
+    "final_states": {
+      "succeeded": 620
+    },
+    "long_jobs": 0,
+    "long_jobs_succeeded_first_attempt": 0
+  }
+}
