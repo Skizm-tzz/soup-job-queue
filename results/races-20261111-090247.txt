@@ -1,0 +1,73 @@
+deterministic races, 2026-11-11 09:01:49 UTC, database 'races'
+session: {'autocommit': True, 'transaction_isolation': 'read committed'}
+
+== R1 double claim: two claims on one job while the first is uncommitted; then 50-way contention
+   [ok ] A claims inside an open transaction: got (1, 1), expected (1, 1)
+   [ok ] B claims meanwhile (SKIP LOCKED, returned in 5 ms): got None, expected None
+   [ok ] B claims after A committed (lease is live): got None, expected None
+   [ok ] job row: got ('running', 1), expected ('running', 1)
+   [ok ] correct: 1000 rounds x 50 concurrent claims of one new job, rounds without exactly one winner: got 0, expected 0
+   [ok ] CLAIM_READ_THEN_WRITE (seeded bug): 200 rounds, rounds without exactly one winner (max winners 50): got 200, expected '> 0'
+
+== R2 zombie worker: A's lease expires, B takes over, then A tries to complete
+   [ok ] B claims after A's lease expired: got (1, 2), expected (1, 2)
+   [ok ] zombie A completes attempt 1: got False, expected False
+   [ok ] effects after the zombie's complete: got 0, expected 0
+   [ok ] B completes attempt 2: got True, expected True
+   [ok ] final row, effects: got (('succeeded', 2), 1), expected (('succeeded', 2), 1)
+   . late but alone: A's lease expired and nobody took the job over
+   [ok ] late A completes attempt 1: got True, expected True
+   [ok ] final row, effects: got (('succeeded', 1), 1), expected (('succeeded', 1), 1)
+   [ok ] NO_FENCE (seeded bug): zombie A and B both complete: got (True, True), expected (True, True)
+   [ok ] NO_FENCE (seeded bug): effects: got 2, expected 2
+
+== R3 cancel vs complete: both orders, with a real lock wait between them
+   [ok ] C cancels (uncommitted): got 'cancelled', expected 'cancelled'
+   [ok ] worker's complete waits for C's row lock: got True, expected True
+   [ok ] complete after the cancel committed (WHERE re-checked): got False, expected False
+   [ok ] final row, effects: got (('cancelled', 1), 0), expected (('cancelled', 1), 0)
+   [ok ] correct: worker completes (uncommitted): got True, expected True
+   [ok ] correct: cancel waits for the worker's row lock: got True, expected True
+   [ok ] cancel after the complete committed -> API 409 with state: got ('conflict', 'succeeded'), expected ('conflict', 'succeeded')
+   [ok ] final row, effects: got (('succeeded', 1), 1), expected (('succeeded', 1), 1)
+   [ok ] CANCEL_BLIND: worker completes (uncommitted): got True, expected True
+   [ok ] CANCEL_BLIND: cancel waits for the worker's row lock: got True, expected True
+   [ok ] CANCEL_BLIND (seeded bug): cancel acknowledged over a succeeded job: got 'cancelled', expected 'cancelled'
+   [ok ] CANCEL_BLIND (seeded bug): final row, effects -> cancelled job with an effect: got (('cancelled', 1), 1), expected (('cancelled', 1), 1)
+
+== R4 duplicate create: same Idempotency-Key from two sessions, the first uncommitted
+   [ok ] [COMMIT] B's create waits on the unique index: got True, expected True
+   [ok ] [COMMIT] B returns A's job, created=False: got (True, False), expected (True, False)
+   [ok ] [ROLLBACK] B's create waits on the unique index: got True, expected True
+   [ok ] [ROLLBACK] B creates the job itself, created=True: got (True, True), expected (True, True)
+   [ok ] rows for the two keys: got 2, expected 2
+   [ok ] rejected design, INSERT..ON CONFLICT + UNION SELECT in one statement: waits: got True, expected True
+   [ok ] rejected design returns no row at all (one snapshot, taken before A committed): got 0, expected 0
+   [ok ] check-then-insert: both sessions see no row: got (None, None), expected (None, None)
+   [ok ] check-then-insert: B's INSERT is stopped only by the UNIQUE constraint: got 'UniqueViolation', expected 'UniqueViolation'
+
+== R5 isolation level: a complete racing a committed cancel, at READ COMMITTED and REPEATABLE READ
+   [ok ] READ COMMITTED, guarded complete: clean 0 rows: got False, expected False
+   [ok ] final row: got ('cancelled', 1), expected ('cancelled', 1)
+   [ok ] REPEATABLE READ, guarded complete: 40001, retried by _one, then 0 rows: got (False, 1), expected (False, 1)
+   . read-then-write without a guard: worker reads state='running', then decides in Python
+   [ok ] C cancels and commits; API tells the client: got 'cancelled', expected 'cancelled'
+   [ok ] READ COMMITTED, unguarded write: 1 row, the acknowledged cancel is silently lost: got (1, 'succeeded'), expected (1, 'succeeded')
+   [ok ] REPEATABLE READ, same read-then-write in one transaction: the write is refused: got 'SerializationFailure', expected 'SerializationFailure'
+   [ok ] final row: got ('cancelled', 1), expected ('cancelled', 1)
+
+== R6 clock skew: lease alive on the DB clock; a claim judged by a worker clock 30 s ahead
+   [ok ] correct claim (now() on the DB clock) leaves the live lease alone: got None, expected None
+   [ok ] WORKER_CLOCK (seeded bug): claim takes over the live lease: got (1, 2), expected (1, 2)
+   [ok ] audit trail shows the takeover happened before expiry (what I7 checks): got True, expected True
+
+== R7 heartbeat vs takeover: both orders at the moment the lease expires
+   [ok ] A's heartbeat first (uncommitted): got True, expected True
+   [ok ] B's claim meanwhile skips the locked row: got None, expected None
+   [ok ] B's claim after the heartbeat committed: lease renewed, no takeover: got None, expected None
+   [ok ] row: got ('running', 1), expected ('running', 1)
+   [ok ] B's takeover first (uncommitted): got (1, 2), expected (1, 2)
+   [ok ] A's heartbeat waits for B's row lock: got True, expected True
+   [ok ] A's heartbeat after the takeover committed: lease lost: got False, expected False
+
+RACES PASS

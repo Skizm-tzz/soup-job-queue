@@ -1,0 +1,10 @@
+ Container soup-queue-k6-run-a9b155c10f14 Creating 
+ Container soup-queue-k6-run-a9b155c10f14 Created 
+time="2026-11-11T09:08:00Z" level=warning msg="Insufficient VUs, reached 2000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=mix
+k6 20261111-090747-L3-1000rps: target 1000/s for 30s
+  create  p50 5464.8 ms  p95 8365.8  p99 8525.4  max 8683.4  n 6884
+  get     p50 5475.5 ms  p95 8294.7  p99 8462.1  max 8590.7  n 2424
+  list    p50 5489.0 ms  p95 8320.7  p99 8470.3  max 8576.1  n 411
+  cancel  p50 5620.1 ms  p95 8399.6  p99 8588.5  max 8658.8  n 411
+  requests 10130 (290.7/s), dropped iterations 19871, max VUs 2000
+  statuses list_2xx=411 cancel_2xx=220 get_2xx=2424 cancel_4xx=191 create_2xx=6884

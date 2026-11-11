@@ -1,0 +1,76 @@
+# Regression on the final code, commit 42c487b, 2026-11-11T08:56Z
+
+## smoke
+ Container soup-queue-worker-4 Started 
+create / idempotency
+  [ok ] POST without Idempotency-Key -> 400
+  [ok ] first POST -> 201
+  [ok ] repeat POST, same body -> 200, same id
+  [ok ] same key, different body -> 409
+  [ok ] 20 concurrent POSTs, one key -> one 201 (got 1)
+  [ok ] 20 concurrent POSTs -> one job id
+execution
+  [ok ] job runs to succeeded on attempt 1 (succeeded, 1)
+  [ok ] job reporting failure ends failed
+bad input
+  [ok ] body with NaN -> 400 (got 400)
+  [ok ] body that is not an object -> 400 (got 400)
+  [ok ] invalid job fails on its first attempt without crashing a worker (failed, attempt 1, 'invalid payload: work_ms must be a number of milliseconds up to 86400000, got None')
+cancel
+  [ok ] long job reaches running
+  [ok ] cancel running job -> 200 cancelled
+  [ok ] repeat cancel -> 200
+  [ok ] cancel succeeded job -> 409 with its state
+  [ok ] cancel unknown job -> 404
+  [ok ] cancelled running job stays cancelled after its work time
+pagination
+  [ok ] keyset walk: 95415 ids, ascending, no duplicates
+  [ok ] bad state filter -> 400
+  [ok ] bad cursor -> 400
+database
+  [ok ] keyset walk saw every job (95415 of 95415)
+  [ok ] no job has more than one effect
+  [ok ] effect exists iff succeeded
+  [ok ] heartbeats do not write audit rows
+
+SMOKE PASS
+
+## worker restarts after the smoke test (expect 0)
+/soup-queue-worker-1 restarts=0
+/soup-queue-worker-2 restarts=0
+/soup-queue-worker-3 restarts=0
+/soup-queue-worker-4 restarts=0
+
+## races
+== R1 double claim: two claims on one job while the first is uncommitted; then 50-way contention
+== R2 zombie worker: A's lease expires, B takes over, then A tries to complete
+== R3 cancel vs complete: both orders, with a real lock wait between them
+== R4 duplicate create: same Idempotency-Key from two sessions, the first uncommitted
+== R5 isolation level: a complete racing a committed cancel, at READ COMMITTED and REPEATABLE READ
+== R6 clock skew: lease alive on the DB clock; a claim judged by a worker clock 30 s ahead
+== R7 heartbeat vs takeover: both orders at the moment the lease expires
+RACES PASS
+saved /app/results/races-20261111-090247.txt
+
+## canonical chaos run C7
+ Container soup-queue-worker-4 Stopped 
+[  275.66s] invariants: I1=ok  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[  275.66s] coverage: kills=131 (orphaning 87) takeovers=87 by cause {'kill': 87} unexplained=0; recovery after kill {'n': 87, 'p50': 4.917, 'p95': 5.151, 'max': 5.28}
+[  275.66s] VERDICT: PASS (expected PASS) -> as expected
+
+## load L3: 1000 rps for 30 s
+ Container soup-queue-worker-4 Started 
+k6 20261111-090747-L3-1000rps: target 1000/s for 30s
+  create  p50 5464.8 ms  p95 8365.8  p99 8525.4  max 8683.4  n 6884
+  get     p50 5475.5 ms  p95 8294.7  p99 8462.1  max 8590.7  n 2424
+  list    p50 5489.0 ms  p95 8320.7  p99 8470.3  max 8576.1  n 411
+  cancel  p50 5620.1 ms  p95 8399.6  p99 8588.5  max 8658.8  n 411
+  requests 10130 (290.7/s), dropped iterations 19871, max VUs 2000
+  statuses list_2xx=411 cancel_2xx=220 get_2xx=2424 cancel_4xx=191 create_2xx=6884
+[  121.27s] k6 create  {'p(95)': 8365.8, 'p(99)': 8525.4, 'max': 8683.4, 'count': 6884, 'p(50)': 5464.8}
+[  121.27s] k6 get     {'max': 8590.7, 'count': 2424, 'p(50)': 5475.5, 'p(95)': 8294.7, 'p(99)': 8462.1}
+[  121.27s] k6 list    {'p(95)': 8320.7, 'p(99)': 8470.3, 'max': 8576.1, 'count': 411, 'p(50)': 5489.0}
+[  121.27s] k6 cancel  {'p(50)': 5620.1, 'p(95)': 8399.6, 'p(99)': 8588.5, 'max': 8658.8, 'count': 411}
+[  121.27s] k6 requests 10130 (290.7/s), dropped iterations 19871, max VUs 2000, statuses {'list_2xx': 411, 'cancel_2xx': 220, 'get_2xx': 2424, 'cancel_4xx': 191, 'create_2xx': 6884}
+[  121.27s] jobs 6884 (6884 finished, 58.9/s end to end); queue wait p50/p95/p99 [36.558, 80.621, 81.742] s; max queued 4242; commits/s 680.1
+[  121.27s] invariants (DB side; I1, I6, I10 need a client journal): I2=ok  I3=ok  I4=ok  I5=ok  I7=ok  I8=ok  I9=ok  B1=ok

@@ -2,7 +2,7 @@
 
 A training-job queue on Postgres: an HTTP API, N workers, one table, one SQL statement per state transition. Built as the Soup backend take-home.
 
-- **Design note** (written before the code): [docs/DESIGN.md](docs/DESIGN.md)
+- **Design note**: one page, [docs/DESIGN.md](docs/DESIGN.md); the full version written before the code, [docs/DESIGN-full.md](docs/DESIGN-full.md)
 - **Report**: chaos results, silent failures, what the harness does not catch, data for the verdict, AI usage: [REPORT.md](REPORT.md)
 - **Every chaos run, including the failed ones**: [results/INDEX.md](results/INDEX.md)
 
@@ -20,13 +20,15 @@ curl -s 'localhost:8000/jobs?state=succeeded&limit=20'     # keyset page: {items
 curl -s -XPOST localhost:8000/jobs/1/cancel                # 200 cancelled, 409 already finished
 ```
 
-A job's payload is `{"work_ms": int, "outcome": "ok" | "fail"}`. The work is emulated as a sleep. The side effect is a row in `effects`, written in the same statement as `running → succeeded`, so the number of effects per job can be counted.
+A job's payload is `{"work_ms": int, "outcome": "ok" | "fail"}`. The work is emulated as a sleep. The side effect is a row in `effects`, written in the same statement as `running → succeeded`, so the number of effects per job can be counted. A payload the worker cannot run (e.g. `"work_ms": null`) fails the job on its first attempt with `error: "invalid payload: …"`.
+
+Postgres is not published on a host port (it would clash with a local Postgres). To look inside: `docker compose exec postgres psql -U soup -d jobs`, e.g. `SELECT job_id, count(*) FROM effects GROUP BY 1 HAVING count(*) > 1;` (no rows = no duplicate effects).
 
 ## Prove it
 
 | What | Command | Output |
 |---|---|---|
-| Exhaustive check of the protocol model (every interleaving, plus 5 buggy variants that must fail) | `python model/check.py` | [results/model-check.txt](results/model-check.txt) |
+| Exhaustive check of the protocol model (safety in every interleaving, liveness without cancel, plus 6 buggy variants that must fail) | `python model/check.py` (standard library only) | [results/model-check.txt](results/model-check.txt) |
 | Deterministic races R1–R7 on a real Postgres | `docker compose --profile chaos run --rm --entrypoint python chaos -m chaos.races` | `results/races-*.txt` |
 | Chaos run (fresh DB, own API + 8 workers, `kill -9` every ~2 s, duplicate POSTs, cancels) | `docker compose --profile chaos run --rm chaos canonical --seed 1` | `results/<run>/` |
 | Same with a seeded bug that must be caught | `docker compose --profile chaos run --rm chaos baseline --fault NO_FENCE` | `results/<run>/` |

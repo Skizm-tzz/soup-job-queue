@@ -1,6 +1,17 @@
 # Report
 
-What was run, what it shows, and what it does not show. Every number here comes from a file under [results/](results/); [results/INDEX.md](results/INDEX.md) lists every run, including the debugging runs and any failed run.
+What was run, what it shows, and what it does not show. Every number here comes from a file under [results/](results/). [results/INDEX.md](results/INDEX.md) lists every chaos run, including the debugging runs and the failed one; load runs are in [results/load/](results/load/), the deterministic races in `results/races-*.txt`.
+
+## Summary
+
+- **Design** ([one page](docs/DESIGN.md)): Postgres, one conditional statement per state transition, a lease for dead-worker detection and an `attempt` fencing token for safety. The effect is written in the same statement as `running → succeeded`. Guarantee: the work runs at-least-once; an effect stored in this database is exactly-once.
+- **The brief's chaos test, 7 runs** (C1–C6, C7 on the final code): 70 000 jobs, 921 `kill -9`s, 542 orphaned jobs taken over. **0 duplicate effects, 0 lost jobs, 0 stuck jobs, 0 takeovers without a recorded cause.**
+- **Everything at once, 3 runs** (X1–X3): zombies, lease revocation, dropped DB connections and API kills on top of the kills. All pass; about 120 stale completes per run were rejected by the fence.
+- **The harness can see failures.** 8 seeded bugs, 8 caught. The protocol model is checked for every interleaving, and seven Postgres races (R1–R7) are forced deterministically.
+- **At 100 rps, 10 minutes:** 0 errors, create p99 511 ms. The queue is the weak spot: one disk stall built a backlog of 3 838 jobs, and job-start latency p95 was 59 s.
+- **At 10× load**, the single API process saturates at ~290 rps. It slows down but loses nothing.
+- **Failures are kept, not hidden.** One aborted run, two invalid load generators and the bugs found in review are recorded in §2, §6 and §8.
+- **Verdict:** see §6.
 
 ## 1. How correctness was checked
 
@@ -8,10 +19,10 @@ Four independent layers, each catching what the others cannot:
 
 | Layer | What it shows | Where |
 |---|---|---|
-| Exhaustive model check | The protocol is safe under **every** interleaving of claim / expire / heartbeat / complete / fail / crash / cancel (2–3 workers, up to 4 attempts, 448 states). Each of 5 buggy variants is caught, with the shortest breaking trace. | [model/check.py](model/check.py), [results/model-check.txt](results/model-check.txt) |
+| Exhaustive model check | The protocol is safe under **every** interleaving of claim / expire / heartbeat / complete / fail / crash / cancel (2–3 workers, up to 4 attempts plus the exhaustion claim, 860 states), and from every state a terminal state is reachable *without* a cancel. Each of 6 buggy variants is caught, with the shortest breaking trace (`no_takeover` breaks liveness: `claim(0) -> crash(0)` leaves the job running forever). | [model/check.py](model/check.py), [results/model-check.txt](results/model-check.txt) |
 | Deterministic races R1–R7 | Real Postgres behaves the way the model assumes: each race is forced into one exact interleaving (the lock wait is read from `pg_stat_activity`, not guessed with a sleep). | [chaos/races.py](chaos/races.py), `results/races-*.txt` |
 | Chaos runs | The assembled system (API + 8 worker processes + Postgres) under real `SIGKILL`, `SIGSTOP`, lease loss, dropped connections and API restarts, checked against 10 invariants read from the database audit trail. Seeded bugs prove the harness can see failures. | [chaos/harness.py](chaos/harness.py), `results/<run>/` |
-| Load test | Latency and queue behaviour at 100 rps on the standard `docker compose up` stack. | [chaos/loadtest.py](chaos/loadtest.py), `results/load/` |
+| Load test | Latency and queue behaviour at 100, 200 and 1 000 rps on the standard `docker compose up` stack (k6, open loop), with the DB-side invariants checked afterwards. | [load/mix.js](load/mix.js), [chaos/loadwatch.py](chaos/loadwatch.py), `results/load/` |
 
 ### Invariants (checked after every chaos run, from the DB and the client journal)
 
@@ -35,7 +46,7 @@ A run passes only if every invariant holds **and** the coverage counters its sce
 
 ### The brief's scenario (`canonical`): 10 000 jobs, 8 workers, `kill -9` of a random worker every 1.5–2.5 s, duplicate POSTs and cancels
 
-Six runs, six different seeds, all **PASS**. `RELEASE_ON_START=0` in C1–C5, so recovery relies only on lease expiry; C6 turns on the restart fast path.
+Seven runs, seven different seeds, all **PASS**. `RELEASE_ON_START=0` in C1–C5 and C7, so recovery relies only on lease expiry; C6 turns on the restart fast path; C7 ran on the final code.
 
 | Run | Kills | …that orphaned a job | Takeovers (all explained by a kill) | Recovery after kill p50 / max | Stale completes rejected | Cancelled while running | Executions per job (count of jobs) |
 |---|---|---|---|---|---|---|---|
@@ -45,10 +56,15 @@ Six runs, six different seeds, all **PASS**. `RELEASE_ON_START=0` in C1–C5, so
 | C4 | 129 | 87 | 87 | 4.93 s / 5.04 s | 154 | 280 | 1×9667, 2×65, 3×3, 4×4, 5×1 |
 | C5 | 135 | 75 | 75 | 4.93 s / 5.04 s | 163 | 274 | 1×9683, 2×66, 3×2, 4×1 |
 | C6 (fast path) | 131 | 71 | 71 | **0.79 s / 0.93 s** | 152 | 247 | 1×9695, 2×57, 3×4, 4×1 |
+| C7 (final code) | 131 | 87 | 87 | 4.92 s / 5.28 s | 147 | 262 | 1×9640, 2×69, 3×4 |
 
 Totals over C1–C6 (60 000 jobs): 790 kills, 455 orphaned jobs, 455 takeovers, **0 takeovers without a recorded cause**, 950 stale completes rejected, 1 611 jobs cancelled while running and 1 479 while queued, 491 cancels that lost the race to a finishing job (answered 409 with the real final state), 27 226 repeated POSTs including 5 993 concurrent bursts of 3–5 identical requests (in 185 bursts the 201 went to a request other than the first one sent), 300 same-key-different-body POSTs (all 409). **Zero duplicate effects, zero lost jobs, zero stuck jobs.** One job (C3) exhausted its 5 attempts; see §5.
 
 Jobs that never executed (`0` executions, about 250 per run) are jobs cancelled while still queued.
+
+### Regression on the final code
+
+C1–C6 and the matrix below ran on commits `f9ae73c`/`fc34242`. Later commits changed the API (stack dumps, strict JSON), the worker (invalid payloads, unexpected errors) and the harness client. Everything was re-run on the final service code (`42c487b`): the smoke test (24/24 incl. three new bad-input checks, 0 worker restarts), races R1–R7 (pass), canonical run C7 (PASS) and the model check (all as expected). Output: [results/regression-*.txt](results/), [C7](results/INDEX.md).
 
 ### Extended: every fault source at once (X1–X3, 10 000 jobs each, all PASS)
 
@@ -60,7 +76,7 @@ Jobs that never executed (`0` executions, about 250 per run) are jobs cancelled 
 | X2 | 131 / 23 / 194 / 88 / 8 | revoke 124, kill 80, conn 17, stop 11 | 0 | 338 (121 / 217) | 7 |
 | X3 | 132 / 24 / 219 / 88 / 9 | revoke 131, kill 82, conn 17, stop 13 | 0 | 312 (124 / 188) | 10 |
 
-So in each run about 120 zombies completed a job that someone else had taken over, and every one of those writes matched 0 rows. The client saw about 1 000–1 300 connection errors per run (API down) and a handful of ambiguous ones (`ReadError`, `RemoteProtocolError`, one `503`), retried all of them with the same key, and I1/I2 held: no lost key, one row per key. Attempt exhaustion is higher here (7–10 per run) because jobs lose leases to revokes and stops as well as kills; I9 matched every lost attempt of every exhausted job to a recorded fault.
+So in each run about 120 zombies completed a job that someone else had taken over, and every one of those writes matched 0 rows. The client saw 1 130–1 490 errors per run: 98–99% were refused connections while the API was down (the request never reached the server), and 3–27 per run were ambiguous (`ReadError`, `RemoteProtocolError`, one `503`). It retried all of them with the same key, and I1/I2 held: no lost key, one row per key. Attempt exhaustion is higher here (7–10 per run) because jobs lose leases to revokes and stops as well as kills; I9 matched every lost attempt of every exhausted job to a recorded fault.
 
 ### Isolation levels (canonical, 10 000 jobs)
 
@@ -150,6 +166,15 @@ Each one: the mechanism that prevents it, the deterministic proof on Postgres, t
 - **Same machine, same clock.** Harness, API, workers and Postgres share one host and one kernel clock; the revoker stands in for clock jumps.
 - **Worker crashes caused by the job itself** (a poison payload that kills the worker every time). `max_attempts` bounds it, but no run used such a payload.
 - **One API process.** The API is stateless, so several instances should behave like one, but that was not run.
+- **Work that uses the CPU.** The emulated work is `asyncio.sleep`, so the heartbeat runs freely in the same event loop. Real training would block that loop; the heartbeat would stop, the lease would expire and a healthy job would be taken over and run twice. Real work must run in a separate thread or process, with the heartbeat in the worker's own loop. The harness cannot see this because its work never blocks.
+- **Invalid jobs beyond the payload shape.** A payload that crashes the worker now fails the job on its first attempt (found in review, see §8), but a job that hangs forever without using the CPU would heartbeat forever. There is no per-job timeout.
+
+### Compromises in the code, on purpose
+
+- **Seeded bugs live in the production module.** `app/faults.py` switches the buggy variants inside `app/queue.py` with `FAULT_<NAME>=1`, so the harness runs the very code the service runs. The cost: production code carries test branches, and a mis-set environment variable would enable one. Every process logs its enabled faults at start-up, and an unknown `FAULT_` variable refuses to start.
+- **An idle worker polls.** With an empty queue a worker sleeps 50 ms to 1 s (exponential, with jitter) between claims, so a job submitted to an idle system can wait up to ~1 s, and N idle workers make N small queries per second. `LISTEN/NOTIFY` would remove both, at the cost of one more mechanism to make crash-safe.
+- **Four commits per job.** create, claim, the `executions` record and complete each commit separately (the price of one statement per transition). `executions` is a diagnostic witness and could be folded into the claim.
+- **History is never cleaned up.** `jobs`, `job_events`, `effects` and the idempotency keys grow forever; a retention job is needed in production.
 
 ### Was 10 000 jobs enough?
 
@@ -170,6 +195,7 @@ All on the standard stack (`docker compose up`: one API process, 4 workers, Post
 |---|---|---|---|---|---|---|---|---|---|
 | **L1** (10 min) | 100 rps | 100.0 rps, 0 dropped | 8.4 / 125 / 511 / 1 283 ms | 4.0 / 259 ms | 0 | 59.8 (all 35 946 finished) | 5.3 s / 58.8 s | 3 838 | all hold |
 | L2 (2 min, overload) | 200 rps | 200.0 rps, 0 dropped | 6.2 / 66 / 120 / 328 ms | 3.1 / 60 ms | 0 | 108.5 | 3.3 s / 12.5 s | 1 428 | all hold |
+| L3 (30 s, 10×) | 1 000 rps | **290.7 rps**, 19 871 iterations dropped (all 2 000 k6 VUs waiting) | 5 465 / 8 366 / 8 525 / 8 683 ms | 5 476 / 8 462 ms | 0 | 58.9 | 36.6 s / 80.6 s | 4 242 | all hold |
 
 What the numbers say:
 
@@ -179,6 +205,20 @@ What the numbers say:
 - **Not measured:** a deep backlog of millions of finished jobs (claim and list stay on partial and composite indexes, but no `EXPLAIN` under that data was taken), more than one API process, long jobs that heartbeat under load (load jobs were 5–40 ms), and anything on server-class disks.
 
 **The first load generator was wrong, and its results are kept but not valid.** The Python generator (`chaos/loadtest.py`, runs `results/load/*-dev-L1-*` and `*-L1` of 04:42 UTC) saturated its own CPU: with one 200-connection httpx pool, httpcore's request-to-connection matching went quadratic once responses slowed (cProfile: 25 million `can_handle_request` calls in 15 s). Even with 16 smaller pools, the 10-minute run ended in client-side `PoolTimeout`s, which is why the generator was replaced by k6.
+
+### What breaks first at 10× load (L3)
+
+**The single API process.** At 1 000 rps it served about 290 requests/s; every request then waited 5–8 s, and k6 could not start two thirds of the scheduled requests because all 2 000 virtual users were waiting. No request failed, no 5xx, and the DB-side invariants held: the system degrades by slowing down, not by corrupting state. Next in line are the workers: 4 of them moved 59 jobs/s in this run (108 in L2), and the queue reached 4 242 jobs with a p95 wait of 81 s. Caveat: k6 ran on the same laptop and competed for its CPU, so ~290 rps is a lower bound for one API process here, not its limit on a server.
+
+The fixes, in order: run several API processes (it is stateless: `uvicorn --workers N` or more replicas behind a balancer) and size the DB pool for them (each holds up to 20 connections, Postgres allows 300); add workers; then cut commits per job (§4). At much larger scale, `SKIP LOCKED` polling of one table by hundreds of workers and the per-transition audit trigger would be the next limits; neither was measured.
+
+### Where the design is weakest
+
+- **Throughput is bound by durable commits.** One job costs 4 commits, and each worker does 3 of them in sequence. A slow disk or an I/O stall turns directly into queue backlog (L1), while the API keeps looking healthy.
+- **Recovery is lease-based, so a dead worker's job waits up to the TTL (5 s).** The restart fast path helps only when the same slot restarts. A shorter TTL would mean more false takeovers of slow-but-alive workers.
+- **Work is at-least-once.** A worker that freezes past its lease has its job run again, and it can run up to `max_attempts` times. Only effects committed in this database are exactly-once.
+- **Attempts lost to infrastructure count against `max_attempts`.** Under heavy failure an innocent long job can end `failed` (§5).
+- **The heartbeat assumes the work does not block the worker's event loop** (§4), and nothing cleans up history (§4).
 
 Options if the verdict is "ship, but": more workers (they are cheap and independent), folding the `executions` insert into the claim statement (3 commits per job instead of 4; it is diagnostic only), and alerting on queue depth / oldest queued job, since an I/O stall shows up there first and not in API latency.
 
@@ -201,12 +241,16 @@ TODO(human): say what you read and checked yourself, and how (for example: which
 | First decision | What showed it was wrong | Now |
 |---|---|---|
 | A separate reaper process returning expired jobs to `queued` | Reviewing the plan: one more process and one more transition for no gain | Expired leases are taken over inside `claim` |
-| Chaos load at 80–100 jobs/s as in the brief | Arithmetic on the job mix: 8 workers finish about 50 jobs/s, so the backlog would grow without bound | 40 jobs/s; 100 rps measured separately (§6) |
+| Chaos load at 80–100 jobs/s (the AI's own plan; the brief fixes only 10 000 jobs, 8 workers and a kill every ~2 s) | Arithmetic on the job mix: 8 workers finish about 50 jobs/s, so the backlog would grow without bound | 40 jobs/s; 100 rps measured separately (§6) |
 | `docker kill` would trigger the container restart policy | Manual test: Docker treats it as a manual stop | The harness kills processes directly; documented in §5 |
 | One httpx connection pool of 200 for the harness client | The first load test: client at 100% CPU, API idle; cProfile showed httpcore's pool matching | 16 small pools; also the likely cause of the aborted F8 |
 | The first load-test numbers (p95 ≈ 11 s at 79 rps), and the 10-minute run of 04:42 with 16 smaller pools | Same: they measured the client (`PoolTimeout`s on the client side) | Kept in `results/load/` and marked invalid in §6; the load generator is now k6 |
 | "4 workers cannot keep up at 100 rps on this machine", concluded from the first measurements | Re-measuring fsync after a restart (9.9 ms → 2.7 ms) and the k6 runs | §6: about 1.8× headroom on a healthy disk, much less during an I/O stall |
 | A model-checker counterexample for the split-effect bug | Its trace was trivial, then physically impossible | Mid-operation states modelled explicitly |
 | A 300-job debugging run looked green | Its coverage counters: no job longer than the lease, so heartbeats were never tested | Coverage gates every verdict (`NOT COVERED`) |
+| The model's liveness check ("every state can reach a terminal state") | Review: a cancel finishes any job, so the check could never fail | Liveness is checked without the cancel action; the exhaustion path is modelled; a `no_takeover` variant proves the check can fail |
+| The worker parsed the payload with `int(payload["work_ms"])` and nothing around it | Review: one `{"work_ms": null}` crashed a worker 5 times, then the job ended "attempts exhausted"; a body with `NaN` returned 500 | Invalid payloads fail the job on its first attempt; unexpected errors abandon the job instead of killing the worker; strict JSON in the API (400); three smoke checks |
+| The design note was "one page" | Review: 1 256 words, and it claimed a file-effect experiment that was never run | One-page [DESIGN.md](docs/DESIGN.md); the original kept as [DESIGN-full.md](docs/DESIGN-full.md) with the false sentence corrected |
+| Postgres published on host port 5432 | Review: `docker compose up` fails on a machine that already runs Postgres | No host port; `docker compose exec postgres psql …` |
 
 The AI also ran every command, so the raw outputs in `results/` are what the programs printed; none were edited afterwards. Failed and aborted runs are kept and listed in [results/INDEX.md](results/INDEX.md).

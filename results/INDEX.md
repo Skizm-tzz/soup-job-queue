@@ -28,5 +28,6 @@ A run without `summary.json` was aborted and is listed as such.
 | [20261111-041417-ISO1](20261111-041417-ISO1/) | ISO1 | canonical | 7 | 10000 | - | repeatable_read | PASS | PASS | yes | kills 131, takeovers 74, stale rejected 137, cancel running 230, exhausted 0 | fc34242 |
 | [20261111-041846-ISO2](20261111-041846-ISO2/) | ISO2 | canonical | 8 | 10000 | - | serializable | PASS | PASS | yes | kills 132, takeovers 70, stale rejected 141, cancel running 260, exhausted 0 | fc34242 |
 | [20261111-042333-F8-rerun](20261111-042333-F8-rerun/) | F8-rerun | baseline | 1 | 2000 | CLAIM_READ_THEN_WRITE,NO_FENCE | read_committed | FAIL (I3) | FAIL (B1,I3,I5,I6,I7,I8) | yes | kills 0, takeovers 717, stale rejected 8, cancel running 37, exhausted 0 | fc34242 |
+| [20261111-090251-C7-final](20261111-090251-C7-final/) | C7-final | canonical | 9 | 10000 | - | read_committed | PASS | PASS | yes | kills 131, takeovers 87, stale rejected 147, cancel running 262, exhausted 0 | 42c487b |
 
-23 runs.
+24 runs.

@@ -1,0 +1,50 @@
+# EXPLAIN (ANALYZE, BUFFERS) on the dev database after the load tests, 2026-11-11T08:36Z
+jobs by state: succeeded=93080, failed=3, cancelled=2302 (95 385 rows, none queued or running)
+
+## claim (one queued job inserted in the same transaction, then rolled back)
+BEGIN
+INSERT 0 1
+                                                                QUERY PLAN                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Update on jobs j  (cost=1.13..9.18 rows=1 width=122) (actual time=0.218..0.221 rows=1 loops=1)
+   Buffers: shared hit=43
+   CTE c
+     ->  Limit  (cost=0.27..0.84 rows=1 width=14) (actual time=0.104..0.105 rows=1 loops=1)
+           Buffers: shared hit=25
+           ->  LockRows  (cost=0.27..268.79 rows=473 width=14) (actual time=0.102..0.103 rows=1 loops=1)
+                 Buffers: shared hit=25
+                 ->  Index Scan using jobs_active on jobs  (cost=0.27..264.06 rows=473 width=14) (actual time=0.094..0.094 rows=1 loops=1)
+                       Filter: ((state = ANY ('{queued,running}'::text[])) AND ((state = 'queued'::text) OR (lease_expires_at <= now())))
+                       Buffers: shared hit=24
+   ->  Nested Loop  (cost=0.29..8.34 rows=1 width=122) (actual time=0.136..0.137 rows=1 loops=1)
+         Buffers: shared hit=28
+         ->  CTE Scan on c  (cost=0.00..0.02 rows=1 width=40) (actual time=0.118..0.118 rows=1 loops=1)
+               Buffers: shared hit=25
+         ->  Index Scan using jobs_pkey on jobs j  (cost=0.29..8.31 rows=1 width=18) (actual time=0.014..0.014 rows=1 loops=1)
+               Index Cond: (id = c.id)
+               Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=122
+ Planning Time: 1.420 ms
+ Trigger jobs_log_update: time=0.273 calls=1
+ Execution Time: 0.739 ms
+(22 rows)
+
+ROLLBACK
+
+## list, state filter + keyset (GET /jobs?state=succeeded&limit=50, deep cursor)
+                                                          QUERY PLAN                                                           
+-------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.29..4.02 rows=51 width=17) (actual time=0.669..1.212 rows=51 loops=1)
+   Buffers: shared hit=61 read=2
+   ->  Index Scan using jobs_pkey on jobs  (cost=0.29..2432.79 rows=33309 width=17) (actual time=0.667..1.204 rows=51 loops=1)
+         Index Cond: (id > 60000)
+         Filter: (state = 'succeeded'::text)
+         Rows Removed by Filter: 6
+         Buffers: shared hit=61 read=2
+ Planning:
+   Buffers: shared hit=132
+ Planning Time: 1.223 ms
+ Execution Time: 1.265 ms
+(11 rows)
+
