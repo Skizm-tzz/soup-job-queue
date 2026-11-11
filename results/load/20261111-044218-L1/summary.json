@@ -1,0 +1,150 @@
+{
+  "run_id": "20261111-044218-L1",
+  "target_rps": 100,
+  "scheduled_requests": 59793,
+  "achieved_rps": 64.1,
+  "wall_s": 931.0,
+  "generator_late_sends": 149,
+  "latency_from_schedule": {
+    "list": {
+      "n": 3038,
+      "p50_ms": 47290.8,
+      "p95_ms": 496619.7,
+      "p99_ms": 564468.5,
+      "max_ms": 646023.3
+    },
+    "create": {
+      "n": 35920,
+      "p50_ms": 43881.9,
+      "p95_ms": 488261.9,
+      "p99_ms": 580809.0,
+      "max_ms": 680103.2
+    },
+    "get": {
+      "n": 17718,
+      "p50_ms": 45498.3,
+      "p95_ms": 486424.1,
+      "p99_ms": 578112.0,
+      "max_ms": 721736.0
+    },
+    "cancel": {
+      "n": 2969,
+      "p50_ms": 42671.5,
+      "p95_ms": 484875.2,
+      "p99_ms": 580395.6,
+      "max_ms": 662174.4
+    }
+  },
+  "statuses": {
+    "list:200": 3032,
+    "create:201": 35862,
+    "get:200": 17690,
+    "cancel:200": 1340,
+    "cancel:409": 1622,
+    "create:gave_up": 58,
+    "get:gave_up": 28,
+    "cancel:gave_up": 7,
+    "list:gave_up": 6
+  },
+  "client_errors": {
+    "create:ReadError": 19,
+    "get:RemoteProtocolError": 6,
+    "get:timeout:PoolTimeout": 70,
+    "create:timeout:PoolTimeout": 122,
+    "cancel:timeout:PoolTimeout": 9,
+    "list:timeout:PoolTimeout": 14,
+    "list:ReadError": 1,
+    "get:ReadError": 2,
+    "cancel:RemoteProtocolError": 1
+  },
+  "drain_s": 28.2,
+  "queue_wait_s_p50_p95_p99": [
+    8.134,
+    65.652,
+    70.14
+  ],
+  "create_to_finish_s_p50_p95_p99": [
+    8.19,
+    65.712,
+    70.187
+  ],
+  "max_queued": 3088,
+  "final_table": {
+    "queued": 162,
+    "running": 4,
+    "live": 43235,
+    "dead": 3211,
+    "upd": 84439,
+    "hot_upd": 29,
+    "jobs_bytes": 13107200,
+    "jobs_active_bytes": 196608,
+    "jobs_state_id_bytes": 2015232,
+    "t": 956.8
+  },
+  "invariants": {
+    "I1": 116,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "I10": 0,
+    "B1": 0
+  },
+  "failed_invariants": [
+    "I1"
+  ],
+  "coverage": {
+    "kills": 0,
+    "stalls": 0,
+    "revokes": 0,
+    "conn_kills": 0,
+    "api_kills": 0,
+    "takeovers": 0,
+    "takeovers_by_cause": {},
+    "takeovers_unexplained": 0,
+    "takeovers_unexplained_sample": [],
+    "kills_orphaning_a_job": 0,
+    "recovery_after_kill_s": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "stale_completes_rejected": 4,
+    "stale_completes_by_reason": {
+      "unknown": 3,
+      "cancelled": 1
+    },
+    "lease_lost_detected": 2,
+    "attempts_exhausted": 0,
+    "cancelled_from_queued": 1238,
+    "cancelled_from_running": 1,
+    "cancel_responses": {
+      "200": 1340,
+      "409": 1622
+    },
+    "cancel_sent_while_seen_running": 0,
+    "cancel_lost_race_to_finish": 0,
+    "posts": 35862,
+    "repeat_posts": 0,
+    "concurrent_bursts": 0,
+    "burst_201_not_to_first_sent": 0,
+    "keys_without_any_201": 58,
+    "diff_body_409": 0,
+    "executions_per_job": {
+      "0": 1238,
+      "1": 34624
+    },
+    "max_attempt": 1,
+    "final_states": {
+      "succeeded": 34623,
+      "cancelled": 1239
+    },
+    "long_jobs": 0,
+    "long_jobs_succeeded_first_attempt": 0
+  }
+}

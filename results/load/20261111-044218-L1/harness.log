@@ -1,0 +1,36 @@
+[    0.09s] load test 20261111-044218-L1: 100 rps for 600.0s against http://api:8000, mix {'create': 0.6, 'get': 0.3, 'list': 0.05, 'cancel': 0.05}
+[    4.56s] t=3.4s requests done 0/59793 queued=0 running=0 dead_tuples=0 hot=29/14303
+[   38.43s] t=37.3s requests done 3112/59793 queued=299 running=0 dead_tuples=3226 hot=29/17529
+[   77.28s] t=76.2s requests done 6717/59793 queued=737 running=4 dead_tuples=3293 hot=29/20917
+[  112.24s] t=111.1s requests done 10522/59793 queued=1498 running=4 dead_tuples=552 hot=29/23734
+[  142.43s] t=141.3s requests done 13867/59793 queued=1881 running=3 dead_tuples=3624 hot=29/26806
+[  172.48s] t=171.4s requests done 16774/59793 queued=2846 running=4 dead_tuples=540 hot=29/28289
+[  205.83s] t=204.7s requests done 19770/59793 queued=2922 running=4 dead_tuples=3788 hot=29/31537
+[  247.47s] t=246.3s requests done 22224/59793 queued=2405 running=4 dead_tuples=3061 hot=29/35410
+[  285.43s] t=284.3s requests done 24946/59793 queued=2521 running=2 dead_tuples=197 hot=29/38276
+[  327.09s] t=326.0s requests done 27010/59793 queued=1956 running=2 dead_tuples=3743 hot=29/41822
+[  366.63s] t=365.5s requests done 28947/59793 queued=1208 running=3 dead_tuples=2686 hot=29/45638
+[  413.10s] t=412.0s requests done 30534/59793 queued=16 running=4 dead_tuples=1450 hot=29/50001
+[  457.47s] t=456.3s requests done 32235/59793 queued=1 running=1 dead_tuples=3352 hot=29/51903
+[  503.94s] t=502.8s requests done 33637/59793 queued=0 running=0 dead_tuples=5051 hot=29/53567
+[  545.20s] t=544.1s requests done 35005/59793 queued=0 running=0 dead_tuples=949 hot=29/55242
+[  587.13s] t=586.0s requests done 36437/59793 queued=2 running=1 dead_tuples=2633 hot=29/56907
+[  627.95s] t=626.8s requests done 38247/59793 queued=9 running=4 dead_tuples=4763 hot=29/59037
+[  665.41s] t=664.3s requests done 39872/59793 queued=2 running=4 dead_tuples=6688 hot=29/60958
+[  704.21s] t=703.1s requests done 41806/59793 queued=0 running=0 dead_tuples=158 hot=29/63374
+[  740.17s] t=739.0s requests done 43550/59793 queued=22 running=4 dead_tuples=2168 hot=29/65384
+[  776.54s] t=775.4s requests done 45399/59793 queued=12 running=4 dead_tuples=4468 hot=29/67678
+[  812.01s] t=810.9s requests done 47396/59793 queued=4 running=0 dead_tuples=6871 hot=29/70081
+[  846.79s] t=845.7s requests done 49637/59793 queued=0 running=3 dead_tuples=2139 hot=29/72721
+[  881.34s] t=880.2s requests done 52157/59793 queued=189 running=4 dead_tuples=4785 hot=29/75361
+[  917.01s] t=915.9s requests done 55318/59793 queued=9 running=2 dead_tuples=9026 hot=29/79602
+[  947.92s] t=946.8s requests done 59645/59793 queued=1350 running=4 dead_tuples=821 hot=29/82049
+[  960.27s] load sent in 931.0s; queue drained 28.2s after the last request
+[  962.24s] list    {'n': 3038, 'p50_ms': 47290.8, 'p95_ms': 496619.7, 'p99_ms': 564468.5, 'max_ms': 646023.3}
+[  962.24s] create  {'n': 35920, 'p50_ms': 43881.9, 'p95_ms': 488261.9, 'p99_ms': 580809.0, 'max_ms': 680103.2}
+[  962.24s] get     {'n': 17718, 'p50_ms': 45498.3, 'p95_ms': 486424.1, 'p99_ms': 578112.0, 'max_ms': 721736.0}
+[  962.24s] cancel  {'n': 2969, 'p50_ms': 42671.5, 'p95_ms': 484875.2, 'p99_ms': 580395.6, 'max_ms': 662174.4}
+[  962.25s] achieved 64.1 rps of 100; late sends 149; statuses {'list:200': 3032, 'create:201': 35862, 'get:200': 17690, 'cancel:200': 1340, 'cancel:409': 1622, 'create:gave_up': 58, 'get:gave_up': 28, 'cancel:gave_up': 7, 'list:gave_up': 6}; client errors {'create:ReadError': 19, 'get:RemoteProtocolError': 6, 'get:timeout:PoolTimeout': 70, 'create:timeout:PoolTimeout': 122, 'cancel:timeout:PoolTimeout': 9, 'list:timeout:PoolTimeout': 14, 'list:ReadError': 1, 'get:ReadError': 2, 'cancel:RemoteProtocolError': 1}
+[  962.25s] queue wait p50/p95/p99 [8.134, 65.652, 70.14] s; create->finish [8.19, 65.712, 70.187] s; max queued 3088
+[  962.25s] invariants (this run's jobs; I10 not checked): I1=FAIL(116)  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  B1=ok
+[  962.25s] results in results/load/20261111-044218-L1/
