@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import base64
+import faulthandler
+import signal
 from contextlib import asynccontextmanager
 from datetime import datetime
 
@@ -14,6 +16,11 @@ from app import db, faults, queue
 from app.config import settings
 
 pool = db.make_pool("api")
+
+# `kill -USR1 <pid>` dumps every thread's stack to stderr: lets the harness see
+# where a hung API is stuck without stopping it.
+if hasattr(signal, "SIGUSR1"):
+    faulthandler.register(signal.SIGUSR1, all_threads=True)
 
 
 @asynccontextmanager

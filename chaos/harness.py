@@ -35,7 +35,7 @@ from app import queue
 from app.migrate import apply_schema
 from chaos import index
 from chaos.invariants import INVARIANTS, Checker
-from chaos.load import Client, make_plan
+from chaos.load import Client, GaveUp, make_plan
 
 ROOT = Path("/app")
 RESULTS = ROOT / "results"
@@ -439,8 +439,19 @@ async def run(args) -> int:
             await asyncio.sleep(0.5)
         log(f"drain {'complete' if drained else 'TIMED OUT'} after {time.monotonic() - t_drain:.1f}s: {await state_counts(ctx)}")
 
-        walk_all = await client.walk()
-        walk_succ = await client.walk(state="succeeded")
+        api_unresponsive = False
+        try:
+            walk_all = await client.walk()
+            walk_succ = await client.walk(state="succeeded")
+        except GaveUp as e:
+            # A hung API is a finding, not a reason to skip the checks: I10 fails,
+            # and the stack dump lands in api.log for diagnosis.
+            api_unresponsive = True
+            log(f"API UNRESPONSIVE during the pagination walk ({e}); dumping its stacks with SIGUSR1")
+            if procs.api and procs.api.returncode is None:
+                procs.api.send_signal(signal.SIGUSR1)
+                await asyncio.sleep(1)
+            walk_all, walk_succ = [], []
         await procs.stop_all()
         log(f"processes stopped; worker processes spawned in total: {procs.spawned}")
 
@@ -463,6 +474,7 @@ async def run(args) -> int:
             completed=True, verdict=verdict, expected=expected, as_expected=as_expected,
             violations=counts, failed_invariants=failed, not_covered=not_covered, coverage=checker.cov,
             client_errors=dict(client.errors), gets_nonterminal=client.gets_nonterminal, drained=drained,
+            api_unresponsive=api_unresponsive,
             durations_s={"load": round(t_load, 1), "total": round(time.monotonic() - t_start, 1)},
             worker_processes_spawned=procs.spawned, fault_actions=ctx.counts,
         )
