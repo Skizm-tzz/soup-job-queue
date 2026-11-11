@@ -30,7 +30,7 @@ A job's payload is `{"work_ms": int, "outcome": "ok" | "fail"}`. The work is emu
 | Deterministic races R1–R7 on a real Postgres | `docker compose --profile chaos run --rm --entrypoint python chaos -m chaos.races` | `results/races-*.txt` |
 | Chaos run (fresh DB, own API + 8 workers, `kill -9` every ~2 s, duplicate POSTs, cancels) | `docker compose --profile chaos run --rm chaos canonical --seed 1` | `results/<run>/` |
 | Same with a seeded bug that must be caught | `docker compose --profile chaos run --rm chaos baseline --fault NO_FENCE` | `results/<run>/` |
-| Open-loop load test at 100 rps against the standard stack | `docker compose up -d && docker compose --profile chaos run --rm --entrypoint python chaos -m chaos.loadtest` | `results/load/<run>/` |
+| Open-loop load test (k6, constant arrival rate) against the standard stack, with DB-side sampling and invariants | `docker compose up -d && sh load/run.sh L1 100 600` (label, rps, seconds) | `results/load/<run>/` |
 | API smoke test | `docker compose run --rm --no-deps api python -m chaos.smoke` | stdout |
 
 Scenarios: `baseline` (2 000 jobs, no process faults), `canonical` (the brief: 10 000 jobs, 8 workers, SIGKILL of a random worker every 1.5–2.5 s, duplicate POSTs, cancels), `extended` (canonical plus SIGSTOP zombies, lease revocation, `pg_terminate_backend` on worker and API connections, SIGKILL of the API; workers ignore lost leases so the fencing is hit every time), `soak` (100 000 jobs of 0–5 ms, faults more often).
@@ -50,7 +50,11 @@ chaos/races.py     forced interleavings on Postgres (R1-R7)
 chaos/harness.py   chaos runs: processes, fault sources, drain, results
 chaos/load.py      job plan and an HTTP client that retries unknown outcomes
 chaos/invariants.py I1-I10, B1 and the coverage counters
-chaos/loadtest.py  open-loop load test
+chaos/loadwatch.py DB-side half of the load test: queue depth, queue wait, invariants
+load/mix.js        k6 scenario: 60% create, 30% get, 5% list, 5% cancel
+load/run.sh        starts loadwatch and k6 together
+chaos/loadtest.py  first Python load generator; kept because early runs used it, but it saturates
+                   its own CPU at 100 rps (see REPORT.md §6), so its latencies are not valid
 ```
 
 ## Model ↔ code

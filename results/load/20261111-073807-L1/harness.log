@@ -1,0 +1,30 @@
+[    0.08s] watching 20261111-073807-L1: 4 workers connected, synchronous_commit=on
+[    0.11s] t=0.0s queued=0 running=0 dead=7290 commits/s=0.0
+[   30.17s] t=30.1s queued=0 running=4 dead=10833 commits/s=389.9
+[   60.22s] t=60.1s queued=534 running=2 dead=13328 commits/s=361.2
+[   90.27s] t=90.2s queued=950 running=2 dead=2192 commits/s=355.3
+[  120.33s] t=120.2s queued=1917 running=4 dead=3818 commits/s=337.6
+[  150.41s] t=150.3s queued=2913 running=2 dead=5232 commits/s=323.6
+[  180.48s] t=180.4s queued=3690 running=4 dead=7185 commits/s=318.7
+[  210.53s] t=210.4s queued=3069 running=3 dead=11875 commits/s=334.4
+[  240.58s] t=240.5s queued=2688 running=4 dead=16266 commits/s=344.5
+[  270.63s] t=270.5s queued=2099 running=3 dead=4101 commits/s=354.8
+[  300.68s] t=300.6s queued=1855 running=4 dead=8190 commits/s=359.7
+[  330.73s] t=330.6s queued=961 running=4 dead=13404 commits/s=369.0
+[  360.77s] t=360.7s queued=366 running=2 dead=18209 commits/s=375.2
+[  390.82s] t=390.7s queued=0 running=2 dead=3276 commits/s=380.9
+[  420.86s] t=420.8s queued=0 running=1 dead=6873 commits/s=383.3
+[  450.90s] t=450.8s queued=2 running=2 dead=10341 commits/s=385.3
+[  480.95s] t=480.9s queued=1 running=0 dead=13837 commits/s=386.7
+[  510.99s] t=510.9s queued=0 running=3 dead=2907 commits/s=388.2
+[  541.03s] t=540.9s queued=1 running=3 dead=6664 commits/s=390.3
+[  571.07s] t=571.0s queued=8 running=2 dead=10162 commits/s=391.0
+[  601.12s] t=601.0s queued=150 running=4 dead=13429 commits/s=390.6
+[  611.14s] load window over; queue drained 0.0s later
+[  613.07s] k6 create  {'p(50)': 8.4, 'p(95)': 125.0, 'p(99)': 511.1, 'max': 1283.2, 'count': 35946}
+[  613.07s] k6 get     {'p(50)': 4.0, 'p(95)': 11.3, 'p(99)': 259.1, 'max': 989.7, 'count': 18018}
+[  613.07s] k6 list    {'p(50)': 7.4, 'p(95)': 19.7, 'p(99)': 253.9, 'max': 858.3, 'count': 3051}
+[  613.08s] k6 cancel  {'p(50)': 5.4, 'p(95)': 75.1, 'p(99)': 268.6, 'max': 813.2, 'count': 2986}
+[  613.08s] k6 requests 60001 (100.0/s), dropped iterations 0, max VUs 200, statuses {'create_2xx': 35946, 'get_2xx': 18018, 'cancel_2xx': 786, 'list_2xx': 3051, 'cancel_4xx': 2200}
+[  613.08s] jobs 35946 (35946 finished, 59.8/s end to end); queue wait p50/p95/p99 [5.337, 58.838, 65.731] s; max queued 3838; commits/s 388.9
+[  613.08s] invariants (DB side; I1, I6, I10 need a client journal): I2=ok  I3=ok  I4=ok  I5=ok  I7=ok  I8=ok  I9=ok  B1=ok

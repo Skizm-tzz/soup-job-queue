@@ -1,0 +1,7 @@
+[    0.12s] watching 20261111-073431-dev-k6-short: 4 workers connected, synchronous_commit=on
+[    0.19s] t=0.1s queued=0 running=0 dead=0 commits/s=0.0
+[   30.25s] t=30.1s queued=0 running=0 dead=0 commits/s=6.7
+[   40.27s] load window over; queue drained 0.0s later
+[   70.48s] k6 summary not found
+[   70.48s] jobs 0 (0 finished, None/s end to end); queue wait p50/p95/p99 None s; max queued 0; commits/s 6.6
+[   70.48s] invariants (DB side; I1, I6, I10 need a client journal): I2=ok  I3=ok  I4=ok  I5=ok  I7=ok  I8=ok  I9=ok  B1=ok

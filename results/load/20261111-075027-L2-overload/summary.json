@@ -1,0 +1,130 @@
+{
+  "run_id": "20261111-075027-L2-overload",
+  "config": {
+    "run_id": "20261111-075027-L2-overload",
+    "duration_s": 120.0,
+    "workers_connected": 4,
+    "synchronous_commit": "on",
+    "generator": "k6 load/mix.js (constant-arrival-rate)",
+    "git_commit": "3df87f0e933e6d3f05a3771b826e32a3c416cede",
+    "source_sha256": "05ced8c442275edc",
+    "note": ""
+  },
+  "k6": {
+    "requests": 24001,
+    "rps": 200.0,
+    "dropped_iterations": 0,
+    "max_vus": 200,
+    "latency_ms": {
+      "create": {
+        "p(99)": 120.4,
+        "max": 328.3,
+        "count": 14446,
+        "p(50)": 6.2,
+        "p(95)": 65.6
+      },
+      "get": {
+        "max": 191.6,
+        "count": 7231,
+        "p(50)": 3.1,
+        "p(95)": 15.1,
+        "p(99)": 60.0
+      },
+      "list": {
+        "count": 1127,
+        "p(50)": 6.1,
+        "p(95)": 19.6,
+        "p(99)": 67.7,
+        "max": 182.6
+      },
+      "cancel": {
+        "count": 1197,
+        "p(50)": 4.0,
+        "p(95)": 18.5,
+        "p(99)": 96.9,
+        "max": 194.5
+      }
+    },
+    "statuses": {
+      "create_2xx": 14446,
+      "list_2xx": 1127,
+      "cancel_2xx": 127,
+      "cancel_4xx": 1070,
+      "get_2xx": 7231
+    }
+  },
+  "jobs": 14446,
+  "jobs_finished": 14446,
+  "jobs_per_s_end_to_end": 108.5,
+  "queue_wait_s_p50_p95_p99": [
+    3.317,
+    12.501,
+    13.076
+  ],
+  "create_to_finish_s_p50_p95_p99": [
+    3.348,
+    12.527,
+    13.106
+  ],
+  "max_queued": 1428,
+  "drain_s": 5.0,
+  "commits_per_s_avg": 707.6,
+  "invariants_db_side": {
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "B1": 0
+  },
+  "failed_invariants": [],
+  "coverage": {
+    "kills": 0,
+    "stalls": 0,
+    "revokes": 0,
+    "conn_kills": 0,
+    "api_kills": 0,
+    "takeovers": 0,
+    "takeovers_by_cause": {},
+    "takeovers_unexplained": 0,
+    "takeovers_unexplained_sample": [],
+    "kills_orphaning_a_job": 0,
+    "recovery_after_kill_s": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "stale_completes_rejected": 6,
+    "stale_completes_by_reason": {
+      "unknown": 4,
+      "cancelled": 2
+    },
+    "lease_lost_detected": 2,
+    "attempts_exhausted": 0,
+    "cancelled_from_queued": 114,
+    "cancelled_from_running": 2,
+    "cancel_responses": {},
+    "cancel_sent_while_seen_running": 0,
+    "cancel_lost_race_to_finish": 0,
+    "posts": 0,
+    "repeat_posts": 0,
+    "concurrent_bursts": 0,
+    "burst_201_not_to_first_sent": 0,
+    "keys_without_any_201": 0,
+    "diff_body_409": 0,
+    "executions_per_job": {
+      "0": 114,
+      "1": 14332
+    },
+    "max_attempt": 1,
+    "final_states": {
+      "succeeded": 14330,
+      "cancelled": 116
+    },
+    "long_jobs": 0,
+    "long_jobs_succeeded_first_attempt": 0
+  }
+}

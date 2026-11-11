@@ -1,0 +1,10 @@
+{
+  "run_id": "20261111-073807-L1",
+  "duration_s": 600.0,
+  "workers_connected": 4,
+  "synchronous_commit": "on",
+  "generator": "k6 load/mix.js (constant-arrival-rate)",
+  "git_commit": "3df87f0e933e6d3f05a3771b826e32a3c416cede",
+  "source_sha256": "05ced8c442275edc",
+  "note": ""
+}

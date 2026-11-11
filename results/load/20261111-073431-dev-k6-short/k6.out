@@ -1,0 +1,4 @@
+ Container soup-queue-k6-run-8593ceaedfc4 Creating 
+ Container soup-queue-k6-run-8593ceaedfc4 Created 
+time="2026-11-11T07:34:36Z" level=error msg="The moduleSpecifier \"C:/Program Files/Git/load/mix.js\" couldn't be found on local disk. Make sure that you've specified the right path to the file. If you're running k6 using the Docker image make sure you have mounted the local directory (-v /local/path/:/inside/docker/path) containing your script and modules so that they're accessible by k6 from inside of the container, see https://grafana.com/docs/k6/latest/using-k6/modules/#using-local-modules-with-docker."
+

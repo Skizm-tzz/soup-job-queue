@@ -1,0 +1,19 @@
+ Container soup-queue-postgres-1 Running 
+ Container soup-queue-postgres-1 Waiting 
+ Container soup-queue-postgres-1 Healthy 
+ Container soup-queue-chaos-run-45210680a733 Creating 
+ Container soup-queue-chaos-run-45210680a733 Created 
+[    0.07s] watching 20261111-075027-L2-overload: 4 workers connected, synchronous_commit=on
+[    0.09s] t=0.0s queued=0 running=0 dead=13920 commits/s=0.0
+[   30.15s] t=30.1s queued=227 running=3 dead=20130 commits/s=684.0
+[   60.20s] t=60.1s queued=372 running=4 dead=2837 commits/s=720.6
+[   90.24s] t=90.2s queued=393 running=4 dead=9905 commits/s=733.9
+[  120.30s] t=120.2s queued=1428 running=4 dead=15091 commits/s=716.2
+[  135.35s] load window over; queue drained 5.0s later
+[  136.21s] k6 create  {'p(99)': 120.4, 'max': 328.3, 'count': 14446, 'p(50)': 6.2, 'p(95)': 65.6}
+[  136.21s] k6 get     {'max': 191.6, 'count': 7231, 'p(50)': 3.1, 'p(95)': 15.1, 'p(99)': 60.0}
+[  136.24s] k6 list    {'count': 1127, 'p(50)': 6.1, 'p(95)': 19.6, 'p(99)': 67.7, 'max': 182.6}
+[  136.24s] k6 cancel  {'count': 1197, 'p(50)': 4.0, 'p(95)': 18.5, 'p(99)': 96.9, 'max': 194.5}
+[  136.24s] k6 requests 24001 (200.0/s), dropped iterations 0, max VUs 200, statuses {'create_2xx': 14446, 'list_2xx': 1127, 'cancel_2xx': 127, 'cancel_4xx': 1070, 'get_2xx': 7231}
+[  136.24s] jobs 14446 (14446 finished, 108.5/s end to end); queue wait p50/p95/p99 [3.317, 12.501, 13.076] s; max queued 1428; commits/s 707.6
+[  136.24s] invariants (DB side; I1, I6, I10 need a client journal): I2=ok  I3=ok  I4=ok  I5=ok  I7=ok  I8=ok  I9=ok  B1=ok

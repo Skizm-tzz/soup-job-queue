@@ -1,0 +1,9 @@
+ Container soup-queue-k6-run-1487cda01e3a Creating 
+ Container soup-queue-k6-run-1487cda01e3a Created 
+k6 20261111-073625-dev-k6-short: target 100/s for 30s
+  create  p50 6.5 ms  p95 36.8  p99 103.9  max 337.1  n 1892
+  get     p50 3.6 ms  p95 8.0  p99 12.9  max 28.2  n 823
+  list    p50 6.1 ms  p95 14.3  p99 33.2  max 42.6  n 153
+  cancel  p50 4.5 ms  p95 9.6  p99 13.1  max 14.7  n 132
+  requests 3000 (100.0/s), dropped iterations 0, max VUs 200
+  statuses get_2xx=823 create_2xx=1892 list_2xx=153 cancel_4xx=132

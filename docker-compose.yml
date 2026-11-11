@@ -16,6 +16,7 @@ services:
       POSTGRES_PASSWORD: soup
       POSTGRES_DB: jobs
     command: ["postgres", "-c", "max_connections=300", "-c", "shared_buffers=256MB"]
+    restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -74,6 +75,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+
+  # Load generator (open loop). Use load/run.sh, which also starts chaos.loadwatch.
+  k6:
+    image: grafana/k6:0.54.0
+    profiles: ["load"]
+    volumes:
+      - ./load:/load:ro
+      - ./results:/results
 
 volumes:
   pgdata:

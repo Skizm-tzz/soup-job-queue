@@ -1,0 +1,126 @@
+{
+  "run_id": "20261111-073625-dev-k6-short",
+  "config": {
+    "run_id": "20261111-073625-dev-k6-short",
+    "duration_s": 30.0,
+    "workers_connected": 4,
+    "synchronous_commit": "on",
+    "generator": "k6 load/mix.js (constant-arrival-rate)",
+    "git_commit": "3df87f0e933e6d3f05a3771b826e32a3c416cede",
+    "source_sha256": "05ced8c442275edc",
+    "note": ""
+  },
+  "k6": {
+    "requests": 3000,
+    "rps": 100.0,
+    "dropped_iterations": 0,
+    "max_vus": 200,
+    "latency_ms": {
+      "create": {
+        "p(50)": 6.5,
+        "p(95)": 36.8,
+        "p(99)": 103.9,
+        "max": 337.1,
+        "count": 1892
+      },
+      "get": {
+        "p(95)": 8.0,
+        "p(99)": 12.9,
+        "max": 28.2,
+        "count": 823,
+        "p(50)": 3.6
+      },
+      "list": {
+        "p(95)": 14.3,
+        "p(99)": 33.2,
+        "max": 42.6,
+        "count": 153,
+        "p(50)": 6.1
+      },
+      "cancel": {
+        "p(99)": 13.1,
+        "max": 14.7,
+        "count": 132,
+        "p(50)": 4.5,
+        "p(95)": 9.6
+      }
+    },
+    "statuses": {
+      "cancel_4xx": 132,
+      "get_2xx": 823,
+      "create_2xx": 1892,
+      "list_2xx": 153
+    }
+  },
+  "jobs": 1892,
+  "jobs_finished": 1892,
+  "jobs_per_s_end_to_end": 63.0,
+  "queue_wait_s_p50_p95_p99": [
+    0.021,
+    0.317,
+    0.348
+  ],
+  "create_to_finish_s_p50_p95_p99": [
+    0.055,
+    0.349,
+    0.384
+  ],
+  "max_queued": 4,
+  "drain_s": 0.0,
+  "commits_per_s_avg": 358.9,
+  "invariants_db_side": {
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "B1": 0
+  },
+  "failed_invariants": [],
+  "coverage": {
+    "kills": 0,
+    "stalls": 0,
+    "revokes": 0,
+    "conn_kills": 0,
+    "api_kills": 0,
+    "takeovers": 0,
+    "takeovers_by_cause": {},
+    "takeovers_unexplained": 0,
+    "takeovers_unexplained_sample": [],
+    "kills_orphaning_a_job": 0,
+    "recovery_after_kill_s": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "stale_completes_rejected": 4,
+    "stale_completes_by_reason": {
+      "unknown": 4
+    },
+    "lease_lost_detected": 2,
+    "attempts_exhausted": 0,
+    "cancelled_from_queued": 0,
+    "cancelled_from_running": 0,
+    "cancel_responses": {},
+    "cancel_sent_while_seen_running": 0,
+    "cancel_lost_race_to_finish": 0,
+    "posts": 0,
+    "repeat_posts": 0,
+    "concurrent_bursts": 0,
+    "burst_201_not_to_first_sent": 0,
+    "keys_without_any_201": 0,
+    "diff_body_409": 0,
+    "executions_per_job": {
+      "1": 1892
+    },
+    "max_attempt": 1,
+    "final_states": {
+      "succeeded": 1892
+    },
+    "long_jobs": 0,
+    "long_jobs_succeeded_first_attempt": 0
+  }
+}

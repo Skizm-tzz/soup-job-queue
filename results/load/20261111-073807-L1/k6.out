@@ -1,0 +1,10 @@
+ Container soup-queue-k6-run-30f5aee5c595 Creating 
+ Container soup-queue-k6-run-30f5aee5c595 Created 
+time="2026-11-11T07:45:42Z" level=warning msg="The test has generated metrics with 100001 unique time series, which is higher than the suggested limit of 100000 and could cause high memory usage. Consider not using high-cardinality values like unique IDs as metric tags or, if you need them in the URL, use the name metric tag or URL grouping. See https://grafana.com/docs/k6/latest/using-k6/tags-and-groups/ for details." component=metrics-engine-ingester
+k6 20261111-073807-L1: target 100/s for 600s
+  create  p50 8.4 ms  p95 125.0  p99 511.1  max 1283.2  n 35946
+  get     p50 4.0 ms  p95 11.3  p99 259.1  max 989.7  n 18018
+  list    p50 7.4 ms  p95 19.7  p99 253.9  max 858.3  n 3051
+  cancel  p50 5.4 ms  p95 75.1  p99 268.6  max 813.2  n 2986
+  requests 60001 (100.0/s), dropped iterations 0, max VUs 200
+  statuses create_2xx=35946 get_2xx=18018 cancel_2xx=786 list_2xx=3051 cancel_4xx=2200

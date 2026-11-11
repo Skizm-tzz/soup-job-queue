@@ -164,7 +164,23 @@ For the brief's scenario, yes for what random testing can show: each canonical r
 
 ## 6. Data for the verdict at 100 rps
 
-PENDING: L1.
+All on the standard stack (`docker compose up`: one API process, 4 workers, Postgres 16 in Docker Desktop on a Windows laptop). Load from k6 with the constant-arrival-rate executor (open loop: requests start on schedule whatever the server does, so slowness shows up as latency, not as a slower client). Mix: 60% create, 30% get, 5% list, 5% cancel; jobs of 5–40 ms. After each run the DB-side invariants (I2–I5, I7–I9, B1) are checked on that run's jobs. Raw output: `results/load/<run>/`.
+
+| Run | Target | Achieved | Create p50 / p95 / p99 / max | Get p50 / p99 | Errors | Jobs/s through the workers | Queue wait p50 / p95 | Max queued | Invariants |
+|---|---|---|---|---|---|---|---|---|---|
+| **L1** (10 min) | 100 rps | 100.0 rps, 0 dropped | 8.4 / 125 / 511 / 1 283 ms | 4.0 / 259 ms | 0 | 59.8 (all 35 946 finished) | 5.3 s / 58.8 s | 3 838 | all hold |
+| L2 (2 min, overload) | 200 rps | 200.0 rps, 0 dropped | 6.2 / 66 / 120 / 328 ms | 3.1 / 60 ms | 0 | 108.5 | 3.3 s / 12.5 s | 1 428 | all hold |
+
+What the numbers say:
+
+- **The API is not the bottleneck.** It served 100 rps for 10 minutes and 200 rps for 2 minutes without a single error. Tail latency at 100 rps (p99 511 ms) is worse than at 200 rps (p99 120 ms) because the 100 rps run contained the slow-disk episode described next.
+- **The workers have about 1.8× headroom on a healthy disk, and much less on a sick one.** At 200 rps the 4 workers finished 108 jobs/s; 100 rps needs 60. But in minutes 1–3 of L1 the database's commit rate fell by a third (from ~410 to ~270 commits/s, `samples.json`) and stayed there for about two minutes. The queue grew to 3 838 jobs and took another three and a half minutes to drain, so the job-start latency p95 was 59 s while the API kept answering in milliseconds. The episode overlaps a Postgres checkpoint, but a later, larger checkpoint did not repeat it, so the cause is not established; host I/O is the main suspect.
+- **The cost model is commits, not CPU.** Each job is 4 durable commits (create, claim, execution record, complete), and a worker does 3 of them in sequence, so each worker's speed is bounded by commit latency. That latency on this machine was 9.9 ms per `fdatasync` one morning and 2.7 ms after a restart ([fsync.md](results/load/fsync.md)). With the slow disk, the first load tests saw 4 workers fall behind at 60 jobs/s.
+- **Not measured:** a deep backlog of millions of finished jobs (claim and list stay on partial and composite indexes, but no `EXPLAIN` under that data was taken), more than one API process, long jobs that heartbeat under load (load jobs were 5–40 ms), and anything on server-class disks.
+
+**The first load generator was wrong, and its results are kept but not valid.** The Python generator (`chaos/loadtest.py`, runs `results/load/*-dev-L1-*` and `*-L1` of 04:42 UTC) saturated its own CPU: with one 200-connection httpx pool, httpcore's request-to-connection matching went quadratic once responses slowed (cProfile: 25 million `can_handle_request` calls in 15 s). Even with 16 smaller pools, the 10-minute run ended in client-side `PoolTimeout`s, which is why the generator was replaced by k6.
+
+Options if the verdict is "ship, but": more workers (they are cheap and independent), folding the `executions` insert into the claim statement (3 commits per job instead of 4; it is diagnostic only), and alerting on queue depth / oldest queued job, since an I/O stall shows up there first and not in API latency.
 
 **Verdict: TODO(human)** — SHIP or DON'T SHIP at 100 rps, and if not, what to fix first.
 
@@ -188,7 +204,8 @@ TODO(human): say what you read and checked yourself, and how (for example: which
 | Chaos load at 80–100 jobs/s as in the brief | Arithmetic on the job mix: 8 workers finish about 50 jobs/s, so the backlog would grow without bound | 40 jobs/s; 100 rps measured separately (§6) |
 | `docker kill` would trigger the container restart policy | Manual test: Docker treats it as a manual stop | The harness kills processes directly; documented in §5 |
 | One httpx connection pool of 200 for the harness client | The first load test: client at 100% CPU, API idle; cProfile showed httpcore's pool matching | 16 small pools; also the likely cause of the aborted F8 |
-| The first load-test numbers (p95 ≈ 11 s at 79 rps) | Same: they measured the client | Discarded as `dev-*` runs, kept in `results/load/` |
+| The first load-test numbers (p95 ≈ 11 s at 79 rps), and the 10-minute run of 04:42 with 16 smaller pools | Same: they measured the client (`PoolTimeout`s on the client side) | Kept in `results/load/` and marked invalid in §6; the load generator is now k6 |
+| "4 workers cannot keep up at 100 rps on this machine", concluded from the first measurements | Re-measuring fsync after a restart (9.9 ms → 2.7 ms) and the k6 runs | §6: about 1.8× headroom on a healthy disk, much less during an I/O stall |
 | A model-checker counterexample for the split-effect bug | Its trace was trivial, then physically impossible | Mid-operation states modelled explicitly |
 | A 300-job debugging run looked green | Its coverage counters: no job longer than the lease, so heartbeats were never tested | Coverage gates every verdict (`NOT COVERED`) |
 

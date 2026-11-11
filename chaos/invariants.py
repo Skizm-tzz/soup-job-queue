@@ -59,7 +59,10 @@ def _pct(xs: list[float], q: float) -> float | None:
 class Checker:
     def __init__(self, specs, journal, walk_all, walk_succeeded, has_process_faults: bool, lease_ttl_s: float):
         self.specs = {s.key: s for s in specs}
-        self.journal = journal
+        # journal=None: no client journal (the k6 load test). Only the DB-side
+        # checks run; I1 and I6 and the response half of I2 are skipped.
+        self.client_checks = journal is not None
+        self.journal = journal or []
         self.walk_all = walk_all
         self.walk_succeeded = walk_succeeded
         self.has_process_faults = has_process_faults
@@ -156,6 +159,11 @@ class Checker:
         self._coverage(all_attempts, diag_kinds, jobs_by_id)
 
     def _check_keys(self, by_key) -> None:
+        if not self.client_checks:
+            for k, rows in by_key.items():
+                if len(rows) > 1:
+                    self.v("I2", f"{len(rows)} jobs for one key: ids {[r['id'] for r in rows]}", key=k)
+            return
         sent = set(self.specs)
         in_db = set(by_key)
         for k in sorted(sent - in_db):
@@ -274,6 +282,8 @@ class Checker:
                 self.v("B1", f"{len(exs)} executions, attempt {j['attempt']} without any process fault", jid)
 
     def _check_api(self, jobs_by_id) -> None:
+        if not self.client_checks:
+            return
         for e in self.journal:
             if "status" not in e or e.get("job") is None:
                 continue
