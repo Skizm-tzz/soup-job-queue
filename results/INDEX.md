@@ -29,5 +29,6 @@ A run without `summary.json` was aborted and is listed as such.
 | [20261111-041846-ISO2](20261111-041846-ISO2/) | ISO2 | canonical | 8 | 10000 | - | serializable | PASS | PASS | yes | kills 132, takeovers 70, stale rejected 141, cancel running 260, exhausted 0 | fc34242 |
 | [20261111-042333-F8-rerun](20261111-042333-F8-rerun/) | F8-rerun | baseline | 1 | 2000 | CLAIM_READ_THEN_WRITE,NO_FENCE | read_committed | FAIL (I3) | FAIL (B1,I3,I5,I6,I7,I8) | yes | kills 0, takeovers 717, stale rejected 8, cancel running 37, exhausted 0 | fc34242 |
 | [20261111-090251-C7-final](20261111-090251-C7-final/) | C7-final | canonical | 9 | 10000 | - | read_committed | PASS | PASS | yes | kills 131, takeovers 87, stale rejected 147, cancel running 262, exhausted 0 | 42c487b |
+| [20261111-194743-my-check](20261111-194743-my-check/) | my-check | baseline | 1 | 2000 | NO_FENCE | read_committed | FAIL (I3,I5,I6) | FAIL (I5,I6) | yes | kills 0, takeovers 0, stale rejected 0, cancel running 41, exhausted 0 | 57253d0 |
 
-24 runs.
+25 runs.

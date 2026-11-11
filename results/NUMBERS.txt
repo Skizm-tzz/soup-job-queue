@@ -1,4 +1,4 @@
-chaos runs recorded: 24 (completed 23, aborted 1)
+chaos runs recorded: 25 (completed 24, aborted 1)
   ABORTED: 20261111-035046-F8: GaveUp: list /jobs key=None: timeout after 16 tries
 
 == canonical (the brief's scenario), no seeded bug, read committed
@@ -30,6 +30,7 @@ F6        NO_HEARTBEAT                          baseline  expected FAIL on B1   
 F7        CANCEL_BLIND                          canonical expected FAIL on I3,I5      got FAIL: I3=58, I5=62, I6=44
 F8        CLAIM_READ_THEN_WRITE+NO_FENCE        baseline  expected FAIL on I3         got ABORTED (harness error)
 F8-rerun  CLAIM_READ_THEN_WRITE+NO_FENCE        baseline  expected FAIL on I3         got FAIL: I3=1308, I5=27, I6=33, I7=718, I8=3, B1=646
+my-check  NO_FENCE                              baseline  expected FAIL on I3,I5,I6   got FAIL: I5=29, I6=39
 
 == load runs with k6 (results/load)
 20261111-073625-dev-k6-short      rps=100.0 dropped=0 errors=0 create_ms p50=6.5 p95=36.8 p99=103.9 jobs=1892 finished=1892 jobs_per_s=63.0 queue_wait_s=[0.021, 0.317, 0.348] max_queued=4 workers=4 db_invariants_failed=none

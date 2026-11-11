@@ -1,0 +1,90 @@
+{
+  "run_id": "20261111-194743-my-check",
+  "completed": true,
+  "verdict": "FAIL",
+  "expected": {
+    "verdict": "FAIL",
+    "invariants": [
+      "I3",
+      "I5",
+      "I6"
+    ]
+  },
+  "as_expected": true,
+  "violations": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 29,
+    "I6": 39,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "I10": 0,
+    "B1": 0
+  },
+  "failed_invariants": [
+    "I5",
+    "I6"
+  ],
+  "not_covered": [],
+  "coverage": {
+    "kills": 0,
+    "stalls": 0,
+    "revokes": 0,
+    "conn_kills": 0,
+    "api_kills": 0,
+    "takeovers": 0,
+    "takeovers_by_cause": {},
+    "takeovers_unexplained": 0,
+    "takeovers_unexplained_sample": [],
+    "kills_orphaning_a_job": 0,
+    "recovery_after_kill_s": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "stale_completes_rejected": 0,
+    "stale_completes_by_reason": {},
+    "lease_lost_detected": 12,
+    "attempts_exhausted": 0,
+    "cancelled_from_queued": 39,
+    "cancelled_from_running": 41,
+    "cancel_responses": {
+      "200": 107,
+      "409": 74
+    },
+    "cancel_sent_while_seen_running": 50,
+    "cancel_lost_race_to_finish": 18,
+    "posts": 2844,
+    "repeat_posts": 844,
+    "concurrent_bursts": 190,
+    "burst_201_not_to_first_sent": 120,
+    "keys_without_any_201": 0,
+    "diff_body_409": 10,
+    "executions_per_job": {
+      "0": 39,
+      "1": 1961
+    },
+    "max_attempt": 1,
+    "final_states": {
+      "succeeded": 1926,
+      "cancelled": 51,
+      "failed": 23
+    },
+    "long_jobs": 10,
+    "long_jobs_succeeded_first_attempt": 5
+  },
+  "client_errors": {},
+  "gets_nonterminal": 252,
+  "drained": true,
+  "api_unresponsive": false,
+  "durations_s": {
+    "load": 69.1,
+    "total": 71.8
+  },
+  "worker_processes_spawned": 8,
+  "fault_actions": {}
+}

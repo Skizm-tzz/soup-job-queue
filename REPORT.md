@@ -10,7 +10,7 @@ Why ship:
 
 - In 70 000 jobs under `kill -9` (7 runs of the brief's scenario) no job was lost, stuck or completed twice.
 - At 100 rps for 10 minutes the API answered every request: 0 errors, create p99 511 ms.
-- At 10× the load it got slow, but it lost nothing.
+- At 1 000 rps, ten times the load, it got slow, but it lost nothing.
 
 The weak spot is delay, not loss. During a two-minute disk stall the queue grew to 3 838 jobs, and jobs started up to a minute late. For training jobs that run for minutes or hours I accept that. I would not accept a lost or doubled job, and I saw none.
 
@@ -83,7 +83,7 @@ ISO1 and ISO2 repeat the canonical run at REPEATABLE READ and SERIALIZABLE: both
 
 A run passes only if the invariants hold **and** the run really exercised what it claims: a green run that never killed a worker holding a job counts as `NOT COVERED`, not `PASS`.
 
-**Number of runs:** 24 chaos runs, all listed in [results/INDEX.md](results/INDEX.md): 7 canonical, 3 extended, 2 isolation, 1 baseline, 9 with a seeded bug (one aborted, §6) and 2 debugging runs. Raw output of each is in `results/<run>/`.
+**Number of runs:** 25 chaos runs, all listed in [results/INDEX.md](results/INDEX.md): 7 canonical, 3 extended, 2 isolation, 1 baseline, 10 with a seeded bug (one aborted, §6; one run by hand, §8) and 2 debugging runs. Raw output of each is in `results/<run>/`.
 
 ## 2. Can the harness fail? Seeded bugs
 
@@ -166,13 +166,13 @@ An AI assistant (Claude, in Claude Code) wrote the code, the harness, the model 
 What I did:
 
 - I chose the stack and the way of working.
-- I had the architecture explained to me, with diagrams, before any code was written.
+- I had the architecture planned with AI, before any code was written.
 - I sent the first plan back to be made stronger. That is where the separate reaper was dropped and the model check, the forced races and the seeded bugs were added.
-- I followed the runs as they happened, including the night the laptop went to sleep in the middle of the test matrix.
-- Before submitting, I asked the AI for a critical review of its own work, read it, and had every finding fixed and re-tested.
 - I asked for this report to be rewritten: shorter, and with enough data to check it against the raw files.
 
-What I did not do: I have not read all the code line by line, and I did not re-run the chaos runs independently. The verdict is my decision; its wording and §7 were drafted with the AI from what we saw during the work.
+What I did not do: I have not read all the code line by line. The verdict is my decision.
+
+What I checked with my own hands: one seeded-bug run ([results/20261111-194743-my-check](results/20261111-194743-my-check/)). 2 000 jobs, 8 workers, with the `attempt` fence removed from `complete`. The harness failed, as it must: 39 cancels that the API had confirmed ended `succeeded` (I6), and 29 jobs had an illegal `cancelled → succeeded` history (I5). No job was lost or stuck (I1 and I4 held).
 
 How I guard against trusting it blindly: the harness had to prove it can fail (§2), every number comes from a raw file (`python chaos/numbers.py`), and failed runs are kept.
 

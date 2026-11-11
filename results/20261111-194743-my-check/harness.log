@@ -1,0 +1,20 @@
+[    0.02s] run 20261111-194743-my-check: baseline seed=1 jobs=2000 rate=40/s sources=[] flags=['NO_FENCE'] isolation=read_committed release_on_start=False ignore_lease_loss=False; expect {'verdict': 'FAIL', 'invariants': ['I3', 'I5', 'I6']}
+[    1.76s] plan: 2000 keys over ~50s; bursts=190 delayed-repeats=276 diff-body=10 cancels=137 long(>TTL)=10
+[   11.80s] progress: keys sent 373/2000, states {'cancelled': 9, 'running': 5, 'queued': 1, 'failed': 2, 'succeeded': 356}, faults {}
+[   21.80s] progress: keys sent 742/2000, states {'cancelled': 20, 'running': 5, 'queued': 2, 'failed': 5, 'succeeded': 710}, faults {}
+[   31.81s] progress: keys sent 1155/2000, states {'cancelled': 31, 'running': 5, 'queued': 4, 'failed': 9, 'succeeded': 1106}, faults {}
+[   41.81s] progress: keys sent 1570/2000, states {'succeeded': 1508, 'failed': 17, 'cancelled': 41, 'running': 4}, faults {}
+[   51.82s] progress: keys sent 1980/2000, states {'succeeded': 1903, 'failed': 22, 'cancelled': 50, 'queued': 1, 'running': 4}, faults {}
+[   61.82s] progress: keys sent 2000/2000, states {'succeeded': 1926, 'failed': 23, 'cancelled': 51}, faults {}
+[   70.88s] load done in 69.1s; stopping fault sources
+[   70.89s] drain complete after 0.0s: {'succeeded': 1926, 'failed': 23, 'cancelled': 51}
+[   71.76s] processes stopped; worker processes spawned in total: 8
+[   71.83s] invariants: I1=ok  I2=ok  I3=ok  I4=ok  I5=FAIL(29)  I6=FAIL(39)  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[   71.83s] coverage: kills=0 (orphaning 0) takeovers=0 by cause {} unexplained=0; recovery after kill {'n': 0, 'p50': None, 'p95': None, 'max': None}
+[   71.83s] coverage: stale completes rejected=0 {} lease_lost=12 exhausted=0 max_attempt=1 executions/job={'0': 39, '1': 1961}
+[   71.83s] coverage: cancelled from queued=39 from running=41 responses={'200': 107, '409': 74} sent-while-running=50 lost-race=18
+[   71.83s] coverage: posts=2844 repeats=844 bursts=190 201-not-to-first=120 no-201-seen=0 diff-body-409=10; long jobs 10 ok-first-try 5
+[   71.83s] final states: {'succeeded': 1926, 'cancelled': 51, 'failed': 23}; client errors: {}; fault actions: {}
+[   71.83s] VERDICT: FAIL (expected FAIL on I3,I5,I6) -> as expected
+[   71.94s] database chaos_20261111_194743_my_check kept for inspection
+[   72.19s] results in results/20261111-194743-my-check/
