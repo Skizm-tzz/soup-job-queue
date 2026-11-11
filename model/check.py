@@ -41,6 +41,7 @@ VARIANTS = {
     "split_effect": "effect inserted by a separate statement before the transition",
     "claim_read_then_write": "claim() as unlocked SELECT, then UPDATE without a condition",
     "worker_clock": "claim() judges lease expiry by a skewed worker clock",
+    "no_takeover": "claim() takes only queued jobs (no recovery of expired leases)",
 }
 
 
@@ -72,27 +73,41 @@ def successors(s: S, variant: str, max_attempt: int) -> Iterator[tuple[str, S]]:
     if variant == "worker_clock":
         # The worker's clock runs ahead, so it thinks a live lease has expired.
         claimable = s.state in (QUEUED, RUNNING)
+    elif variant == "no_takeover":
+        claimable = s.state == QUEUED
 
     for i, w in enumerate(s.workers):
         busy = w.held is not None or w.seen is not None or w.effect_written
+        # Claims may go one past max_attempt: that claim is the one the worker
+        # answers with fail("attempts exhausted") (app/worker.py), see below.
+        can_take = s.attempt <= max_attempt
 
         # claim
         if variant == "claim_read_then_write":
-            if not busy and claimable and s.attempt < max_attempt:
+            if not busy and claimable and can_take:
                 yield f"read({i})", _set_worker(s, i, replace(w, seen=s.attempt))
             if w.seen is not None and w.held is None:
                 # UPDATE ... WHERE id = $1 with no condition: always applies,
                 # even to a job that became terminal in the meantime.
-                if s.attempt < max_attempt:
+                if can_take:
                     a = s.attempt + 1
                     ns = replace(s, state=RUNNING, attempt=a, lease_live=True)
                     yield f"write_claim({i})", _set_worker(ns, i, Worker(held=a))
-        elif not busy and claimable and s.attempt < max_attempt:
+        elif not busy and claimable and can_take:
             a = s.attempt + 1
             ns = replace(s, state=RUNNING, attempt=a, lease_live=True)
             yield f"claim({i})", _set_worker(ns, i, Worker(held=a))
+        elif not busy and claimable and s.state == RUNNING and not can_take:
+            # The exhaustion claim's holder died before failing the job. The real next
+            # claim (attempt max+2) is again answered with fail(): abstracted as one step.
+            yield f"claim_exhausted_and_fail({i})", replace(s, state=FAILED, lease_live=False)
 
-        if w.held is not None:
+        if w.held is not None and w.held > max_attempt:
+            # Holder of the exhaustion claim: the worker only fails the job (fenced).
+            mine = s.state == RUNNING and s.attempt == w.held
+            ns = replace(s, state=FAILED, lease_live=False) if mine else s
+            yield f"fail_exhausted({i})", _set_worker(ns, i, Worker())
+        elif w.held is not None:
             mine = s.state == RUNNING and s.attempt == w.held
 
             # heartbeat: 0 rows means the lease is lost. The worker may ignore
@@ -169,7 +184,7 @@ class Result:
 def check(variant: str, workers: int, max_attempt: int) -> Result:
     start = S(workers=tuple(Worker() for _ in range(workers)))
     parent: dict[S, tuple[S | None, str]] = {start: (None, "")}
-    edges: dict[S, list[S]] = {}
+    edges: dict[S, list[tuple[str, S]]] = {}
     queue = deque([start])
 
     def trace_to(s: S) -> list[str]:
@@ -190,18 +205,20 @@ def check(variant: str, workers: int, max_attempt: int) -> Result:
         for label, ns in successors(s, variant, max_attempt):
             if vt := transition_violations(s, ns):
                 return Result(len(parent), vt[0], trace_to(s) + [label])
-            edges[s].append(ns)
+            edges[s].append((label, ns))
             if ns not in parent:
                 parent[ns] = (s, label)
                 queue.append(ns)
 
-    # Liveness: from every reachable state some terminal state must be reachable.
-    # Attempts are bounded in the model; the real system enforces the bound with
-    # max_attempts (the claim that exceeds it is followed by fail()).
+    # Liveness: from every reachable state a terminal state must be reachable
+    # WITHOUT a cancel (a cancel finishes any job, which would make the check
+    # vacuous). Crashes are allowed on the way; "some path exists" is the claim,
+    # since an adversary that crashes every worker forever stops any system.
     rev: dict[S, list[S]] = {s: [] for s in edges}
     for s, outs in edges.items():
-        for ns in outs:
-            rev[ns].append(s)
+        for label, ns in outs:
+            if label != "cancel":
+                rev[ns].append(s)
     frontier = deque(s for s in edges if s.state in TERMINAL)
     can_finish = set(frontier)
     while frontier:
@@ -212,7 +229,7 @@ def check(variant: str, workers: int, max_attempt: int) -> Result:
                 frontier.append(p)
     stuck = [s for s in edges if s not in can_finish]
     if stuck:
-        return Result(len(parent), f"{len(stuck)} states cannot reach a terminal state", trace_to(stuck[0]))
+        return Result(len(parent), f"{len(stuck)} states cannot reach a terminal state without a cancel", trace_to(stuck[0]))
     return Result(len(parent), None, [])
 
 

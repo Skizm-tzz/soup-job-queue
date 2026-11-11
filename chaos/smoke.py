@@ -71,6 +71,16 @@ async def main() -> int:
         job = await wait_state(c, r.json()["id"], {"succeeded", "failed", "cancelled"})
         check(job["state"] == "failed", "job reporting failure ends failed")
 
+        print("bad input")
+        r = await c.post("/jobs", content=b'{"work_ms": NaN}', headers={"Idempotency-Key": key(), "Content-Type": "application/json"})
+        check(r.status_code == 400, f"body with NaN -> 400 (got {r.status_code})")
+        r = await c.post("/jobs", content=b"[1, 2]", headers={"Idempotency-Key": key(), "Content-Type": "application/json"})
+        check(r.status_code == 400, f"body that is not an object -> 400 (got {r.status_code})")
+        r = await c.post("/jobs", json={"work_ms": None}, headers={"Idempotency-Key": key()})
+        job = await wait_state(c, r.json()["id"], {"succeeded", "failed", "cancelled"})
+        check(job["state"] == "failed" and job["attempt"] == 1 and (job["error"] or "").startswith("invalid payload"),
+              f"invalid job fails on its first attempt without crashing a worker ({job['state']}, attempt {job['attempt']}, {job['error']!r})")
+
         print("cancel")
         r = await c.post("/jobs", json={"work_ms": 4000}, headers={"Idempotency-Key": key()})
         jid = r.json()["id"]

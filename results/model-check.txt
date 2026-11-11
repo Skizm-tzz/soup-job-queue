@@ -10,9 +10,9 @@ Model action -> statement in app/queue.py:
   cancel     queue.cancel()     -- UPDATE ... WHERE state IN ('queued','running')
 
 correct: the protocol as designed
-  [ok ] workers=2 attempts<=3 states=83     PASS (expected PASS)
-  [ok ] workers=3 attempts<=3 states=191    PASS (expected PASS)
-  [ok ] workers=3 attempts<=4 states=448    PASS (expected PASS)
+  [ok ] workers=2 attempts<=3 states=137    PASS (expected PASS)
+  [ok ] workers=3 attempts<=3 states=441    PASS (expected PASS)
+  [ok ] workers=3 attempts<=4 states=860    PASS (expected PASS)
 
 no_fence: complete() without attempt/state in WHERE
   [ok ] workers=2 attempts<=3 states=14     VIOLATION (expected VIOLATION)
@@ -68,5 +68,16 @@ worker_clock: claim() judges lease expiry by a skewed worker clock
   [ok ] workers=3 attempts<=4 states=8      VIOLATION (expected VIOLATION)
         job taken over while its lease was live
         shortest trace: claim(0) -> claim(1)
+
+no_takeover: claim() takes only queued jobs (no recovery of expired leases)
+  [ok ] workers=2 attempts<=3 states=13     VIOLATION (expected VIOLATION)
+        2 states cannot reach a terminal state without a cancel
+        shortest trace: claim(0) -> crash(0)
+  [ok ] workers=3 attempts<=3 states=16     VIOLATION (expected VIOLATION)
+        2 states cannot reach a terminal state without a cancel
+        shortest trace: claim(0) -> crash(0)
+  [ok ] workers=3 attempts<=4 states=16     VIOLATION (expected VIOLATION)
+        2 states cannot reach a terminal state without a cancel
+        shortest trace: claim(0) -> crash(0)
 
 ALL AS EXPECTED

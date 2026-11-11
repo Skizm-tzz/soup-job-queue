@@ -19,8 +19,9 @@ services:
     restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # No published port: only the services on the compose network need the database,
+    # and a host port would clash with a local Postgres. For psql:
+    #   docker compose exec postgres psql -U soup -d jobs
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U soup -d jobs"]
       interval: 2s

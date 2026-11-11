@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import faulthandler
+import json
 import signal
 from contextlib import asynccontextmanager
 from datetime import datetime
@@ -45,6 +46,10 @@ def job_json(job: dict) -> dict:
     return out
 
 
+def _reject_constant(name: str):
+    raise ValueError(f"{name} is not valid JSON")
+
+
 def error(status: int, message: str, job: dict | None = None) -> JSONResponse:
     body = {"error": message}
     if job is not None:
@@ -64,9 +69,11 @@ async def create_job(request: Request, idempotency_key: str | None = Header(defa
     if not idempotency_key or len(idempotency_key) > 200:
         return error(400, "Idempotency-Key header is required (1-200 characters)")
     try:
-        payload = await request.json()
+        # Strict JSON: Python's parser accepts NaN and Infinity, Postgres jsonb does not
+        # (that used to surface as a 500).
+        payload = json.loads(await request.body(), parse_constant=_reject_constant)
     except ValueError:
-        return error(400, "body must be a JSON object")
+        return error(400, "body must be a JSON object (standard JSON: no NaN or Infinity)")
     if not isinstance(payload, dict):
         return error(400, "body must be a JSON object")
     async with pool.connection() as conn:

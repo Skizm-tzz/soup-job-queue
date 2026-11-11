@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import math
 import random
 import secrets
 import signal
@@ -23,6 +24,19 @@ from app import db, faults, queue
 from app.config import settings
 
 IDLE_MIN_S, IDLE_MAX_S = 0.05, 1.0
+MAX_WORK_MS = 24 * 3600 * 1000
+
+
+def parse_payload(payload) -> tuple[float, str]:
+    """The emulated job: (seconds of work, outcome). ValueError if the payload is not a valid job."""
+    payload = payload if isinstance(payload, dict) else {}
+    ms = payload.get("work_ms", 100)
+    if isinstance(ms, bool) or not isinstance(ms, (int, float)) or not math.isfinite(ms) or ms > MAX_WORK_MS:
+        raise ValueError(f"work_ms must be a number of milliseconds up to {MAX_WORK_MS}, got {repr(ms)[:60]}")
+    outcome = payload.get("outcome", "ok")
+    if outcome not in ("ok", "fail"):
+        raise ValueError(f"outcome must be 'ok' or 'fail', got {repr(outcome)[:60]}")
+    return max(0.0, ms / 1000), outcome
 
 
 class Worker:
@@ -83,6 +97,13 @@ class Worker:
                 self.log("db_error_abandon", error=f"{e.__class__.__name__}: {str(e)[:120]}")
                 await self._drop_conn()
                 await asyncio.sleep(random.uniform(0.05, 0.2))
+            except Exception as e:
+                # A bug, or a job that breaks the work itself. Crashing would only
+                # restart the process and let the same job crash it again. Abandoning
+                # the job lets its lease expire; max_attempts bounds the retries.
+                self.log("unexpected_error_abandon", error=f"{e.__class__.__name__}: {str(e)[:200]}")
+                await self._drop_conn()
+                await asyncio.sleep(random.uniform(0.05, 0.2))
         self.log("stopped")
 
     async def process(self, job: dict) -> None:
@@ -95,10 +116,15 @@ class Worker:
             self.log("attempts_exhausted", job=job_id, attempt=attempt, applied=ok)
             return
 
+        try:
+            work_s, outcome = parse_payload(job["payload"])
+        except ValueError as e:
+            # The job itself is invalid: fail it. Job content must never take the worker down.
+            ok = await queue.fail(conn, job_id, attempt, f"invalid payload: {e}")
+            self.log("invalid_payload", job=job_id, attempt=attempt, applied=ok, error=str(e))
+            return
+
         await queue.record_execution(conn, job_id, attempt, self.id)
-        payload = job["payload"] or {}
-        work_s = max(0, int(payload.get("work_ms", 100))) / 1000
-        outcome = payload.get("outcome", "ok")
 
         lease_lost = await self._work_with_heartbeat(job_id, attempt, work_s)
         if lease_lost:
