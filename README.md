@@ -3,8 +3,9 @@
 A training-job queue on Postgres: an HTTP API, N workers, one table, one SQL statement per state transition. Built as the Soup backend take-home.
 
 - **Design note**: one page, [docs/DESIGN.md](docs/DESIGN.md); the full version written before the code, [docs/DESIGN-full.md](docs/DESIGN-full.md)
-- **Report**: chaos results, silent failures, what the harness does not catch, data for the verdict, AI usage: [REPORT.md](REPORT.md)
+- **Report** (verdict, chaos results, silent failures, what the harness does not catch, AI usage): [REPORT.md](REPORT.md); every detail: [REPORT-full.md](REPORT-full.md)
 - **Every chaos run, including the failed ones**: [results/INDEX.md](results/INDEX.md)
+- **Every number in the report, recomputed from the raw files**: `python chaos/numbers.py` → [results/NUMBERS.txt](results/NUMBERS.txt)
 
 ## Run it
 
@@ -57,6 +58,7 @@ load/mix.js        k6 scenario: 60% create, 30% get, 5% list, 5% cancel
 load/run.sh        starts loadwatch and k6 together
 chaos/loadtest.py  first Python load generator; kept because early runs used it, but it saturates
                    its own CPU at 100 rps (see REPORT.md §6), so its latencies are not valid
+chaos/numbers.py   recomputes the report's numbers from results/*/summary.json (stdlib only)
 ```
 
 ## Model ↔ code

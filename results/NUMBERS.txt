@@ -1,0 +1,38 @@
+chaos runs recorded: 24 (completed 23, aborted 1)
+  ABORTED: 20261111-035046-F8: GaveUp: list /jobs key=None: timeout after 16 tries
+
+== canonical (the brief's scenario), no seeded bug, read committed
+label     jobs  kills orphaned takeovers unexplained stale_rejected cancel_running recovery_p50_s I3_bad_effects I1_lost I4_stuck verdict
+C1        10000 135   76       76        0           172            282            4.957          0              0       0        PASS
+C2        10000 130   70       70        0           176            288            4.938          0              0       0        PASS
+C3        10000 130   76       76        0           133            240            4.941          0              0       0        PASS
+C4        10000 129   87       87        0           154            280            4.927          0              0       0        PASS
+C5        10000 135   75       75        0           163            274            4.934          0              0       0        PASS
+C6        10000 131   71       71        0           152            247            0.79           0              0       0        PASS
+C7-final  10000 131   87       87        0           147            262            4.917          0              0       0        PASS
+TOTAL   jobs=70000 kills=921 orphaned=542 takeovers=542 unexplained=0 stale_rejected=1097 cancelled_running=1873 cancelled_queued=1765 cancel_lost_race=560 repeat_posts=31774 concurrent_bursts=6977 exhausted=1
+
+== extended and isolation runs, no seeded bug
+B0    baseline  read_committed  jobs=2000 kills=0 stops=0 revokes=0 conn_kills=0 api_kills=0 takeovers=0 by_cause={} unexplained=0 stale_rejected=31 {'cancelled': 31} exhausted=0 client_errors=0 violations=none verdict=PASS
+X1    extended  read_committed  jobs=10000 kills=135 stops=25 revokes=197 conn_kills=87 api_kills=9 takeovers=238 by_cause={'revoke': 101, 'stop': 19, 'kill': 94, 'conn_kill': 24} unexplained=0 stale_rejected=310 {'cancelled': 198, 'takeover': 112} exhausted=9 client_errors=1381 violations=none verdict=PASS
+X2    extended  read_committed  jobs=10000 kills=131 stops=23 revokes=194 conn_kills=88 api_kills=8 takeovers=232 by_cause={'revoke': 124, 'kill': 80, 'stop': 11, 'conn_kill': 17} unexplained=0 stale_rejected=338 {'takeover': 121, 'cancelled': 217} exhausted=7 client_errors=1132 violations=none verdict=PASS
+X3    extended  read_committed  jobs=10000 kills=132 stops=24 revokes=219 conn_kills=88 api_kills=9 takeovers=243 by_cause={'revoke': 131, 'kill': 82, 'conn_kill': 17, 'stop': 13} unexplained=0 stale_rejected=312 {'cancelled': 188, 'takeover': 124} exhausted=10 client_errors=1492 violations=none verdict=PASS
+ISO1  canonical repeatable_read jobs=10000 kills=131 stops=0 revokes=0 conn_kills=0 api_kills=0 takeovers=74 by_cause={'kill': 74} unexplained=0 stale_rejected=137 {'cancelled': 137} exhausted=0 client_errors=0 violations=none verdict=PASS
+ISO2  canonical serializable    jobs=10000 kills=132 stops=0 revokes=0 conn_kills=0 api_kills=0 takeovers=70 by_cause={'kill': 70} unexplained=0 stale_rejected=141 {'cancelled': 141} exhausted=0 client_errors=0 violations=none verdict=PASS
+
+== seeded bugs (each run must FAIL)
+F1        CLAIM_READ_THEN_WRITE                 baseline  expected FAIL on B1,I7      got FAIL: I5=1, I7=1373, I9=20, B1=1055
+F2        NO_FENCE                              extended  expected FAIL on I3,I5,I6   got FAIL: I3=41, I5=28, I6=37
+F3        SPLIT_EFFECT                          extended  expected FAIL on I3         got FAIL: I3=80
+F4        WORKER_CLOCK                          baseline  expected FAIL on I7         got FAIL: I5=1, I7=766, I9=853, B1=189
+F5        CREATE_CHECK_THEN_INSERT              canonical expected FAIL on I2         got FAIL: I2=522
+F6        NO_HEARTBEAT                          baseline  expected FAIL on B1         got FAIL: I9=30, B1=5
+F7        CANCEL_BLIND                          canonical expected FAIL on I3,I5      got FAIL: I3=58, I5=62, I6=44
+F8        CLAIM_READ_THEN_WRITE+NO_FENCE        baseline  expected FAIL on I3         got ABORTED (harness error)
+F8-rerun  CLAIM_READ_THEN_WRITE+NO_FENCE        baseline  expected FAIL on I3         got FAIL: I3=1308, I5=27, I6=33, I7=718, I8=3, B1=646
+
+== load runs with k6 (results/load)
+20261111-073625-dev-k6-short      rps=100.0 dropped=0 errors=0 create_ms p50=6.5 p95=36.8 p99=103.9 jobs=1892 finished=1892 jobs_per_s=63.0 queue_wait_s=[0.021, 0.317, 0.348] max_queued=4 workers=4 db_invariants_failed=none
+20261111-073807-L1                rps=100.0 dropped=0 errors=0 create_ms p50=8.4 p95=125.0 p99=511.1 jobs=35946 finished=35946 jobs_per_s=59.8 queue_wait_s=[5.337, 58.838, 65.731] max_queued=3838 workers=4 db_invariants_failed=none
+20261111-075027-L2-overload       rps=200.0 dropped=0 errors=0 create_ms p50=6.2 p95=65.6 p99=120.4 jobs=14446 finished=14446 jobs_per_s=108.5 queue_wait_s=[3.317, 12.501, 13.076] max_queued=1428 workers=4 db_invariants_failed=none
+20261111-090747-L3-1000rps        rps=290.7 dropped=19871 errors=0 create_ms p50=5464.8 p95=8365.8 p99=8525.4 jobs=6884 finished=6884 jobs_per_s=58.9 queue_wait_s=[36.558, 80.621, 81.742] max_queued=4242 workers=4 db_invariants_failed=none
