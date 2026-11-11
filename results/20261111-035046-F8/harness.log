@@ -1,0 +1,38 @@
+[    0.02s] run 20261111-035046-F8: baseline seed=1 jobs=2000 rate=40/s sources=[] flags=['CLAIM_READ_THEN_WRITE', 'NO_FENCE'] isolation=read_committed release_on_start=False ignore_lease_loss=False; expect {'verdict': 'FAIL', 'invariants': ['I3']}
+[    2.20s] plan: 2000 keys over ~50s; bursts=190 delayed-repeats=276 diff-body=10 cancels=137 long(>TTL)=10
+[   13.81s] progress: keys sent 358/2000, states {'cancelled': 9, 'running': 3, 'queued': 237, 'failed': 1, 'succeeded': 108}, faults {}
+[   23.82s] progress: keys sent 737/2000, states {'cancelled': 19, 'running': 3, 'queued': 429, 'failed': 2, 'succeeded': 284}, faults {}
+[   33.98s] progress: keys sent 904/2000, states {'cancelled': 21, 'running': 3, 'queued': 554, 'failed': 2, 'succeeded': 324}, faults {}
+[   47.20s] progress: keys sent 1075/2000, states {'cancelled': 21, 'running': 5, 'queued': 583, 'failed': 4, 'succeeded': 462}, faults {}
+[  112.88s] progress: keys sent 1179/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  181.33s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  231.47s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  262.34s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  272.34s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  282.35s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  292.35s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  302.36s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  312.37s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  322.38s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  332.38s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  342.39s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  352.39s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  362.40s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  372.41s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  382.42s] progress: keys sent 1200/2000, states {'succeeded': 1169, 'failed': 9, 'cancelled': 22}, faults {}
+[  392.18s] load done in 388.4s; stopping fault sources
+[  392.19s] drain complete after 0.0s: {'succeeded': 1169, 'failed': 9, 'cancelled': 22}
+[  574.03s] HARNESS ERROR: GaveUp: list /jobs key=None: timeout after 16 tries
+Traceback (most recent call last):
+  File "/app/chaos/harness.py", line 442, in run
+    walk_all = await client.walk()
+               ^^^^^^^^^^^^^^^^^^^
+  File "/app/chaos/load.py", line 198, in walk
+    page = (await self.call("list", "GET", "/jobs", params=params)).json()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/chaos/load.py", line 115, in call
+    raise GaveUp(f"{op} {url} key={key}: {err} after {tries} tries")
+chaos.load.GaveUp: list /jobs key=None: timeout after 16 tries
+
+[  574.17s] database chaos_20261111_035046_f8 kept for inspection
+[  574.34s] results in results/20261111-035046-F8/

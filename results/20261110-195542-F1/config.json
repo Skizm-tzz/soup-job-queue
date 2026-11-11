@@ -1,0 +1,44 @@
+{
+  "run_id": "20261110-195542-F1",
+  "label": "F1",
+  "scenario": "baseline",
+  "seed": 1,
+  "flags": [
+    "CLAIM_READ_THEN_WRITE"
+  ],
+  "isolation": "read_committed",
+  "lease_ttl_s": 5.0,
+  "workers": 8,
+  "params": {
+    "jobs": 2000,
+    "rate": 40,
+    "sources": [],
+    "profile": "normal",
+    "ignore_lease_loss": false,
+    "release_on_start": false,
+    "kill_every": [
+      1.5,
+      2.5
+    ]
+  },
+  "expected": {
+    "verdict": "FAIL",
+    "invariants": [
+      "B1",
+      "I7"
+    ]
+  },
+  "required_coverage": [
+    "posts",
+    "repeat_posts",
+    "concurrent_bursts",
+    "diff_body_409",
+    "cancelled_from_running",
+    "long_jobs_succeeded_first_attempt"
+  ],
+  "git_commit": "fc34242583125f44950eea1d0ae970810b635211",
+  "source_sha256": "39e83a2d073f11d0",
+  "started_at": "2026-11-10T19:55:42+0000",
+  "database": "chaos_20261110_195542_f1",
+  "note": ""
+}

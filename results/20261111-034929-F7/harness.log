@@ -1,0 +1,20 @@
+[    0.01s] run 20261111-034929-F7: canonical seed=1 jobs=2000 rate=40/s sources=['killer'] flags=['CANCEL_BLIND'] isolation=read_committed release_on_start=False ignore_lease_loss=False; expect {'verdict': 'FAIL', 'invariants': ['I3', 'I5']}
+[    1.17s] plan: 2000 keys over ~50s; bursts=190 delayed-repeats=276 diff-body=10 cancels=137 long(>TTL)=10
+[   11.19s] progress: keys sent 372/2000, states {'succeeded': 326, 'failed': 1, 'cancelled': 36, 'queued': 3, 'running': 6}, faults {'kill': 5}
+[   21.19s] progress: keys sent 742/2000, states {'succeeded': 675, 'failed': 4, 'cancelled': 54, 'queued': 2, 'running': 7}, faults {'kill': 10}
+[   31.20s] progress: keys sent 1145/2000, states {'succeeded': 1041, 'failed': 8, 'cancelled': 80, 'queued': 11, 'running': 5}, faults {'kill': 15}
+[   41.27s] progress: keys sent 1556/2000, states {'succeeded': 1136, 'failed': 9, 'cancelled': 95, 'queued': 313, 'running': 3}, faults {'kill': 20}
+[   55.79s] progress: keys sent 2000/2000, states {'succeeded': 1839, 'failed': 21, 'cancelled': 136, 'running': 4}, faults {'kill': 24}
+[   65.80s] progress: keys sent 2000/2000, states {'succeeded': 1842, 'failed': 21, 'cancelled': 137}, faults {'kill': 30}
+[   70.29s] load done in 69.1s; stopping fault sources
+[   70.29s] drain complete after 0.0s: {'succeeded': 1842, 'failed': 21, 'cancelled': 137}
+[   71.44s] processes stopped; worker processes spawned in total: 40
+[   71.53s] invariants: I1=ok  I2=ok  I3=FAIL(58)  I4=ok  I5=FAIL(62)  I6=FAIL(44)  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[   71.53s] coverage: kills=32 (orphaning 16) takeovers=16 by cause {'kill': 16} unexplained=0; recovery after kill {'n': 16, 'p50': 4.924, 'p95': 5.038, 'max': 5.038}
+[   71.53s] coverage: stale completes rejected=18 {'cancelled': 18} lease_lost=11 exhausted=0 max_attempt=2 executions/job={'0': 45, '1': 1942, '2': 13}
+[   71.53s] coverage: cancelled from queued=45 from running=32 responses={'200': 181} sent-while-running=46 lost-race=0
+[   71.53s] coverage: posts=2844 repeats=844 bursts=190 201-not-to-first=33 no-201-seen=0 diff-body-409=10; long jobs 10 ok-first-try 3
+[   71.53s] final states: {'succeeded': 1842, 'cancelled': 137, 'failed': 21}; client errors: {}; fault actions: {'kill': 32}
+[   71.53s] VERDICT: FAIL (expected FAIL on I3,I5) -> as expected
+[   71.66s] database chaos_20261111_034929_f7 kept for inspection
+[   71.80s] results in results/20261111-034929-F7/

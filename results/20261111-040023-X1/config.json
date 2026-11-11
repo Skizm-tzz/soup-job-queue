@@ -1,0 +1,47 @@
+{
+  "run_id": "20261111-040023-X1",
+  "label": "X1",
+  "scenario": "extended",
+  "seed": 1,
+  "flags": [],
+  "isolation": "read_committed",
+  "lease_ttl_s": 5.0,
+  "workers": 8,
+  "params": {
+    "jobs": 10000,
+    "rate": 40,
+    "sources": [
+      "killer",
+      "staller",
+      "revoker",
+      "conn_killer",
+      "api_killer"
+    ],
+    "profile": "normal",
+    "ignore_lease_loss": true,
+    "release_on_start": false,
+    "kill_every": [
+      1.5,
+      2.5
+    ]
+  },
+  "expected": {
+    "verdict": "PASS"
+  },
+  "required_coverage": [
+    "kills",
+    "takeovers",
+    "stalls",
+    "revokes",
+    "conn_kills",
+    "api_kills",
+    "stale_completes_rejected",
+    "lease_lost_detected",
+    "cancelled_from_running"
+  ],
+  "git_commit": "fc34242583125f44950eea1d0ae970810b635211",
+  "source_sha256": "39e83a2d073f11d0",
+  "started_at": "2026-11-11T04:00:23+0000",
+  "database": "chaos_20261111_040023_x1",
+  "note": ""
+}

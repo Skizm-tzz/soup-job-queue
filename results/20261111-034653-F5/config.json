@@ -1,0 +1,46 @@
+{
+  "run_id": "20261111-034653-F5",
+  "label": "F5",
+  "scenario": "canonical",
+  "seed": 1,
+  "flags": [
+    "CREATE_CHECK_THEN_INSERT"
+  ],
+  "isolation": "read_committed",
+  "lease_ttl_s": 5.0,
+  "workers": 8,
+  "params": {
+    "jobs": 2000,
+    "rate": 40,
+    "sources": [
+      "killer"
+    ],
+    "profile": "normal",
+    "ignore_lease_loss": false,
+    "release_on_start": false,
+    "kill_every": [
+      1.5,
+      2.5
+    ]
+  },
+  "expected": {
+    "verdict": "FAIL",
+    "invariants": [
+      "I2"
+    ]
+  },
+  "required_coverage": [
+    "kills",
+    "kills_orphaning_a_job",
+    "takeovers",
+    "repeat_posts",
+    "concurrent_bursts",
+    "cancelled_from_running",
+    "cancelled_from_queued"
+  ],
+  "git_commit": "fc34242583125f44950eea1d0ae970810b635211",
+  "source_sha256": "39e83a2d073f11d0",
+  "started_at": "2026-11-11T03:46:53+0000",
+  "database": "chaos_20261111_034653_f5",
+  "note": "seeded-bug run at 2000 jobs to save time; UNIQUE on idempotency_key dropped"
+}

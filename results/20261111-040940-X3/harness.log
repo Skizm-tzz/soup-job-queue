@@ -1,0 +1,39 @@
+[    0.01s] run 20261111-040940-X3: extended seed=3 jobs=10000 rate=40/s sources=['killer', 'staller', 'revoker', 'conn_killer', 'api_killer'] flags=[] isolation=read_committed release_on_start=False ignore_lease_loss=True; expect {'verdict': 'PASS'}
+[    0.96s] plan: 10000 keys over ~247s; bursts=1000 delayed-repeats=1488 diff-body=50 cancels=803 long(>TTL)=50
+[   11.05s] progress: keys sent 385/10000, states {'succeeded': 354, 'failed': 3, 'cancelled': 22, 'queued': 1, 'running': 5}, faults {'kill': 4, 'revoke': 8, 'stop': 1, 'conn_kill': 3}
+[   21.05s] progress: keys sent 787/10000, states {'succeeded': 741, 'failed': 4, 'cancelled': 39, 'queued': 1, 'running': 2}, faults {'kill': 9, 'revoke': 16, 'stop': 2, 'conn_kill': 7}
+[   31.05s] progress: keys sent 1197/10000, states {'succeeded': 1119, 'failed': 8, 'cancelled': 64, 'queued': 2, 'running': 4}, faults {'kill': 13, 'revoke': 23, 'stop': 3, 'conn_kill': 10, 'api_kill': 1}
+[   41.06s] progress: keys sent 1607/10000, states {'succeeded': 1447, 'failed': 15, 'cancelled': 83, 'queued': 55, 'running': 7}, faults {'kill': 18, 'revoke': 32, 'stop': 4, 'conn_kill': 13, 'api_kill': 1}
+[   51.06s] progress: keys sent 2046/10000, states {'succeeded': 1822, 'failed': 19, 'cancelled': 103, 'queued': 93, 'running': 9}, faults {'kill': 23, 'revoke': 41, 'stop': 4, 'conn_kill': 16, 'api_kill': 1, 'cont': 1}
+[   61.06s] progress: keys sent 2381/10000, states {'succeeded': 2229, 'failed': 28, 'cancelled': 120, 'running': 5}, faults {'kill': 28, 'revoke': 48, 'stop': 5, 'conn_kill': 19, 'api_kill': 2, 'cont': 2}
+[   71.07s] progress: keys sent 2792/10000, states {'succeeded': 2611, 'failed': 36, 'cancelled': 140, 'running': 5}, faults {'kill': 34, 'revoke': 57, 'stop': 6, 'conn_kill': 22, 'api_kill': 2, 'cont': 2}
+[   81.08s] progress: keys sent 3173/10000, states {'succeeded': 2895, 'failed': 40, 'cancelled': 156, 'queued': 76, 'running': 6}, faults {'kill': 39, 'revoke': 65, 'stop': 7, 'conn_kill': 26, 'api_kill': 2, 'cont': 2}
+[   91.08s] progress: keys sent 3601/10000, states {'succeeded': 3358, 'failed': 47, 'cancelled': 179, 'queued': 11, 'running': 6}, faults {'kill': 44, 'revoke': 74, 'stop': 8, 'conn_kill': 29, 'api_kill': 3, 'cont': 2}
+[  101.08s] progress: keys sent 4011/10000, states {'succeeded': 3737, 'failed': 52, 'cancelled': 206, 'queued': 9, 'running': 7}, faults {'kill': 49, 'revoke': 81, 'stop': 9, 'conn_kill': 32, 'api_kill': 3, 'cont': 2}
+[  111.09s] progress: keys sent 4446/10000, states {'succeeded': 4149, 'failed': 57, 'cancelled': 222, 'queued': 9, 'running': 9}, faults {'kill': 55, 'revoke': 92, 'stop': 10, 'conn_kill': 35, 'api_kill': 3, 'cont': 2}
+[  121.09s] progress: keys sent 4825/10000, states {'succeeded': 4499, 'failed': 61, 'cancelled': 239, 'queued': 18, 'running': 8}, faults {'kill': 60, 'revoke': 100, 'stop': 11, 'conn_kill': 38, 'api_kill': 4, 'cont': 2}
+[  131.10s] progress: keys sent 5248/10000, states {'succeeded': 4882, 'failed': 73, 'cancelled': 261, 'queued': 25, 'running': 7}, faults {'kill': 64, 'revoke': 109, 'stop': 12, 'conn_kill': 41, 'api_kill': 4, 'cont': 2}
+[  141.11s] progress: keys sent 5628/10000, states {'succeeded': 5263, 'failed': 77, 'cancelled': 278, 'queued': 4, 'running': 6}, faults {'kill': 69, 'revoke': 117, 'stop': 12, 'conn_kill': 45, 'api_kill': 4, 'cont': 2}
+[  151.11s] progress: keys sent 6030/10000, states {'succeeded': 5648, 'failed': 80, 'cancelled': 300, 'running': 2}, faults {'kill': 74, 'revoke': 123, 'stop': 13, 'conn_kill': 48, 'api_kill': 5, 'cont': 2}
+[  161.12s] progress: keys sent 6450/10000, states {'succeeded': 5956, 'failed': 82, 'cancelled': 322, 'queued': 81, 'running': 8}, faults {'kill': 79, 'revoke': 133, 'stop': 14, 'conn_kill': 52, 'api_kill': 5, 'cont': 3}
+[  171.12s] progress: keys sent 6827/10000, states {'succeeded': 6255, 'failed': 85, 'cancelled': 341, 'queued': 140, 'running': 6}, faults {'kill': 84, 'revoke': 140, 'stop': 15, 'conn_kill': 56, 'api_kill': 5, 'cont': 4}
+[  181.13s] progress: keys sent 7271/10000, states {'succeeded': 6542, 'failed': 92, 'cancelled': 358, 'queued': 272, 'running': 7}, faults {'kill': 89, 'revoke': 148, 'stop': 16, 'conn_kill': 59, 'api_kill': 5, 'cont': 5}
+[  191.13s] progress: keys sent 7659/10000, states {'succeeded': 6943, 'failed': 96, 'cancelled': 375, 'queued': 238, 'running': 7}, faults {'kill': 94, 'revoke': 156, 'stop': 17, 'conn_kill': 63, 'api_kill': 6, 'cont': 6}
+[  201.14s] progress: keys sent 8062/10000, states {'succeeded': 7170, 'failed': 98, 'cancelled': 394, 'queued': 397, 'running': 3}, faults {'kill': 99, 'revoke': 164, 'stop': 18, 'conn_kill': 66, 'api_kill': 6, 'cont': 6}
+[  211.14s] progress: keys sent 8470/10000, states {'succeeded': 7420, 'failed': 102, 'cancelled': 414, 'queued': 527, 'running': 7}, faults {'kill': 105, 'revoke': 171, 'stop': 19, 'conn_kill': 69, 'api_kill': 6, 'cont': 7}
+[  221.16s] progress: keys sent 8885/10000, states {'succeeded': 7861, 'failed': 107, 'cancelled': 427, 'queued': 484, 'running': 6}, faults {'kill': 109, 'revoke': 182, 'stop': 20, 'conn_kill': 73, 'api_kill': 6, 'cont': 7}
+[  231.17s] progress: keys sent 9317/10000, states {'succeeded': 8297, 'failed': 111, 'cancelled': 453, 'queued': 451, 'running': 5}, faults {'kill': 114, 'revoke': 190, 'stop': 21, 'conn_kill': 76, 'api_kill': 7, 'cont': 7}
+[  241.18s] progress: keys sent 9743/10000, states {'succeeded': 8703, 'failed': 112, 'cancelled': 475, 'queued': 444, 'running': 9}, faults {'kill': 119, 'revoke': 197, 'stop': 22, 'conn_kill': 79, 'api_kill': 7, 'cont': 7}
+[  251.19s] progress: keys sent 10000/10000, states {'cancelled': 488, 'failed': 118, 'queued': 240, 'running': 8, 'succeeded': 9146}, faults {'kill': 124, 'revoke': 204, 'stop': 22, 'conn_kill': 83, 'api_kill': 8, 'cont': 8}
+[  261.20s] progress: keys sent 10000/10000, states {'cancelled': 493, 'failed': 124, 'running': 2, 'succeeded': 9381}, faults {'kill': 128, 'revoke': 213, 'stop': 23, 'conn_kill': 86, 'api_kill': 8, 'cont': 9}
+[  268.91s] load done in 267.9s; stopping fault sources
+[  271.17s] drain complete after 0.0s: {'cancelled': 493, 'failed': 126, 'succeeded': 9381}
+[  275.09s] processes stopped; worker processes spawned in total: 140
+[  275.33s] invariants: I1=ok  I2=ok  I3=ok  I4=ok  I5=ok  I6=ok  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[  275.33s] coverage: kills=132 (orphaning 77) takeovers=243 by cause {'revoke': 131, 'kill': 82, 'conn_kill': 17, 'stop': 13} unexplained=0; recovery after kill {'n': 82, 'p50': 2.83, 'p95': 5.014, 'max': 5.083}
+[  275.33s] coverage: stale completes rejected=312 {'cancelled': 188, 'takeover': 124} lease_lost=123 exhausted=10 max_attempt=6 executions/job={'0': 278, '1': 9543, '2': 151, '3': 14, '4': 2, '5': 12}
+[  275.33s] coverage: cancelled from queued=278 from running=215 responses={'200': 635, '409': 399} sent-while-running=289 lost-race=83
+[  275.33s] coverage: posts=14553 repeats=4553 bursts=1000 201-not-to-first=93 no-201-seen=1 diff-body-409=50; long jobs 50 ok-first-try 10
+[  275.34s] final states: {'succeeded': 9381, 'cancelled': 493, 'failed': 126}; client errors: {'get:ReadError': 11, 'create:ConnectError': 1144, 'get:ConnectError': 324, 'create:RemoteProtocolError': 1, 'create:http_503': 1, 'cancel:ConnectError': 8, 'get:RemoteProtocolError': 2, 'create:ReadError': 1}; fault actions: {'kill': 132, 'revoke': 219, 'stop': 24, 'conn_kill': 88, 'api_kill': 9, 'cont': 9}
+[  275.34s] VERDICT: PASS (expected PASS) -> as expected
+[  275.70s] results in results/20261111-040940-X3/

@@ -1,0 +1,154 @@
+{
+  "run_id": "20261111-034806-F6",
+  "completed": true,
+  "verdict": "FAIL",
+  "expected": {
+    "verdict": "FAIL",
+    "invariants": [
+      "B1"
+    ]
+  },
+  "as_expected": true,
+  "violations": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 30,
+    "I10": 0,
+    "B1": 5
+  },
+  "failed_invariants": [
+    "B1",
+    "I9"
+  ],
+  "not_covered": [
+    "long_jobs_succeeded_first_attempt"
+  ],
+  "coverage": {
+    "kills": 0,
+    "stalls": 0,
+    "revokes": 0,
+    "conn_kills": 0,
+    "api_kills": 0,
+    "takeovers": 25,
+    "takeovers_by_cause": {},
+    "takeovers_unexplained": 25,
+    "takeovers_unexplained_sample": [
+      {
+        "job": 820,
+        "attempt": 1,
+        "owner": "w4:f8606b",
+        "held_s": 5.039
+      },
+      {
+        "job": 820,
+        "attempt": 2,
+        "owner": "w0:ab4e92",
+        "held_s": 5.046
+      },
+      {
+        "job": 820,
+        "attempt": 3,
+        "owner": "w7:289142",
+        "held_s": 5.019
+      },
+      {
+        "job": 820,
+        "attempt": 4,
+        "owner": "w0:ab4e92",
+        "held_s": 5.058
+      },
+      {
+        "job": 820,
+        "attempt": 5,
+        "owner": "w7:289142",
+        "held_s": 5.002
+      },
+      {
+        "job": 1080,
+        "attempt": 1,
+        "owner": "w6:82a71a",
+        "held_s": 5.019
+      },
+      {
+        "job": 1080,
+        "attempt": 2,
+        "owner": "w5:069883",
+        "held_s": 5.01
+      },
+      {
+        "job": 1080,
+        "attempt": 3,
+        "owner": "w3:9e8d89",
+        "held_s": 5.013
+      },
+      {
+        "job": 1080,
+        "attempt": 4,
+        "owner": "w6:82a71a",
+        "held_s": 5.009
+      },
+      {
+        "job": 1080,
+        "attempt": 5,
+        "owner": "w2:3090c7",
+        "held_s": 5.057
+      }
+    ],
+    "kills_orphaning_a_job": 0,
+    "recovery_after_kill_s": {
+      "n": 0,
+      "p50": null,
+      "p95": null,
+      "max": null
+    },
+    "stale_completes_rejected": 60,
+    "stale_completes_by_reason": {
+      "cancelled": 35,
+      "takeover": 25
+    },
+    "lease_lost_detected": 0,
+    "attempts_exhausted": 5,
+    "cancelled_from_queued": 46,
+    "cancelled_from_running": 35,
+    "cancel_responses": {
+      "200": 108,
+      "409": 73
+    },
+    "cancel_sent_while_seen_running": 50,
+    "cancel_lost_race_to_finish": 17,
+    "posts": 2844,
+    "repeat_posts": 844,
+    "concurrent_bursts": 190,
+    "burst_201_not_to_first_sent": 5,
+    "keys_without_any_201": 0,
+    "diff_body_409": 10,
+    "executions_per_job": {
+      "0": 46,
+      "1": 1949,
+      "5": 5
+    },
+    "max_attempt": 6,
+    "final_states": {
+      "succeeded": 1891,
+      "cancelled": 81,
+      "failed": 28
+    },
+    "long_jobs": 10,
+    "long_jobs_succeeded_first_attempt": 0
+  },
+  "client_errors": {},
+  "gets_nonterminal": 1261,
+  "drained": true,
+  "durations_s": {
+    "load": 69.1,
+    "total": 81.2
+  },
+  "worker_processes_spawned": 8,
+  "fault_actions": {}
+}

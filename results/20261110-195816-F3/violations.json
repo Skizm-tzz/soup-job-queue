@@ -1,0 +1,4157 @@
+{
+  "counts": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 80,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "I10": 0,
+    "B1": 0
+  },
+  "samples": {
+    "I3": [
+      {
+        "job": 12,
+        "key": null,
+        "msg": "succeeded with 2 effects"
+      },
+      {
+        "job": 12,
+        "key": null,
+        "msg": "effect of attempt 1, job finished on attempt 2"
+      },
+      {
+        "job": 22,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 24,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 109,
+        "key": null,
+        "msg": "succeeded with 2 effects"
+      },
+      {
+        "job": 109,
+        "key": null,
+        "msg": "effect of attempt 1, job finished on attempt 2"
+      },
+      {
+        "job": 145,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 191,
+        "key": null,
+        "msg": "succeeded with 2 effects"
+      },
+      {
+        "job": 191,
+        "key": null,
+        "msg": "effect of attempt 1, job finished on attempt 2"
+      },
+      {
+        "job": 305,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 328,
+        "key": null,
+        "msg": "succeeded with 2 effects"
+      },
+      {
+        "job": 328,
+        "key": null,
+        "msg": "effect of attempt 1, job finished on attempt 2"
+      },
+      {
+        "job": 337,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 339,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 421,
+        "key": null,
+        "msg": "succeeded with 2 effects"
+      },
+      {
+        "job": 421,
+        "key": null,
+        "msg": "effect of attempt 1, job finished on attempt 2"
+      },
+      {
+        "job": 437,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 452,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 493,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 512,
+        "key": null,
+        "msg": "succeeded with 2 effects"
+      },
+      {
+        "job": 512,
+        "key": null,
+        "msg": "effect of attempt 1, job finished on attempt 2"
+      },
+      {
+        "job": 515,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 542,
+        "key": null,
+        "msg": "cancelled job has 1 effect(s) (attempts [1])"
+      },
+      {
+        "job": 577,
+        "key": null,
+        "msg": "succeeded with 2 effects"
+      },
+      {
+        "job": 577,
+        "key": null,
+        "msg": "effect of attempt 1, job finished on attempt 2"
+      }
+    ]
+  },
+  "histories": {
+    "12": {
+      "job": {
+        "id": 12,
+        "idempotency_key": "20261110-195816-F3-9",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 112
+        },
+        "payload_hash": "8f412a3352c84f852a142108ff9f7bacd1f91e629aa04034749008f5cca49e9a",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:24.532250+00:00",
+        "created_at": "2026-11-10 19:58:18.288426+00:00",
+        "started_at": "2026-11-10 19:58:19.532251+00:00",
+        "finished_at": "2026-11-10 19:58:19.666320+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 12,
+          "job_id": 12,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:18.292953+00:00"
+        },
+        {
+          "seq": 71,
+          "job_id": 12,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w6:7c1085",
+          "at": "2026-11-10 19:58:19.521572+00:00"
+        },
+        {
+          "seq": 74,
+          "job_id": 12,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:18.527704+00:00",
+          "old_owner": "w6:7c1085",
+          "new_owner": "w3:b4a6ff",
+          "at": "2026-11-10 19:58:19.534683+00:00"
+        },
+        {
+          "seq": 97,
+          "job_id": 12,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:24.532250+00:00",
+          "old_owner": "w3:b4a6ff",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:19.666938+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 12,
+          "attempt": 1,
+          "worker_id": "w6:7c1085",
+          "created_at": "2026-11-10 19:58:19.641049+00:00"
+        },
+        {
+          "job_id": 12,
+          "attempt": 2,
+          "worker_id": "w3:b4a6ff",
+          "created_at": "2026-11-10 19:58:19.657546+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 12,
+          "attempt": 1,
+          "worker_id": "w6:7c1085",
+          "started_at": "2026-11-10 19:58:19.525140+00:00"
+        },
+        {
+          "job_id": 12,
+          "attempt": 2,
+          "worker_id": "w3:b4a6ff",
+          "started_at": "2026-11-10 19:58:19.540163+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 1,
+          "kind": "revoke",
+          "job_id": 12,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:19.527947+00:00",
+          "detail": null
+        },
+        {
+          "seq": 2,
+          "kind": "stale_complete_rejected",
+          "job_id": 12,
+          "attempt": 1,
+          "actor": "w6:7c1085",
+          "at": "2026-11-10 19:58:19.650434+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-9",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 12,
+          "state": "queued",
+          "t": 0.274
+        }
+      ]
+    },
+    "22": {
+      "job": {
+        "id": 22,
+        "idempotency_key": "20261110-195816-F3-19",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 770
+        },
+        "payload_hash": "c5eac78df82889c8a81d344ed5d971a28e3d99461a0804678a7c47aacb2d7dd4",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:24.657238+00:00",
+        "created_at": "2026-11-10 19:58:18.558595+00:00",
+        "started_at": "2026-11-10 19:58:19.657239+00:00",
+        "finished_at": "2026-11-10 19:58:19.739498+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 22,
+          "job_id": 22,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:18.558869+00:00"
+        },
+        {
+          "seq": 94,
+          "job_id": 22,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w6:7c1085",
+          "at": "2026-11-10 19:58:19.657735+00:00"
+        },
+        {
+          "seq": 110,
+          "job_id": 22,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:24.657238+00:00",
+          "old_owner": "w6:7c1085",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:19.739952+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 22,
+          "attempt": 1,
+          "worker_id": "w6:7c1085",
+          "created_at": "2026-11-10 19:58:20.439182+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 22,
+          "attempt": 1,
+          "worker_id": "w6:7c1085",
+          "started_at": "2026-11-10 19:58:19.662369+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 5,
+          "kind": "stale_complete_rejected",
+          "job_id": 22,
+          "attempt": 1,
+          "actor": "w6:7c1085",
+          "at": "2026-11-10 19:58:20.446943+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-19",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 22,
+          "state": "queued",
+          "t": 0.539
+        },
+        {
+          "op": "cancel",
+          "job": 22,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 1.72
+        }
+      ]
+    },
+    "24": {
+      "job": {
+        "id": 24,
+        "idempotency_key": "20261110-195816-F3-21",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 875
+        },
+        "payload_hash": "20f7c4b5bedee48c227ea3d110ca3dc3098b143b2df0d1a363f1dbce2b1bf11e",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:24.675741+00:00",
+        "created_at": "2026-11-10 19:58:18.646121+00:00",
+        "started_at": "2026-11-10 19:58:19.675741+00:00",
+        "finished_at": "2026-11-10 19:58:19.755758+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 24,
+          "job_id": 24,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:18.646560+00:00"
+        },
+        {
+          "seq": 100,
+          "job_id": 24,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w3:b4a6ff",
+          "at": "2026-11-10 19:58:19.676069+00:00"
+        },
+        {
+          "seq": 113,
+          "job_id": 24,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:24.675741+00:00",
+          "old_owner": "w3:b4a6ff",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:19.755997+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 24,
+          "attempt": 1,
+          "worker_id": "w3:b4a6ff",
+          "created_at": "2026-11-10 19:58:20.562241+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 24,
+          "attempt": 1,
+          "worker_id": "w3:b4a6ff",
+          "started_at": "2026-11-10 19:58:19.681101+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 6,
+          "kind": "stale_complete_rejected",
+          "job_id": 24,
+          "attempt": 1,
+          "actor": "w3:b4a6ff",
+          "at": "2026-11-10 19:58:20.570980+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-21",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 24,
+          "state": "queued",
+          "t": 0.629
+        },
+        {
+          "op": "cancel",
+          "job": 24,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 1.737
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-21",
+          "idx": -1,
+          "diff": false,
+          "status": 200,
+          "job": 24,
+          "state": "cancelled",
+          "t": 8.191
+        }
+      ]
+    },
+    "109": {
+      "job": {
+        "id": 109,
+        "idempotency_key": "20261110-195816-F3-83",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 86
+        },
+        "payload_hash": "f4dfa84b68f5aa5e9d5eabdf72a54175b94f55313320699b854634c5a0837557",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:25.663485+00:00",
+        "created_at": "2026-11-10 19:58:20.183798+00:00",
+        "started_at": "2026-11-10 19:58:20.663485+00:00",
+        "finished_at": "2026-11-10 19:58:20.761548+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 183,
+          "job_id": 109,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:20.184364+00:00"
+        },
+        {
+          "seq": 253,
+          "job_id": 109,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w1:659a36",
+          "at": "2026-11-10 19:58:20.644013+00:00"
+        },
+        {
+          "seq": 257,
+          "job_id": 109,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:19.658426+00:00",
+          "old_owner": "w1:659a36",
+          "new_owner": "w7:c49bb1",
+          "at": "2026-11-10 19:58:20.665103+00:00"
+        },
+        {
+          "seq": 276,
+          "job_id": 109,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:25.663485+00:00",
+          "old_owner": "w7:c49bb1",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:20.761695+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 109,
+          "attempt": 1,
+          "worker_id": "w1:659a36",
+          "created_at": "2026-11-10 19:58:20.736051+00:00"
+        },
+        {
+          "job_id": 109,
+          "attempt": 2,
+          "worker_id": "w7:c49bb1",
+          "created_at": "2026-11-10 19:58:20.758825+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 109,
+          "attempt": 1,
+          "worker_id": "w1:659a36",
+          "started_at": "2026-11-10 19:58:20.647013+00:00"
+        },
+        {
+          "job_id": 109,
+          "attempt": 2,
+          "worker_id": "w7:c49bb1",
+          "started_at": "2026-11-10 19:58:20.669021+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 7,
+          "kind": "revoke",
+          "job_id": 109,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:20.658522+00:00",
+          "detail": null
+        },
+        {
+          "seq": 8,
+          "kind": "stale_complete_rejected",
+          "job_id": 109,
+          "attempt": 1,
+          "actor": "w1:659a36",
+          "at": "2026-11-10 19:58:20.741159+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-83",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 109,
+          "state": "queued",
+          "t": 2.165
+        }
+      ]
+    },
+    "145": {
+      "job": {
+        "id": 145,
+        "idempotency_key": "20261110-195816-F3-111",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 860
+        },
+        "payload_hash": "9d87be5a7265fa4b3aac7d478e56895abb5a4167f242d1d44174b186566fd711",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:26.035174+00:00",
+        "created_at": "2026-11-10 19:58:21.006768+00:00",
+        "started_at": "2026-11-10 19:58:21.035175+00:00",
+        "finished_at": "2026-11-10 19:58:21.212899+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 326,
+          "job_id": 145,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:21.007041+00:00"
+        },
+        {
+          "seq": 329,
+          "job_id": 145,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w3:b4a6ff",
+          "at": "2026-11-10 19:58:21.035371+00:00"
+        },
+        {
+          "seq": 343,
+          "job_id": 145,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:26.035174+00:00",
+          "old_owner": "w3:b4a6ff",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:21.214086+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 145,
+          "attempt": 1,
+          "worker_id": "w3:b4a6ff",
+          "created_at": "2026-11-10 19:58:21.902433+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 145,
+          "attempt": 1,
+          "worker_id": "w3:b4a6ff",
+          "started_at": "2026-11-10 19:58:21.038176+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 10,
+          "kind": "stale_complete_rejected",
+          "job_id": 145,
+          "attempt": 1,
+          "actor": "w3:b4a6ff",
+          "at": "2026-11-10 19:58:21.907652+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-111",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 145,
+          "state": "queued",
+          "t": 2.988
+        },
+        {
+          "op": "cancel",
+          "job": 145,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 3.197
+        },
+        {
+          "op": "cancel",
+          "job": 145,
+          "kind": "when_running_repeat",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 3.211
+        }
+      ]
+    },
+    "191": {
+      "job": {
+        "id": 191,
+        "idempotency_key": "20261110-195816-F3-149",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 59
+        },
+        "payload_hash": "feb3a6bbbea8aee69966ee011e0defbcac7883672caa7469010ec70e54fde4e3",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:28.175639+00:00",
+        "created_at": "2026-11-10 19:58:22.127852+00:00",
+        "started_at": "2026-11-10 19:58:23.175640+00:00",
+        "finished_at": "2026-11-10 19:58:23.248029+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 440,
+          "job_id": 191,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:22.128244+00:00"
+        },
+        {
+          "seq": 445,
+          "job_id": 191,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w7:c49bb1",
+          "at": "2026-11-10 19:58:22.176679+00:00"
+        },
+        {
+          "seq": 535,
+          "job_id": 191,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:22.164208+00:00",
+          "old_owner": "w7:c49bb1",
+          "new_owner": "w4:cc1902",
+          "at": "2026-11-10 19:58:23.175863+00:00"
+        },
+        {
+          "seq": 544,
+          "job_id": 191,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:28.175639+00:00",
+          "old_owner": "w4:cc1902",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:23.248360+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 191,
+          "attempt": 2,
+          "worker_id": "w4:cc1902",
+          "created_at": "2026-11-10 19:58:23.244118+00:00"
+        },
+        {
+          "job_id": 191,
+          "attempt": 1,
+          "worker_id": "w7:c49bb1",
+          "created_at": "2026-11-10 19:58:22.246992+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 191,
+          "attempt": 1,
+          "worker_id": "w7:c49bb1",
+          "started_at": "2026-11-10 19:58:22.182912+00:00"
+        },
+        {
+          "job_id": 191,
+          "attempt": 2,
+          "worker_id": "w4:cc1902",
+          "started_at": "2026-11-10 19:58:23.180301+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 14,
+          "kind": "revoke",
+          "job_id": 191,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:23.164276+00:00",
+          "detail": null
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-149",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 191,
+          "state": "queued",
+          "t": 4.109
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-149",
+          "idx": -1,
+          "diff": false,
+          "status": 200,
+          "job": 191,
+          "state": "succeeded",
+          "t": 7.864
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-149",
+          "idx": -2,
+          "diff": false,
+          "status": 200,
+          "job": 191,
+          "state": "succeeded",
+          "t": 7.936
+        }
+      ]
+    },
+    "305": {
+      "job": {
+        "id": 305,
+        "idempotency_key": "20261110-195816-F3-236",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 70
+        },
+        "payload_hash": "fdba276be6197a76a651b3c9126c8e07c7bfc43f07ca8dd4e40cba589e7c3bb8",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:29.554601+00:00",
+        "created_at": "2026-11-10 19:58:24.544048+00:00",
+        "started_at": "2026-11-10 19:58:24.554601+00:00",
+        "finished_at": "2026-11-10 19:58:24.558684+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 701,
+          "job_id": 305,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:24.544350+00:00"
+        },
+        {
+          "seq": 705,
+          "job_id": 305,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w4:cc1902",
+          "at": "2026-11-10 19:58:24.554775+00:00"
+        },
+        {
+          "seq": 706,
+          "job_id": 305,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:29.554601+00:00",
+          "old_owner": "w4:cc1902",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:24.559303+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 305,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "created_at": "2026-11-10 19:58:24.634209+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 305,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "started_at": "2026-11-10 19:58:24.559035+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 16,
+          "kind": "stale_complete_rejected",
+          "job_id": 305,
+          "attempt": 1,
+          "actor": "w4:cc1902",
+          "at": "2026-11-10 19:58:24.642083+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-236",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 305,
+          "state": "queued",
+          "t": 6.527
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-236",
+          "idx": 1,
+          "diff": false,
+          "status": 200,
+          "job": 305,
+          "state": "queued",
+          "t": 6.528
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-236",
+          "idx": 2,
+          "diff": false,
+          "status": 200,
+          "job": 305,
+          "state": "queued",
+          "t": 6.529
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-236",
+          "idx": 3,
+          "diff": false,
+          "status": 200,
+          "job": 305,
+          "state": "queued",
+          "t": 6.53
+        },
+        {
+          "op": "cancel",
+          "job": 305,
+          "kind": "immediate",
+          "seen": null,
+          "status": 200,
+          "state": "cancelled",
+          "t": 6.541
+        }
+      ]
+    },
+    "328": {
+      "job": {
+        "id": 328,
+        "idempotency_key": "20261110-195816-F3-245",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 44
+        },
+        "payload_hash": "c0fb77b987d76a210ca17d5d2023f656384e7db7bdbd65818aa1a4e043e2faae",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:29.806633+00:00",
+        "created_at": "2026-11-10 19:58:24.719963+00:00",
+        "started_at": "2026-11-10 19:58:24.806634+00:00",
+        "finished_at": "2026-11-10 19:58:24.862009+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 726,
+          "job_id": 328,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:24.720229+00:00"
+        },
+        {
+          "seq": 732,
+          "job_id": 328,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w2:7c00e9",
+          "at": "2026-11-10 19:58:24.758806+00:00"
+        },
+        {
+          "seq": 744,
+          "job_id": 328,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:23.800122+00:00",
+          "old_owner": "w2:7c00e9",
+          "new_owner": "w1:de27da",
+          "at": "2026-11-10 19:58:24.806791+00:00"
+        },
+        {
+          "seq": 749,
+          "job_id": 328,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:29.806633+00:00",
+          "old_owner": "w1:de27da",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:24.862336+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 328,
+          "attempt": 1,
+          "worker_id": "w2:7c00e9",
+          "created_at": "2026-11-10 19:58:24.810310+00:00"
+        },
+        {
+          "job_id": 328,
+          "attempt": 2,
+          "worker_id": "w1:de27da",
+          "created_at": "2026-11-10 19:58:24.857552+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 328,
+          "attempt": 1,
+          "worker_id": "w2:7c00e9",
+          "started_at": "2026-11-10 19:58:24.761060+00:00"
+        },
+        {
+          "job_id": 328,
+          "attempt": 2,
+          "worker_id": "w1:de27da",
+          "started_at": "2026-11-10 19:58:24.809781+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 17,
+          "kind": "revoke",
+          "job_id": 328,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:24.800197+00:00",
+          "detail": null
+        },
+        {
+          "seq": 18,
+          "kind": "stale_complete_rejected",
+          "job_id": 328,
+          "attempt": 1,
+          "actor": "w2:7c00e9",
+          "at": "2026-11-10 19:58:24.814386+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-245",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 328,
+          "state": "queued",
+          "t": 6.702
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-245",
+          "idx": -1,
+          "diff": false,
+          "status": 200,
+          "job": 328,
+          "state": "succeeded",
+          "t": 9.589
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-245",
+          "idx": -2,
+          "diff": false,
+          "status": 200,
+          "job": 328,
+          "state": "succeeded",
+          "t": 12.173
+        }
+      ]
+    },
+    "337": {
+      "job": {
+        "id": 337,
+        "idempotency_key": "20261110-195816-F3-251",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 38
+        },
+        "payload_hash": "707db78dac87e324efa03010a7e75664757a32e43818e9f48f11a6a38728c8c9",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:29.904202+00:00",
+        "created_at": "2026-11-10 19:58:24.892670+00:00",
+        "started_at": "2026-11-10 19:58:24.904204+00:00",
+        "finished_at": "2026-11-10 19:58:24.914375+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 752,
+          "job_id": 337,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:24.893351+00:00"
+        },
+        {
+          "seq": 755,
+          "job_id": 337,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w2:7c00e9",
+          "at": "2026-11-10 19:58:24.904593+00:00"
+        },
+        {
+          "seq": 757,
+          "job_id": 337,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:29.904202+00:00",
+          "old_owner": "w2:7c00e9",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:24.915038+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 337,
+          "attempt": 1,
+          "worker_id": "w2:7c00e9",
+          "created_at": "2026-11-10 19:58:24.954602+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 337,
+          "attempt": 1,
+          "worker_id": "w2:7c00e9",
+          "started_at": "2026-11-10 19:58:24.909263+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 19,
+          "kind": "stale_complete_rejected",
+          "job_id": 337,
+          "attempt": 1,
+          "actor": "w2:7c00e9",
+          "at": "2026-11-10 19:58:24.961146+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-251",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 337,
+          "state": "queued",
+          "t": 6.879
+        },
+        {
+          "op": "cancel",
+          "job": 337,
+          "kind": "immediate",
+          "seen": null,
+          "status": 200,
+          "state": "cancelled",
+          "t": 6.899
+        }
+      ]
+    },
+    "339": {
+      "job": {
+        "id": 339,
+        "idempotency_key": "20261110-195816-F3-253",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 1381
+        },
+        "payload_hash": "37e5dac7ed9ed0257f63cef663c34b1dc27463a784b329854b7c5449c624a5ac",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:29.963715+00:00",
+        "created_at": "2026-11-10 19:58:24.939031+00:00",
+        "started_at": "2026-11-10 19:58:24.963716+00:00",
+        "finished_at": "2026-11-10 19:58:25.141689+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 759,
+          "job_id": 339,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:24.939821+00:00"
+        },
+        {
+          "seq": 760,
+          "job_id": 339,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w4:cc1902",
+          "at": "2026-11-10 19:58:24.963992+00:00"
+        },
+        {
+          "seq": 769,
+          "job_id": 339,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:29.963715+00:00",
+          "old_owner": "w4:cc1902",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:25.142327+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 339,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "created_at": "2026-11-10 19:58:26.360915+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 339,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "started_at": "2026-11-10 19:58:24.968069+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 21,
+          "kind": "lease_lost",
+          "job_id": 339,
+          "attempt": 1,
+          "actor": "w4:cc1902",
+          "at": "2026-11-10 19:58:26.353991+00:00",
+          "detail": null
+        },
+        {
+          "seq": 22,
+          "kind": "stale_complete_rejected",
+          "job_id": 339,
+          "attempt": 1,
+          "actor": "w4:cc1902",
+          "at": "2026-11-10 19:58:26.372034+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-253",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 339,
+          "state": "queued",
+          "t": 6.922
+        },
+        {
+          "op": "cancel",
+          "job": 339,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 7.123
+        }
+      ]
+    },
+    "421": {
+      "job": {
+        "id": 421,
+        "idempotency_key": "20261110-195816-F3-315",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 82
+        },
+        "payload_hash": "86e1bb992bf7611e0d26a28f643821d7a696cdfb198a9ae93033ed712a97078a",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:31.665606+00:00",
+        "created_at": "2026-11-10 19:58:26.330120+00:00",
+        "started_at": "2026-11-10 19:58:26.665607+00:00",
+        "finished_at": "2026-11-10 19:58:26.759079+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 915,
+          "job_id": 421,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:26.331059+00:00"
+        },
+        {
+          "seq": 945,
+          "job_id": 421,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w3:ea8681",
+          "at": "2026-11-10 19:58:26.576041+00:00"
+        },
+        {
+          "seq": 958,
+          "job_id": 421,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:25.659914+00:00",
+          "old_owner": "w3:ea8681",
+          "new_owner": "w4:cc1902",
+          "at": "2026-11-10 19:58:26.665713+00:00"
+        },
+        {
+          "seq": 978,
+          "job_id": 421,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:31.665606+00:00",
+          "old_owner": "w4:cc1902",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:26.759499+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 421,
+          "attempt": 1,
+          "worker_id": "w3:ea8681",
+          "created_at": "2026-11-10 19:58:26.662082+00:00"
+        },
+        {
+          "job_id": 421,
+          "attempt": 2,
+          "worker_id": "w4:cc1902",
+          "created_at": "2026-11-10 19:58:26.754432+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 421,
+          "attempt": 1,
+          "worker_id": "w3:ea8681",
+          "started_at": "2026-11-10 19:58:26.577939+00:00"
+        },
+        {
+          "job_id": 421,
+          "attempt": 2,
+          "worker_id": "w4:cc1902",
+          "started_at": "2026-11-10 19:58:26.668868+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 23,
+          "kind": "revoke",
+          "job_id": 421,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:26.660279+00:00",
+          "detail": null
+        },
+        {
+          "seq": 24,
+          "kind": "stale_complete_rejected",
+          "job_id": 421,
+          "attempt": 1,
+          "actor": "w3:ea8681",
+          "at": "2026-11-10 19:58:26.670882+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-315",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 421,
+          "state": "queued",
+          "t": 8.314
+        }
+      ]
+    },
+    "437": {
+      "job": {
+        "id": 437,
+        "idempotency_key": "20261110-195816-F3-329",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 424
+        },
+        "payload_hash": "8b141a8dbca44d4e4aa736e600a834a338ae851358a369177a1bb277c69536f2",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:31.807007+00:00",
+        "created_at": "2026-11-10 19:58:26.799607+00:00",
+        "started_at": "2026-11-10 19:58:26.807008+00:00",
+        "finished_at": "2026-11-10 19:58:27.079446+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 984,
+          "job_id": 437,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:26.799817+00:00"
+        },
+        {
+          "seq": 985,
+          "job_id": 437,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w6:f943dc",
+          "at": "2026-11-10 19:58:26.807274+00:00"
+        },
+        {
+          "seq": 1014,
+          "job_id": 437,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:31.807007+00:00",
+          "old_owner": "w6:f943dc",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:27.079908+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 437,
+          "attempt": 1,
+          "worker_id": "w6:f943dc",
+          "created_at": "2026-11-10 19:58:27.239486+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 437,
+          "attempt": 1,
+          "worker_id": "w6:f943dc",
+          "started_at": "2026-11-10 19:58:26.811130+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 26,
+          "kind": "stale_complete_rejected",
+          "job_id": 437,
+          "attempt": 1,
+          "actor": "w6:f943dc",
+          "at": "2026-11-10 19:58:27.243812+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-329",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 437,
+          "state": "queued",
+          "t": 8.781
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-329",
+          "idx": 1,
+          "diff": false,
+          "status": 200,
+          "job": 437,
+          "state": "queued",
+          "t": 8.784
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-329",
+          "idx": 4,
+          "diff": false,
+          "status": 200,
+          "job": 437,
+          "state": "queued",
+          "t": 8.787
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-329",
+          "idx": 2,
+          "diff": false,
+          "status": 200,
+          "job": 437,
+          "state": "queued",
+          "t": 8.788
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-329",
+          "idx": 3,
+          "diff": false,
+          "status": 200,
+          "job": 437,
+          "state": "running",
+          "t": 8.791
+        },
+        {
+          "op": "cancel",
+          "job": 437,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 9.059
+        }
+      ]
+    },
+    "452": {
+      "job": {
+        "id": 452,
+        "idempotency_key": "20261110-195816-F3-340",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 957
+        },
+        "payload_hash": "84ddb5fa149ad48456d1eceba59b43d89f4912238c4f7ee70da465becdbfb6b1",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:32.110006+00:00",
+        "created_at": "2026-11-10 19:58:27.057337+00:00",
+        "started_at": "2026-11-10 19:58:27.110007+00:00",
+        "finished_at": "2026-11-10 19:58:27.417394+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1012,
+          "job_id": 452,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:27.057552+00:00"
+        },
+        {
+          "seq": 1019,
+          "job_id": 452,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:27.110324+00:00"
+        },
+        {
+          "seq": 1039,
+          "job_id": 452,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:32.110006+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:27.417649+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 452,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:28.078889+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 452,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:27.114893+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 28,
+          "kind": "stale_complete_rejected",
+          "job_id": 452,
+          "attempt": 1,
+          "actor": "w0:b4c38c",
+          "at": "2026-11-10 19:58:28.082195+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-340",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 452,
+          "state": "queued",
+          "t": 9.036
+        },
+        {
+          "op": "cancel",
+          "job": 452,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 9.456
+        }
+      ]
+    },
+    "493": {
+      "job": {
+        "id": 493,
+        "idempotency_key": "20261110-195816-F3-370",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 359
+        },
+        "payload_hash": "171d5baa377d77a881b6f282ad0b40d0f2ca98cc56ef9e9e79c44ec020c94790",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:33.036402+00:00",
+        "created_at": "2026-11-10 19:58:27.999156+00:00",
+        "started_at": "2026-11-10 19:58:28.036403+00:00",
+        "finished_at": "2026-11-10 19:58:28.153067+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1100,
+          "job_id": 493,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:27.999347+00:00"
+        },
+        {
+          "seq": 1107,
+          "job_id": 493,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w1:de27da",
+          "at": "2026-11-10 19:58:28.036546+00:00"
+        },
+        {
+          "seq": 1120,
+          "job_id": 493,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:33.036402+00:00",
+          "old_owner": "w1:de27da",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:28.153291+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 493,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "created_at": "2026-11-10 19:58:28.402752+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 493,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "started_at": "2026-11-10 19:58:28.039613+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 29,
+          "kind": "stale_complete_rejected",
+          "job_id": 493,
+          "attempt": 1,
+          "actor": "w1:de27da",
+          "at": "2026-11-10 19:58:28.407442+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-370",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 493,
+          "state": "queued",
+          "t": 9.978
+        },
+        {
+          "op": "cancel",
+          "job": 493,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 10.133
+        }
+      ]
+    },
+    "512": {
+      "job": {
+        "id": 512,
+        "idempotency_key": "20261110-195816-F3-381",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 647
+        },
+        "payload_hash": "aa6aa6d42f29f4d7cfdffe96353a14a75181af493e9ab714cd983ad924e91411",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:33.508651+00:00",
+        "created_at": "2026-11-10 19:58:28.312194+00:00",
+        "started_at": "2026-11-10 19:58:28.508652+00:00",
+        "finished_at": "2026-11-10 19:58:29.167195+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1137,
+          "job_id": 512,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:28.312447+00:00"
+        },
+        {
+          "seq": 1139,
+          "job_id": 512,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:28.323463+00:00"
+        },
+        {
+          "seq": 1154,
+          "job_id": 512,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:27.492059+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": "w1:de27da",
+          "at": "2026-11-10 19:58:28.508799+00:00"
+        },
+        {
+          "seq": 1209,
+          "job_id": 512,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:33.508651+00:00",
+          "old_owner": "w1:de27da",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:29.167728+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 512,
+          "attempt": 2,
+          "worker_id": "w1:de27da",
+          "created_at": "2026-11-10 19:58:29.162918+00:00"
+        },
+        {
+          "job_id": 512,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:28.977164+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 512,
+          "attempt": 2,
+          "worker_id": "w1:de27da",
+          "started_at": "2026-11-10 19:58:28.511783+00:00"
+        },
+        {
+          "job_id": 512,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:28.326515+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 30,
+          "kind": "revoke",
+          "job_id": 512,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:28.492138+00:00",
+          "detail": null
+        },
+        {
+          "seq": 32,
+          "kind": "stale_complete_rejected",
+          "job_id": 512,
+          "attempt": 1,
+          "actor": "w0:b4c38c",
+          "at": "2026-11-10 19:58:28.980934+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-381",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 512,
+          "state": "queued",
+          "t": 10.292
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-381",
+          "idx": -1,
+          "diff": false,
+          "status": 200,
+          "job": 512,
+          "state": "succeeded",
+          "t": 13.529
+        }
+      ]
+    },
+    "515": {
+      "job": {
+        "id": 515,
+        "idempotency_key": "20261110-195816-F3-384",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 86
+        },
+        "payload_hash": "f4dfa84b68f5aa5e9d5eabdf72a54175b94f55313320699b854634c5a0837557",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:33.418907+00:00",
+        "created_at": "2026-11-10 19:58:28.399661+00:00",
+        "started_at": "2026-11-10 19:58:28.418908+00:00",
+        "finished_at": "2026-11-10 19:58:28.429379+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1144,
+          "job_id": 515,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:28.399874+00:00"
+        },
+        {
+          "seq": 1148,
+          "job_id": 515,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w5:f81f7c",
+          "at": "2026-11-10 19:58:28.424349+00:00"
+        },
+        {
+          "seq": 1149,
+          "job_id": 515,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:33.418907+00:00",
+          "old_owner": "w5:f81f7c",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:28.429879+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 515,
+          "attempt": 1,
+          "worker_id": "w5:f81f7c",
+          "created_at": "2026-11-10 19:58:28.520730+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 515,
+          "attempt": 1,
+          "worker_id": "w5:f81f7c",
+          "started_at": "2026-11-10 19:58:28.429513+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 31,
+          "kind": "stale_complete_rejected",
+          "job_id": 515,
+          "attempt": 1,
+          "actor": "w5:f81f7c",
+          "at": "2026-11-10 19:58:28.526927+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-384",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 515,
+          "state": "queued",
+          "t": 10.379
+        },
+        {
+          "op": "cancel",
+          "job": 515,
+          "kind": "immediate",
+          "seen": null,
+          "status": 200,
+          "state": "cancelled",
+          "t": 10.414
+        }
+      ]
+    },
+    "542": {
+      "job": {
+        "id": 542,
+        "idempotency_key": "20261110-195816-F3-401",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 112
+        },
+        "payload_hash": "8f412a3352c84f852a142108ff9f7bacd1f91e629aa04034749008f5cca49e9a",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:34.129825+00:00",
+        "created_at": "2026-11-10 19:58:29.089160+00:00",
+        "started_at": "2026-11-10 19:58:29.129827+00:00",
+        "finished_at": "2026-11-10 19:58:29.142342+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1194,
+          "job_id": 542,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:29.090168+00:00"
+        },
+        {
+          "seq": 1201,
+          "job_id": 542,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:29.130201+00:00"
+        },
+        {
+          "seq": 1203,
+          "job_id": 542,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:34.129825+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:29.143239+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 542,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:29.251473+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 542,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:29.134830+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 34,
+          "kind": "stale_complete_rejected",
+          "job_id": 542,
+          "attempt": 1,
+          "actor": "w0:b4c38c",
+          "at": "2026-11-10 19:58:29.254594+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-401",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 542,
+          "state": "queued",
+          "t": 11.085
+        },
+        {
+          "op": "cancel",
+          "job": 542,
+          "kind": "immediate",
+          "seen": null,
+          "status": 200,
+          "state": "cancelled",
+          "t": 11.133
+        }
+      ]
+    },
+    "577": {
+      "job": {
+        "id": 577,
+        "idempotency_key": "20261110-195816-F3-426",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 1466
+        },
+        "payload_hash": "3502d18154d35af6631e359198bd375f77d3b9ed420620d0120be1b713da2dc1",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:36.043612+00:00",
+        "created_at": "2026-11-10 19:58:29.679815+00:00",
+        "started_at": "2026-11-10 19:58:30.038040+00:00",
+        "finished_at": "2026-11-10 19:58:31.512179+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1273,
+          "job_id": 577,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:29.680082+00:00"
+        },
+        {
+          "seq": 1274,
+          "job_id": 577,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w1:de27da",
+          "at": "2026-11-10 19:58:29.685699+00:00"
+        },
+        {
+          "seq": 1303,
+          "job_id": 577,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:29.031289+00:00",
+          "old_owner": "w1:de27da",
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:30.038148+00:00"
+        },
+        {
+          "seq": 1485,
+          "job_id": 577,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:36.043612+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:31.512381+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 577,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "created_at": "2026-11-10 19:58:31.163316+00:00"
+        },
+        {
+          "job_id": 577,
+          "attempt": 2,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:31.509078+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 577,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "started_at": "2026-11-10 19:58:29.689594+00:00"
+        },
+        {
+          "job_id": 577,
+          "attempt": 2,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:30.039984+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 37,
+          "kind": "revoke",
+          "job_id": 577,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:30.031675+00:00",
+          "detail": null
+        },
+        {
+          "seq": 38,
+          "kind": "lease_lost",
+          "job_id": 577,
+          "attempt": 1,
+          "actor": "w1:de27da",
+          "at": "2026-11-10 19:58:31.160288+00:00",
+          "detail": null
+        },
+        {
+          "seq": 39,
+          "kind": "stale_complete_rejected",
+          "job_id": 577,
+          "attempt": 1,
+          "actor": "w1:de27da",
+          "at": "2026-11-10 19:58:31.166520+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-426",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 577,
+          "state": "queued",
+          "t": 11.661
+        }
+      ]
+    },
+    "667": {
+      "job": {
+        "id": 667,
+        "idempotency_key": "20261110-195816-F3-488",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 8714
+        },
+        "payload_hash": "a8ea7eec67770245e2927567054f3e42d9b9e2eecc29d69b0d0eb2269f782a93",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:36.348086+00:00",
+        "created_at": "2026-11-10 19:58:31.227542+00:00",
+        "started_at": "2026-11-10 19:58:31.348087+00:00",
+        "finished_at": "2026-11-10 19:58:31.649706+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1448,
+          "job_id": 667,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:31.227760+00:00"
+        },
+        {
+          "seq": 1461,
+          "job_id": 667,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w1:de27da",
+          "at": "2026-11-10 19:58:31.348228+00:00"
+        },
+        {
+          "seq": 1502,
+          "job_id": 667,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:36.348086+00:00",
+          "old_owner": "w1:de27da",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:31.650021+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 667,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "created_at": "2026-11-10 19:58:40.073914+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 667,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "started_at": "2026-11-10 19:58:31.350950+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 68,
+          "kind": "lease_lost",
+          "job_id": 667,
+          "attempt": 1,
+          "actor": "w1:de27da",
+          "at": "2026-11-10 19:58:40.070676+00:00",
+          "detail": null
+        },
+        {
+          "seq": 69,
+          "kind": "stale_complete_rejected",
+          "job_id": 667,
+          "attempt": 1,
+          "actor": "w1:de27da",
+          "at": "2026-11-10 19:58:40.078676+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-488",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 667,
+          "state": "queued",
+          "t": 13.207
+        },
+        {
+          "op": "cancel",
+          "job": 667,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 13.63
+        }
+      ]
+    },
+    "698": {
+      "job": {
+        "id": 698,
+        "idempotency_key": "20261110-195816-F3-511",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 1328
+        },
+        "payload_hash": "ca11e8502db101061b70754fe2eafdae12b0b68c04318e511904e2da2012231f",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:38.846770+00:00",
+        "created_at": "2026-11-10 19:58:31.810916+00:00",
+        "started_at": "2026-11-10 19:58:32.837688+00:00",
+        "finished_at": "2026-11-10 19:58:34.176476+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1521,
+          "job_id": 698,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:31.811204+00:00"
+        },
+        {
+          "seq": 1526,
+          "job_id": 698,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:31.845890+00:00"
+        },
+        {
+          "seq": 1603,
+          "job_id": 698,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:31.833077+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": "w2:7c00e9",
+          "at": "2026-11-10 19:58:32.837855+00:00"
+        },
+        {
+          "seq": 1742,
+          "job_id": 698,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:38.846770+00:00",
+          "old_owner": "w2:7c00e9",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:34.176674+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 698,
+          "attempt": 2,
+          "worker_id": "w2:7c00e9",
+          "created_at": "2026-11-10 19:58:34.174616+00:00"
+        },
+        {
+          "job_id": 698,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:33.182248+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 698,
+          "attempt": 2,
+          "worker_id": "w2:7c00e9",
+          "started_at": "2026-11-10 19:58:32.841060+00:00"
+        },
+        {
+          "job_id": 698,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:31.848125+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 43,
+          "kind": "revoke",
+          "job_id": 698,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:32.833158+00:00",
+          "detail": null
+        },
+        {
+          "seq": 45,
+          "kind": "lease_lost",
+          "job_id": 698,
+          "attempt": 1,
+          "actor": "w0:b4c38c",
+          "at": "2026-11-10 19:58:33.179995+00:00",
+          "detail": null
+        },
+        {
+          "seq": 46,
+          "kind": "stale_complete_rejected",
+          "job_id": 698,
+          "attempt": 1,
+          "actor": "w0:b4c38c",
+          "at": "2026-11-10 19:58:33.185215+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-511",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 698,
+          "state": "queued",
+          "t": 13.791
+        }
+      ]
+    },
+    "701": {
+      "job": {
+        "id": 701,
+        "idempotency_key": "20261110-195816-F3-514",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 1493
+        },
+        "payload_hash": "c9511b44cbe4e4b6830d7fb8bff8ba398c487906667bc9462b0bdcaab19ed81a",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:37.051860+00:00",
+        "created_at": "2026-11-10 19:58:31.925939+00:00",
+        "started_at": "2026-11-10 19:58:32.051861+00:00",
+        "finished_at": "2026-11-10 19:58:32.287471+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1532,
+          "job_id": 701,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:31.926138+00:00"
+        },
+        {
+          "seq": 1541,
+          "job_id": 701,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w4:cc1902",
+          "at": "2026-11-10 19:58:32.051992+00:00"
+        },
+        {
+          "seq": 1548,
+          "job_id": 701,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:37.051860+00:00",
+          "old_owner": "w4:cc1902",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:32.287632+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 701,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "created_at": "2026-11-10 19:58:33.555303+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 701,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "started_at": "2026-11-10 19:58:32.054131+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 49,
+          "kind": "lease_lost",
+          "job_id": 701,
+          "attempt": 1,
+          "actor": "w4:cc1902",
+          "at": "2026-11-10 19:58:33.552394+00:00",
+          "detail": null
+        },
+        {
+          "seq": 50,
+          "kind": "stale_complete_rejected",
+          "job_id": 701,
+          "attempt": 1,
+          "actor": "w4:cc1902",
+          "at": "2026-11-10 19:58:33.558931+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-514",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 701,
+          "state": "queued",
+          "t": 13.904
+        },
+        {
+          "op": "cancel",
+          "job": 701,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 14.266
+        },
+        {
+          "op": "cancel",
+          "job": 701,
+          "kind": "when_running_repeat",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 14.272
+        }
+      ]
+    },
+    "752": {
+      "job": {
+        "id": 752,
+        "idempotency_key": "20261110-195816-F3-549",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 79
+        },
+        "payload_hash": "5ee2eccb265f219e877710b24ca7026541e193a59654dab826b359499a9283be",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:38.512330+00:00",
+        "created_at": "2026-11-10 19:58:33.047961+00:00",
+        "started_at": "2026-11-10 19:58:33.512330+00:00",
+        "finished_at": "2026-11-10 19:58:33.600196+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1618,
+          "job_id": 752,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:33.048324+00:00"
+        },
+        {
+          "seq": 1659,
+          "job_id": 752,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w6:f943dc",
+          "at": "2026-11-10 19:58:33.434131+00:00"
+        },
+        {
+          "seq": 1669,
+          "job_id": 752,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:32.475396+00:00",
+          "old_owner": "w6:f943dc",
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:33.512459+00:00"
+        },
+        {
+          "seq": 1679,
+          "job_id": 752,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:38.512330+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:33.600438+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 752,
+          "attempt": 1,
+          "worker_id": "w6:f943dc",
+          "created_at": "2026-11-10 19:58:33.521209+00:00"
+        },
+        {
+          "job_id": 752,
+          "attempt": 2,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:33.597443+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 752,
+          "attempt": 1,
+          "worker_id": "w6:f943dc",
+          "started_at": "2026-11-10 19:58:33.438948+00:00"
+        },
+        {
+          "job_id": 752,
+          "attempt": 2,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:33.515420+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 47,
+          "kind": "revoke",
+          "job_id": 752,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:33.475467+00:00",
+          "detail": null
+        },
+        {
+          "seq": 48,
+          "kind": "stale_complete_rejected",
+          "job_id": 752,
+          "attempt": 1,
+          "actor": "w6:f943dc",
+          "at": "2026-11-10 19:58:33.525578+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-549",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 752,
+          "state": "queued",
+          "t": 15.035
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-549",
+          "idx": -1,
+          "diff": false,
+          "status": 200,
+          "job": 752,
+          "state": "succeeded",
+          "t": 31.314
+        }
+      ]
+    },
+    "774": {
+      "job": {
+        "id": 774,
+        "idempotency_key": "20261110-195816-F3-570",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 945
+        },
+        "payload_hash": "135b51507a3b4fd370111aabd40c39475a94582d79fb5670e0cf9576d9c5dd2a",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:38.909589+00:00",
+        "created_at": "2026-11-10 19:58:33.493606+00:00",
+        "started_at": "2026-11-10 19:58:33.909589+00:00",
+        "finished_at": "2026-11-10 19:58:34.084665+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1666,
+          "job_id": 774,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:33.493818+00:00"
+        },
+        {
+          "seq": 1724,
+          "job_id": 774,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w6:f943dc",
+          "at": "2026-11-10 19:58:33.909775+00:00"
+        },
+        {
+          "seq": 1735,
+          "job_id": 774,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:38.909589+00:00",
+          "old_owner": "w6:f943dc",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:34.084866+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 774,
+          "attempt": 1,
+          "worker_id": "w6:f943dc",
+          "created_at": "2026-11-10 19:58:34.862283+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 774,
+          "attempt": 1,
+          "worker_id": "w6:f943dc",
+          "started_at": "2026-11-10 19:58:33.912937+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 53,
+          "kind": "stale_complete_rejected",
+          "job_id": 774,
+          "attempt": 1,
+          "actor": "w6:f943dc",
+          "at": "2026-11-10 19:58:34.866667+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-570",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 774,
+          "state": "queued",
+          "t": 15.475
+        },
+        {
+          "op": "cancel",
+          "job": 774,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 16.063
+        }
+      ]
+    },
+    "820": {
+      "job": {
+        "id": 820,
+        "idempotency_key": "20261110-195816-F3-604",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 8090
+        },
+        "payload_hash": "cbad071ef896688a2ad588a17333d166d4fa38007335b932cc0387a08591c8b8",
+        "state": "failed",
+        "attempt": 6,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:59:02.941608+00:00",
+        "created_at": "2026-11-10 19:58:34.354055+00:00",
+        "started_at": "2026-11-10 19:58:57.941609+00:00",
+        "finished_at": "2026-11-10 19:58:57.946175+00:00",
+        "error": "attempts exhausted"
+      },
+      "events": [
+        {
+          "seq": 1757,
+          "job_id": 820,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:34.354296+00:00"
+        },
+        {
+          "seq": 1831,
+          "job_id": 820,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w4:cc1902",
+          "at": "2026-11-10 19:58:35.136239+00:00"
+        },
+        {
+          "seq": 1910,
+          "job_id": 820,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:34.873626+00:00",
+          "old_owner": "w4:cc1902",
+          "new_owner": "w6:f943dc",
+          "at": "2026-11-10 19:58:35.909925+00:00"
+        },
+        {
+          "seq": 2889,
+          "job_id": 820,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 2,
+          "new_attempt": 3,
+          "old_lease_expires_at": "2026-11-10 19:58:43.487295+00:00",
+          "old_owner": "w6:f943dc",
+          "new_owner": "w1:45bb65",
+          "at": "2026-11-10 19:58:44.497782+00:00"
+        },
+        {
+          "seq": 3727,
+          "job_id": 820,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 3,
+          "new_attempt": 4,
+          "old_lease_expires_at": "2026-11-10 19:58:51.190294+00:00",
+          "old_owner": "w1:45bb65",
+          "new_owner": "w5:6cbd0e",
+          "at": "2026-11-10 19:58:52.213415+00:00"
+        },
+        {
+          "seq": 4145,
+          "job_id": 820,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 4,
+          "new_attempt": 5,
+          "old_lease_expires_at": "2026-11-10 19:58:54.501366+00:00",
+          "old_owner": "w5:6cbd0e",
+          "new_owner": "w0:07876e",
+          "at": "2026-11-10 19:58:55.525970+00:00"
+        },
+        {
+          "seq": 4502,
+          "job_id": 820,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 5,
+          "new_attempt": 6,
+          "old_lease_expires_at": "2026-11-10 19:58:56.860912+00:00",
+          "old_owner": "w0:07876e",
+          "new_owner": "w5:6cbd0e",
+          "at": "2026-11-10 19:58:57.941729+00:00"
+        },
+        {
+          "seq": 4506,
+          "job_id": 820,
+          "old_state": "running",
+          "new_state": "failed",
+          "old_attempt": 6,
+          "new_attempt": 6,
+          "old_lease_expires_at": "2026-11-10 19:59:02.941608+00:00",
+          "old_owner": "w5:6cbd0e",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:57.946341+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 820,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "created_at": "2026-11-10 19:58:43.236623+00:00"
+        },
+        {
+          "job_id": 820,
+          "attempt": 3,
+          "worker_id": "w1:45bb65",
+          "created_at": "2026-11-10 19:58:52.598158+00:00"
+        },
+        {
+          "job_id": 820,
+          "attempt": 5,
+          "worker_id": "w0:07876e",
+          "created_at": "2026-11-10 19:59:03.629565+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 820,
+          "attempt": 1,
+          "worker_id": "w4:cc1902",
+          "started_at": "2026-11-10 19:58:35.139350+00:00"
+        },
+        {
+          "job_id": 820,
+          "attempt": 2,
+          "worker_id": "w6:f943dc",
+          "started_at": "2026-11-10 19:58:35.911834+00:00"
+        },
+        {
+          "job_id": 820,
+          "attempt": 4,
+          "worker_id": "w5:6cbd0e",
+          "started_at": "2026-11-10 19:58:52.215924+00:00"
+        },
+        {
+          "job_id": 820,
+          "attempt": 3,
+          "worker_id": "w1:45bb65",
+          "started_at": "2026-11-10 19:58:44.500772+00:00"
+        },
+        {
+          "job_id": 820,
+          "attempt": 5,
+          "worker_id": "w0:07876e",
+          "started_at": "2026-11-10 19:58:55.530504+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 56,
+          "kind": "revoke",
+          "job_id": 820,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:35.873683+00:00",
+          "detail": null
+        },
+        {
+          "seq": 81,
+          "kind": "lease_lost",
+          "job_id": 820,
+          "attempt": 1,
+          "actor": "w4:cc1902",
+          "at": "2026-11-10 19:58:43.232995+00:00",
+          "detail": null
+        },
+        {
+          "seq": 82,
+          "kind": "stale_complete_rejected",
+          "job_id": 820,
+          "attempt": 1,
+          "actor": "w4:cc1902",
+          "at": "2026-11-10 19:58:43.241388+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        },
+        {
+          "seq": 88,
+          "kind": "revoke",
+          "job_id": 820,
+          "attempt": 2,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:44.487347+00:00",
+          "detail": null
+        },
+        {
+          "seq": 111,
+          "kind": "revoke",
+          "job_id": 820,
+          "attempt": 3,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:52.190372+00:00",
+          "detail": null
+        },
+        {
+          "seq": 112,
+          "kind": "lease_lost",
+          "job_id": 820,
+          "attempt": 3,
+          "actor": "w1:45bb65",
+          "at": "2026-11-10 19:58:52.593958+00:00",
+          "detail": null
+        },
+        {
+          "seq": 113,
+          "kind": "stale_complete_rejected",
+          "job_id": 820,
+          "attempt": 3,
+          "actor": "w1:45bb65",
+          "at": "2026-11-10 19:58:52.602795+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        },
+        {
+          "seq": 122,
+          "kind": "revoke",
+          "job_id": 820,
+          "attempt": 4,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:55.501442+00:00",
+          "detail": null
+        },
+        {
+          "seq": 129,
+          "kind": "revoke",
+          "job_id": 820,
+          "attempt": 5,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:57.860968+00:00",
+          "detail": null
+        },
+        {
+          "seq": 131,
+          "kind": "attempts_exhausted",
+          "job_id": 820,
+          "attempt": 6,
+          "actor": "w5:6cbd0e",
+          "at": "2026-11-10 19:58:57.950306+00:00",
+          "detail": {
+            "applied": true
+          }
+        },
+        {
+          "seq": 144,
+          "kind": "lease_lost",
+          "job_id": 820,
+          "attempt": 5,
+          "actor": "w0:07876e",
+          "at": "2026-11-10 19:59:03.625661+00:00",
+          "detail": null
+        },
+        {
+          "seq": 145,
+          "kind": "stale_complete_rejected",
+          "job_id": 820,
+          "attempt": 5,
+          "actor": "w0:07876e",
+          "at": "2026-11-10 19:59:03.633727+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-604",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 820,
+          "state": "queued",
+          "t": 16.335
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-604",
+          "idx": 1,
+          "diff": false,
+          "status": 200,
+          "job": 820,
+          "state": "queued",
+          "t": 16.335
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-604",
+          "idx": 2,
+          "diff": false,
+          "status": 200,
+          "job": 820,
+          "state": "queued",
+          "t": 16.336
+        }
+      ]
+    },
+    "859": {
+      "job": {
+        "id": 859,
+        "idempotency_key": "20261110-195816-F3-637",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 1266
+        },
+        "payload_hash": "71e804182db1f63dfa092517348ca1ad7a202ac1f48652172472989f686e5a68",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:42.669877+00:00",
+        "created_at": "2026-11-10 19:58:35.315536+00:00",
+        "started_at": "2026-11-10 19:58:36.663343+00:00",
+        "finished_at": "2026-11-10 19:58:37.938259+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1848,
+          "job_id": 859,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:35.315811+00:00"
+        },
+        {
+          "seq": 1939,
+          "job_id": 859,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w5:6cbd0e",
+          "at": "2026-11-10 19:58:36.315861+00:00"
+        },
+        {
+          "seq": 1984,
+          "job_id": 859,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:35.657665+00:00",
+          "old_owner": "w5:6cbd0e",
+          "new_owner": "w3:e28f79",
+          "at": "2026-11-10 19:58:36.663445+00:00"
+        },
+        {
+          "seq": 2107,
+          "job_id": 859,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:42.669877+00:00",
+          "old_owner": "w3:e28f79",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:37.938524+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 859,
+          "attempt": 1,
+          "worker_id": "w5:6cbd0e",
+          "created_at": "2026-11-10 19:58:37.592746+00:00"
+        },
+        {
+          "job_id": 859,
+          "attempt": 2,
+          "worker_id": "w3:e28f79",
+          "created_at": "2026-11-10 19:58:37.935691+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 859,
+          "attempt": 1,
+          "worker_id": "w5:6cbd0e",
+          "started_at": "2026-11-10 19:58:36.318828+00:00"
+        },
+        {
+          "job_id": 859,
+          "attempt": 2,
+          "worker_id": "w3:e28f79",
+          "started_at": "2026-11-10 19:58:36.665422+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 57,
+          "kind": "revoke",
+          "job_id": 859,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:36.657735+00:00",
+          "detail": null
+        },
+        {
+          "seq": 60,
+          "kind": "lease_lost",
+          "job_id": 859,
+          "attempt": 1,
+          "actor": "w5:6cbd0e",
+          "at": "2026-11-10 19:58:37.590549+00:00",
+          "detail": null
+        },
+        {
+          "seq": 61,
+          "kind": "stale_complete_rejected",
+          "job_id": 859,
+          "attempt": 1,
+          "actor": "w5:6cbd0e",
+          "at": "2026-11-10 19:58:37.594896+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-637",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 859,
+          "state": "queued",
+          "t": 17.295
+        }
+      ]
+    },
+    "882": {
+      "job": {
+        "id": 882,
+        "idempotency_key": "20261110-195816-F3-652",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 453
+        },
+        "payload_hash": "ff0183190580df4d4e0f1c91eb819dceb44e93e811e9897ccc6de4a95f7453a8",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:41.780455+00:00",
+        "created_at": "2026-11-10 19:58:35.829497+00:00",
+        "started_at": "2026-11-10 19:58:36.780456+00:00",
+        "finished_at": "2026-11-10 19:58:36.880593+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 1903,
+          "job_id": 882,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:35.829977+00:00"
+        },
+        {
+          "seq": 1997,
+          "job_id": 882,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w2:7c00e9",
+          "at": "2026-11-10 19:58:36.780621+00:00"
+        },
+        {
+          "seq": 2005,
+          "job_id": 882,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:41.780455+00:00",
+          "old_owner": "w2:7c00e9",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:36.880950+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 882,
+          "attempt": 1,
+          "worker_id": "w2:7c00e9",
+          "created_at": "2026-11-10 19:58:37.239194+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 882,
+          "attempt": 1,
+          "worker_id": "w2:7c00e9",
+          "started_at": "2026-11-10 19:58:36.782442+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 58,
+          "kind": "stale_complete_rejected",
+          "job_id": 882,
+          "attempt": 1,
+          "actor": "w2:7c00e9",
+          "at": "2026-11-10 19:58:37.242906+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-652",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 882,
+          "state": "queued",
+          "t": 17.813
+        },
+        {
+          "op": "cancel",
+          "job": 882,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 18.859
+        },
+        {
+          "op": "cancel",
+          "job": 882,
+          "kind": "when_running_repeat",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 18.865
+        }
+      ]
+    },
+    "956": {
+      "job": {
+        "id": 956,
+        "idempotency_key": "20261110-195816-F3-707",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 115
+        },
+        "payload_hash": "31dd5e415e6e00f44a156dbef054e4a8d6a37ccf4ae811bdf2021a85baee23bd",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:43.362655+00:00",
+        "created_at": "2026-11-10 19:58:37.290671+00:00",
+        "started_at": "2026-11-10 19:58:38.362656+00:00",
+        "finished_at": "2026-11-10 19:58:38.483967+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 2042,
+          "job_id": 956,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:37.290900+00:00"
+        },
+        {
+          "seq": 2170,
+          "job_id": 956,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w2:6dbb82",
+          "at": "2026-11-10 19:58:38.335650+00:00"
+        },
+        {
+          "seq": 2173,
+          "job_id": 956,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:37.347477+00:00",
+          "old_owner": "w2:6dbb82",
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:38.362740+00:00"
+        },
+        {
+          "seq": 2187,
+          "job_id": 956,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:43.362655+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:38.484192+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 956,
+          "attempt": 1,
+          "worker_id": "w2:6dbb82",
+          "created_at": "2026-11-10 19:58:38.457330+00:00"
+        },
+        {
+          "job_id": 956,
+          "attempt": 2,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:38.481328+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 956,
+          "attempt": 2,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:38.364505+00:00"
+        },
+        {
+          "job_id": 956,
+          "attempt": 1,
+          "worker_id": "w2:6dbb82",
+          "started_at": "2026-11-10 19:58:38.338171+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 63,
+          "kind": "revoke",
+          "job_id": 956,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:38.347537+00:00",
+          "detail": null
+        },
+        {
+          "seq": 64,
+          "kind": "stale_complete_rejected",
+          "job_id": 956,
+          "attempt": 1,
+          "actor": "w2:6dbb82",
+          "at": "2026-11-10 19:58:38.460992+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-707",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 956,
+          "state": "queued",
+          "t": 19.27
+        }
+      ]
+    },
+    "1029": {
+      "job": {
+        "id": 1029,
+        "idempotency_key": "20261110-195816-F3-771",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 1080
+        },
+        "payload_hash": "c0383c688b45d4d3fa52224ae36e32396f39ce0d72ac15a5fcf830c0369a7f02",
+        "state": "cancelled",
+        "attempt": 1,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:44.634350+00:00",
+        "created_at": "2026-11-10 19:58:38.643857+00:00",
+        "started_at": "2026-11-10 19:58:39.634352+00:00",
+        "finished_at": "2026-11-10 19:58:39.732268+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 2213,
+          "job_id": 1029,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:38.644127+00:00"
+        },
+        {
+          "seq": 2360,
+          "job_id": 1029,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w0:b4c38c",
+          "at": "2026-11-10 19:58:39.634552+00:00"
+        },
+        {
+          "seq": 2373,
+          "job_id": 1029,
+          "old_state": "running",
+          "new_state": "cancelled",
+          "old_attempt": 1,
+          "new_attempt": 1,
+          "old_lease_expires_at": "2026-11-10 19:58:44.634350+00:00",
+          "old_owner": "w0:b4c38c",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:39.732631+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 1029,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "created_at": "2026-11-10 19:58:40.723249+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 1029,
+          "attempt": 1,
+          "worker_id": "w0:b4c38c",
+          "started_at": "2026-11-10 19:58:39.636700+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 71,
+          "kind": "lease_lost",
+          "job_id": 1029,
+          "attempt": 1,
+          "actor": "w0:b4c38c",
+          "at": "2026-11-10 19:58:40.720025+00:00",
+          "detail": null
+        },
+        {
+          "seq": 72,
+          "kind": "stale_complete_rejected",
+          "job_id": 1029,
+          "attempt": 1,
+          "actor": "w0:b4c38c",
+          "at": "2026-11-10 19:58:40.727313+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-771",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 1029,
+          "state": "queued",
+          "t": 20.622
+        },
+        {
+          "op": "cancel",
+          "job": 1029,
+          "kind": "when_running",
+          "seen": "running",
+          "status": 200,
+          "state": "cancelled",
+          "t": 21.712
+        }
+      ]
+    },
+    "1059": {
+      "job": {
+        "id": 1059,
+        "idempotency_key": "20261110-195816-F3-794",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 1404
+        },
+        "payload_hash": "820381cef253574e22fcbcc33aba399db5a0f91d8921fb779e635710827be6a8",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:46.617221+00:00",
+        "created_at": "2026-11-10 19:58:39.193923+00:00",
+        "started_at": "2026-11-10 19:58:40.609699+00:00",
+        "finished_at": "2026-11-10 19:58:42.023998+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 2290,
+          "job_id": 1059,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:39.194205+00:00"
+        },
+        {
+          "seq": 2422,
+          "job_id": 1059,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w1:de27da",
+          "at": "2026-11-10 19:58:40.081453+00:00"
+        },
+        {
+          "seq": 2489,
+          "job_id": 1059,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:39.574833+00:00",
+          "old_owner": "w1:de27da",
+          "new_owner": "w5:6cbd0e",
+          "at": "2026-11-10 19:58:40.609806+00:00"
+        },
+        {
+          "seq": 2623,
+          "job_id": 1059,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:46.617221+00:00",
+          "old_owner": "w5:6cbd0e",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:42.024349+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 1059,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "created_at": "2026-11-10 19:58:41.496965+00:00"
+        },
+        {
+          "job_id": 1059,
+          "attempt": 2,
+          "worker_id": "w5:6cbd0e",
+          "created_at": "2026-11-10 19:58:42.021039+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 1059,
+          "attempt": 1,
+          "worker_id": "w1:de27da",
+          "started_at": "2026-11-10 19:58:40.084662+00:00"
+        },
+        {
+          "job_id": 1059,
+          "attempt": 2,
+          "worker_id": "w5:6cbd0e",
+          "started_at": "2026-11-10 19:58:40.612787+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 70,
+          "kind": "revoke",
+          "job_id": 1059,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:40.574929+00:00",
+          "detail": null
+        },
+        {
+          "seq": 74,
+          "kind": "lease_lost",
+          "job_id": 1059,
+          "attempt": 1,
+          "actor": "w1:de27da",
+          "at": "2026-11-10 19:58:41.493649+00:00",
+          "detail": null
+        },
+        {
+          "seq": 75,
+          "kind": "stale_complete_rejected",
+          "job_id": 1059,
+          "attempt": 1,
+          "actor": "w1:de27da",
+          "at": "2026-11-10 19:58:41.501224+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-794",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 1059,
+          "state": "queued",
+          "t": 21.176
+        },
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-794",
+          "idx": -1,
+          "diff": false,
+          "status": 200,
+          "job": 1059,
+          "state": "succeeded",
+          "t": 40.876
+        }
+      ]
+    },
+    "1080": {
+      "job": {
+        "id": 1080,
+        "idempotency_key": "20261110-195816-F3-808",
+        "payload": {
+          "outcome": "ok",
+          "work_ms": 6068
+        },
+        "payload_hash": "a7f92c26c9b8467f4bc82f0b234e46614a8214a85d60993db4b79e56af6be5f7",
+        "state": "succeeded",
+        "attempt": 2,
+        "max_attempts": 5,
+        "lease_owner": null,
+        "lease_expires_at": "2026-11-10 19:58:55.266147+00:00",
+        "created_at": "2026-11-10 19:58:39.393917+00:00",
+        "started_at": "2026-11-10 19:58:45.241328+00:00",
+        "finished_at": "2026-11-10 19:58:51.362454+00:00",
+        "error": null
+      },
+      "events": [
+        {
+          "seq": 2325,
+          "job_id": 1080,
+          "old_state": null,
+          "new_state": "queued",
+          "old_attempt": null,
+          "new_attempt": 0,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": null,
+          "at": "2026-11-10 19:58:39.394165+00:00"
+        },
+        {
+          "seq": 2456,
+          "job_id": 1080,
+          "old_state": "queued",
+          "new_state": "running",
+          "old_attempt": 0,
+          "new_attempt": 1,
+          "old_lease_expires_at": null,
+          "old_owner": null,
+          "new_owner": "w2:6dbb82",
+          "at": "2026-11-10 19:58:40.286100+00:00"
+        },
+        {
+          "seq": 2993,
+          "job_id": 1080,
+          "old_state": "running",
+          "new_state": "running",
+          "old_attempt": 1,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:44.211437+00:00",
+          "old_owner": "w2:6dbb82",
+          "new_owner": "w4:cc1902",
+          "at": "2026-11-10 19:58:45.241499+00:00"
+        },
+        {
+          "seq": 3592,
+          "job_id": 1080,
+          "old_state": "running",
+          "new_state": "succeeded",
+          "old_attempt": 2,
+          "new_attempt": 2,
+          "old_lease_expires_at": "2026-11-10 19:58:55.266147+00:00",
+          "old_owner": "w4:cc1902",
+          "new_owner": null,
+          "at": "2026-11-10 19:58:51.362660+00:00"
+        }
+      ],
+      "effects": [
+        {
+          "job_id": 1080,
+          "attempt": 2,
+          "worker_id": "w4:cc1902",
+          "created_at": "2026-11-10 19:58:51.316536+00:00"
+        },
+        {
+          "job_id": 1080,
+          "attempt": 1,
+          "worker_id": "w2:6dbb82",
+          "created_at": "2026-11-10 19:58:46.364059+00:00"
+        }
+      ],
+      "executions": [
+        {
+          "job_id": 1080,
+          "attempt": 2,
+          "worker_id": "w4:cc1902",
+          "started_at": "2026-11-10 19:58:45.244300+00:00"
+        },
+        {
+          "job_id": 1080,
+          "attempt": 1,
+          "worker_id": "w2:6dbb82",
+          "started_at": "2026-11-10 19:58:40.288213+00:00"
+        }
+      ],
+      "diag": [
+        {
+          "seq": 89,
+          "kind": "revoke",
+          "job_id": 1080,
+          "attempt": 1,
+          "actor": "harness",
+          "at": "2026-11-10 19:58:45.211534+00:00",
+          "detail": null
+        },
+        {
+          "seq": 95,
+          "kind": "lease_lost",
+          "job_id": 1080,
+          "attempt": 1,
+          "actor": "w2:6dbb82",
+          "at": "2026-11-10 19:58:46.360078+00:00",
+          "detail": null
+        },
+        {
+          "seq": 96,
+          "kind": "stale_complete_rejected",
+          "job_id": 1080,
+          "attempt": 1,
+          "actor": "w2:6dbb82",
+          "at": "2026-11-10 19:58:46.369387+00:00",
+          "detail": {
+            "outcome": "ok"
+          }
+        }
+      ],
+      "client": [
+        {
+          "op": "create",
+          "key": "20261110-195816-F3-808",
+          "idx": 0,
+          "diff": false,
+          "status": 201,
+          "job": 1080,
+          "state": "queued",
+          "t": 21.375
+        }
+      ]
+    }
+  }
+}

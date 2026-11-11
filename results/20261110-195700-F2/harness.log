@@ -1,0 +1,20 @@
+[    0.04s] run 20261110-195700-F2: extended seed=1 jobs=2000 rate=40/s sources=['killer', 'staller', 'revoker', 'conn_killer', 'api_killer'] flags=['NO_FENCE'] isolation=read_committed release_on_start=False ignore_lease_loss=True; expect {'verdict': 'FAIL', 'invariants': ['I3', 'I5', 'I6']}
+[    1.68s] plan: 2000 keys over ~50s; bursts=190 delayed-repeats=276 diff-body=10 cancels=137 long(>TTL)=10
+[   11.72s] progress: keys sent 374/2000, states {'succeeded': 346, 'failed': 2, 'cancelled': 8, 'queued': 11, 'running': 7}, faults {'revoke': 6, 'kill': 5, 'conn_kill': 3, 'stop': 1}
+[   21.73s] progress: keys sent 743/2000, states {'succeeded': 685, 'failed': 5, 'cancelled': 16, 'queued': 31, 'running': 6}, faults {'revoke': 15, 'kill': 10, 'conn_kill': 6, 'stop': 2, 'cont': 1}
+[   31.73s] progress: keys sent 1155/2000, states {'succeeded': 1030, 'failed': 8, 'cancelled': 24, 'queued': 89, 'running': 4}, faults {'revoke': 23, 'kill': 15, 'conn_kill': 10, 'stop': 3, 'cont': 1}
+[   41.76s] progress: keys sent 1546/2000, states {'succeeded': 1420, 'failed': 14, 'cancelled': 34, 'queued': 75, 'running': 8}, faults {'revoke': 32, 'kill': 20, 'conn_kill': 13, 'stop': 4, 'cont': 2, 'api_kill': 1}
+[   51.76s] progress: keys sent 1981/2000, states {'succeeded': 1881, 'failed': 22, 'cancelled': 47, 'queued': 23, 'running': 8}, faults {'revoke': 40, 'kill': 24, 'conn_kill': 17, 'stop': 5, 'cont': 2, 'api_kill': 1}
+[   61.77s] progress: keys sent 2000/2000, states {'succeeded': 1929, 'failed': 23, 'cancelled': 47, 'running': 1}, faults {'revoke': 47, 'kill': 29, 'conn_kill': 20, 'stop': 6, 'cont': 3, 'api_kill': 1}
+[   70.82s] load done in 69.1s; stopping fault sources
+[   70.83s] drain complete after 0.0s: {'succeeded': 1929, 'failed': 24, 'cancelled': 47}
+[   72.17s] processes stopped; worker processes spawned in total: 42
+[   72.26s] invariants: I1=ok  I2=ok  I3=FAIL(41)  I4=ok  I5=FAIL(28)  I6=FAIL(37)  I7=ok  I8=ok  I9=ok  I10=ok  B1=ok
+[   72.26s] coverage: kills=34 (orphaning 22) takeovers=56 by cause {'kill': 23, 'conn_kill': 6, 'revoke': 23, 'stop': 4} unexplained=0; recovery after kill {'n': 23, 'p50': 3.255, 'p95': 5.078, 'max': 5.153}
+[   72.26s] coverage: stale completes rejected=2 {'takeover': 2} lease_lost=19 exhausted=1 max_attempt=6 executions/job={'0': 44, '1': 1912, '2': 39, '3': 3, '5': 2}
+[   72.27s] coverage: cancelled from queued=44 from running=31 responses={'200': 101, '409': 80} sent-while-running=44 lost-race=17
+[   72.27s] coverage: posts=2844 repeats=844 bursts=190 201-not-to-first=23 no-201-seen=0 diff-body-409=10; long jobs 10 ok-first-try 4
+[   72.27s] final states: {'succeeded': 1929, 'cancelled': 47, 'failed': 24}; client errors: {'get:RemoteProtocolError': 1, 'create:ConnectError': 498, 'get:ConnectError': 33}; fault actions: {'revoke': 55, 'kill': 34, 'conn_kill': 23, 'stop': 6, 'cont': 4, 'api_kill': 2}
+[   72.27s] VERDICT: FAIL (expected FAIL on I3,I5,I6) -> as expected
+[   72.54s] database chaos_20261110_195700_f2 kept for inspection
+[   72.78s] results in results/20261110-195700-F2/

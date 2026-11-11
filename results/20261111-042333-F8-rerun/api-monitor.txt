@@ -1,0 +1,26 @@
+=== sample 1 04:23:51
+healthz 200 0.065
+13632               Ss                  0.0                 /sbin/docker-init -- python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13656               Sl                  16.6                python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13679               Sl                  14.7                /usr/local/bin/python -m uvicorn app.api:app --host 127.0.0.1 --port 8100 --no-access-log
+=== sample 2 04:24:04
+healthz 200 0.058
+13632               Ss                  0.0                 /sbin/docker-init -- python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13656               Sl                  18.9                python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13679               Sl                  16.1                /usr/local/bin/python -m uvicorn app.api:app --host 127.0.0.1 --port 8100 --no-access-log
+=== sample 3 04:24:16
+healthz 200 0.046
+13632               Ss                  0.0                 /sbin/docker-init -- python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13656               Sl                  17.7                python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13679               Sl                  14.8                /usr/local/bin/python -m uvicorn app.api:app --host 127.0.0.1 --port 8100 --no-access-log
+=== sample 4 04:24:27
+healthz 200 0.044
+13632               Ss                  0.0                 /sbin/docker-init -- python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13656               Sl                  16.1                python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13679               Sl                  13.4                /usr/local/bin/python -m uvicorn app.api:app --host 127.0.0.1 --port 8100 --no-access-log
+=== sample 5 04:24:39
+healthz 200 0.042
+13632               Ss                  0.0                 /sbin/docker-init -- python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13656               Sl                  13.5                python -m chaos.harness baseline --fault CLAIM_READ_THEN_WRITE --fault NO_FENCE --expect I3 --label F8-rerun --note rerun of the aborted F8, with the API observed during the run
+13679               Sl                  11.2                /usr/local/bin/python -m uvicorn app.api:app --host 127.0.0.1 --port 8100 --no-access-log
+done

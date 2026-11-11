@@ -1,0 +1,111 @@
+{
+  "run_id": "20261110-195700-F2",
+  "completed": true,
+  "verdict": "FAIL",
+  "expected": {
+    "verdict": "FAIL",
+    "invariants": [
+      "I3",
+      "I5",
+      "I6"
+    ]
+  },
+  "as_expected": true,
+  "violations": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 41,
+    "I4": 0,
+    "I5": 28,
+    "I6": 37,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "I10": 0,
+    "B1": 0
+  },
+  "failed_invariants": [
+    "I3",
+    "I5",
+    "I6"
+  ],
+  "not_covered": [],
+  "coverage": {
+    "kills": 34,
+    "stalls": 6,
+    "revokes": 48,
+    "conn_kills": 23,
+    "api_kills": 2,
+    "takeovers": 56,
+    "takeovers_by_cause": {
+      "kill": 23,
+      "conn_kill": 6,
+      "revoke": 23,
+      "stop": 4
+    },
+    "takeovers_unexplained": 0,
+    "takeovers_unexplained_sample": [],
+    "kills_orphaning_a_job": 22,
+    "recovery_after_kill_s": {
+      "n": 23,
+      "p50": 3.255,
+      "p95": 5.078,
+      "max": 5.153
+    },
+    "stale_completes_rejected": 2,
+    "stale_completes_by_reason": {
+      "takeover": 2
+    },
+    "lease_lost_detected": 19,
+    "attempts_exhausted": 1,
+    "cancelled_from_queued": 44,
+    "cancelled_from_running": 31,
+    "cancel_responses": {
+      "200": 101,
+      "409": 80
+    },
+    "cancel_sent_while_seen_running": 44,
+    "cancel_lost_race_to_finish": 17,
+    "posts": 2844,
+    "repeat_posts": 844,
+    "concurrent_bursts": 190,
+    "burst_201_not_to_first_sent": 23,
+    "keys_without_any_201": 0,
+    "diff_body_409": 10,
+    "executions_per_job": {
+      "0": 44,
+      "1": 1912,
+      "2": 39,
+      "3": 3,
+      "5": 2
+    },
+    "max_attempt": 6,
+    "final_states": {
+      "succeeded": 1929,
+      "cancelled": 47,
+      "failed": 24
+    },
+    "long_jobs": 10,
+    "long_jobs_succeeded_first_attempt": 4
+  },
+  "client_errors": {
+    "get:RemoteProtocolError": 1,
+    "create:ConnectError": 498,
+    "get:ConnectError": 33
+  },
+  "gets_nonterminal": 1235,
+  "drained": true,
+  "durations_s": {
+    "load": 69.1,
+    "total": 72.2
+  },
+  "worker_processes_spawned": 42,
+  "fault_actions": {
+    "revoke": 55,
+    "kill": 34,
+    "conn_kill": 23,
+    "stop": 6,
+    "cont": 4,
+    "api_kill": 2
+  }
+}

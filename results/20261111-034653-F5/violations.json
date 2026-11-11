@@ -1,0 +1,145 @@
+{
+  "counts": {
+    "I1": 0,
+    "I2": 522,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0,
+    "I8": 0,
+    "I9": 0,
+    "I10": 0,
+    "B1": 0
+  },
+  "samples": {
+    "I2": [
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1010",
+        "msg": "4 jobs for one key: ids [1189, 1190, 1191, 1192]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1010",
+        "msg": "2xx responses named different ids [1189, 1190, 1191, 1192]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1010",
+        "msg": "4 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1026",
+        "msg": "4 jobs for one key: ids [1208, 1209, 1210, 1211]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1026",
+        "msg": "2xx responses named different ids [1208, 1209, 1210, 1211]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1026",
+        "msg": "4 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1050",
+        "msg": "3 jobs for one key: ids [1235, 1236, 1237]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1050",
+        "msg": "2xx responses named different ids [1235, 1236, 1237]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1050",
+        "msg": "3 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1062",
+        "msg": "2 jobs for one key: ids [1249, 1250]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1062",
+        "msg": "2xx responses named different ids [1249, 1250]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1062",
+        "msg": "2 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1068",
+        "msg": "3 jobs for one key: ids [1256, 1257, 1258]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1068",
+        "msg": "2xx responses named different ids [1256, 1257, 1258]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1068",
+        "msg": "3 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1069",
+        "msg": "4 jobs for one key: ids [1259, 1260, 1261, 1262]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1069",
+        "msg": "2xx responses named different ids [1259, 1260, 1261, 1262]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1069",
+        "msg": "4 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1083",
+        "msg": "4 jobs for one key: ids [1276, 1277, 1278, 1279]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1083",
+        "msg": "2xx responses named different ids [1276, 1277, 1278, 1279]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1083",
+        "msg": "4 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1090",
+        "msg": "2 jobs for one key: ids [1286, 1287]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1090",
+        "msg": "2xx responses named different ids [1286, 1287]"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1090",
+        "msg": "2 responses with 201 for one key"
+      },
+      {
+        "job": null,
+        "key": "20261111-034653-F5-1092",
+        "msg": "4 jobs for one key: ids [1289, 1290, 1291, 1292]"
+      }
+    ]
+  },
+  "histories": {}
+}

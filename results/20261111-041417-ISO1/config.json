@@ -1,0 +1,41 @@
+{
+  "run_id": "20261111-041417-ISO1",
+  "label": "ISO1",
+  "scenario": "canonical",
+  "seed": 7,
+  "flags": [],
+  "isolation": "repeatable_read",
+  "lease_ttl_s": 5.0,
+  "workers": 8,
+  "params": {
+    "jobs": 10000,
+    "rate": 40,
+    "sources": [
+      "killer"
+    ],
+    "profile": "normal",
+    "ignore_lease_loss": false,
+    "release_on_start": false,
+    "kill_every": [
+      1.5,
+      2.5
+    ]
+  },
+  "expected": {
+    "verdict": "PASS"
+  },
+  "required_coverage": [
+    "kills",
+    "kills_orphaning_a_job",
+    "takeovers",
+    "repeat_posts",
+    "concurrent_bursts",
+    "cancelled_from_running",
+    "cancelled_from_queued"
+  ],
+  "git_commit": "fc34242583125f44950eea1d0ae970810b635211",
+  "source_sha256": "39e83a2d073f11d0",
+  "started_at": "2026-11-11T04:14:17+0000",
+  "database": "chaos_20261111_041417_iso1",
+  "note": ""
+}

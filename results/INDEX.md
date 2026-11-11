@@ -14,5 +14,19 @@ A run without `summary.json` was aborted and is listed as such.
 | [20261110-194016-C4](20261110-194016-C4/) | C4 | canonical | 4 | 10000 | - | read_committed | PASS | PASS | yes | kills 129, takeovers 87, stale rejected 154, cancel running 280, exhausted 0 | f9ae73c |
 | [20261110-194452-C5](20261110-194452-C5/) | C5 | canonical | 5 | 10000 | - | read_committed | PASS | PASS | yes | kills 135, takeovers 75, stale rejected 163, cancel running 274, exhausted 0 | f9ae73c |
 | [20261110-194929-C6](20261110-194929-C6/) | C6 | canonical | 6 | 10000 | - | read_committed | PASS | PASS | yes | kills 131, takeovers 71, stale rejected 152, cancel running 247, exhausted 0 | f9ae73c |
+| [20261110-195542-F1](20261110-195542-F1/) | F1 | baseline | 1 | 2000 | CLAIM_READ_THEN_WRITE | read_committed | FAIL (B1,I7) | FAIL (B1,I5,I7,I9) | yes | kills 0, takeovers 1373, stale rejected 1360, cancel running 32, exhausted 5 | fc34242 |
+| [20261110-195700-F2](20261110-195700-F2/) | F2 | extended | 1 | 2000 | NO_FENCE | read_committed | FAIL (I3,I5,I6) | FAIL (I3,I5,I6) | yes | kills 34, takeovers 56, stale rejected 2, cancel running 31, exhausted 1 | fc34242 |
+| [20261110-195816-F3](20261110-195816-F3/) | F3 | extended | 1 | 2000 | SPLIT_EFFECT | read_committed | FAIL (I3) | FAIL (I3) | yes | kills 34, takeovers 57, stale rejected 60, cancel running 35, exhausted 2 | fc34242 |
+| [20261111-034539-F4](20261111-034539-F4/) | F4 | baseline | 1 | 2000 | WORKER_CLOCK | read_committed | FAIL (I7) | FAIL (B1,I5,I7,I9) not covered: long_jobs_succeeded_first_attempt | yes | kills 0, takeovers 766, stale rejected 631, cancel running 33, exhausted 143 | fc34242 |
+| [20261111-034653-F5](20261111-034653-F5/) | F5 | canonical | 1 | 2000 | CREATE_CHECK_THEN_INSERT | read_committed | FAIL (I2) | FAIL (I2) | yes | kills 34, takeovers 19, stale rejected 26, cancel running 39, exhausted 0 | fc34242 |
+| [20261111-034806-F6](20261111-034806-F6/) | F6 | baseline | 1 | 2000 | NO_HEARTBEAT | read_committed | FAIL (B1) | FAIL (B1,I9) not covered: long_jobs_succeeded_first_attempt | yes | kills 0, takeovers 25, stale rejected 60, cancel running 35, exhausted 5 | fc34242 |
+| [20261111-034929-F7](20261111-034929-F7/) | F7 | canonical | 1 | 2000 | CANCEL_BLIND | read_committed | FAIL (I3,I5) | FAIL (I3,I5,I6) | yes | kills 32, takeovers 16, stale rejected 18, cancel running 32, exhausted 0 | fc34242 |
+| [20261111-035046-F8](20261111-035046-F8/) | F8 | baseline | 1 | 2000 | CLAIM_READ_THEN_WRITE,NO_FENCE | read_committed | FAIL (I3) | ABORTED: GaveUp: list /jobs key=None: timeout after 16 tries | - |  | fc34242 |
+| [20261111-040023-X1](20261111-040023-X1/) | X1 | extended | 1 | 10000 | - | read_committed | PASS | PASS | yes | kills 135, takeovers 238, stale rejected 310, cancel running 234, exhausted 9 | fc34242 |
+| [20261111-040504-X2](20261111-040504-X2/) | X2 | extended | 2 | 10000 | - | read_committed | PASS | PASS | yes | kills 131, takeovers 232, stale rejected 338, cancel running 249, exhausted 7 | fc34242 |
+| [20261111-040940-X3](20261111-040940-X3/) | X3 | extended | 3 | 10000 | - | read_committed | PASS | PASS | yes | kills 132, takeovers 243, stale rejected 312, cancel running 215, exhausted 10 | fc34242 |
+| [20261111-041417-ISO1](20261111-041417-ISO1/) | ISO1 | canonical | 7 | 10000 | - | repeatable_read | PASS | PASS | yes | kills 131, takeovers 74, stale rejected 137, cancel running 230, exhausted 0 | fc34242 |
+| [20261111-041846-ISO2](20261111-041846-ISO2/) | ISO2 | canonical | 8 | 10000 | - | serializable | PASS | PASS | yes | kills 132, takeovers 70, stale rejected 141, cancel running 260, exhausted 0 | fc34242 |
+| [20261111-042333-F8-rerun](20261111-042333-F8-rerun/) | F8-rerun | baseline | 1 | 2000 | CLAIM_READ_THEN_WRITE,NO_FENCE | read_committed | FAIL (I3) | FAIL (B1,I3,I5,I6,I7,I8) | yes | kills 0, takeovers 717, stale rejected 8, cancel running 37, exhausted 0 | fc34242 |
 
-9 runs.
+23 runs.
